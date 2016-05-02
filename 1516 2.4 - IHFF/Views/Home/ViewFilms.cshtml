@@ -1,0 +1,67 @@
+﻿@using IHFF.Models
+@using IHFF.Helpers
+@model IEnumerable<Movie>
+
+@{
+    ViewBag.Title = "View Films";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Director)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearOfRelease)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IMDBRating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Actors)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+    </tr>
+
+@foreach (Movie item in Model) {
+    <tr>
+        <td>
+            @{
+                if (item.Image != null)
+                {
+                    <a href="@item.IMDBUrl">@Html.Image(@item.Image)</a>
+                }
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Director)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearOfRelease)
+        </td>
+        <td>
+            <a href="@item.IMDBUrl">@Html.DisplayFor(modelItem => item.IMDBRating)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Actors)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+    </tr>
+}
+
+</table>
