@@ -8,12 +8,13 @@ using IHFF.Interfaces;
 
 namespace IHFF.Controllers
 {
-    public class HomeController : Controller
+    public class MoviesController : Controller
     {
+        private IMovieRepository moviesRepository = new MoviesRepository();
 
         public ActionResult Index()
         {
-            return View();
+            return View(moviesRepository.GetAllMovies());
         }
     }
 }
