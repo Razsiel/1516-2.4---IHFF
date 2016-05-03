@@ -69,8 +69,6 @@ footer{
     background-color: #da2738;
     margin-left: unset;
     margin-right: unset;
-    padding-top: 2px;
-    padding-bottom : 2px;
 }
 
 .copyright {
@@ -120,8 +118,8 @@ h4 > a:hover, h4 > a:active{
   text-decoration: underline;
 }
 
-.navbar-inverse .navbar-nav > li > a .active {
-  color: #2e2c2d;
+.navbar-inverse .navbar-nav > li > a.active {
+  color: #da2738;
   background-color: #ffffff;
 }
 
