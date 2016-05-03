@@ -31,6 +31,8 @@ namespace IHFF.Repositories
             }
         }
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
+        public DbSet<WishlistItem> WishlistItems { get; set; }
 
         #endregion
 
