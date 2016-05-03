@@ -53,12 +53,24 @@ textarea {
 
 /* ADDS */
 
+header {
+    font-size: 16px;
+}
+
 footer{
     color: white;
 }
 
+.brand {
+    width: 100%;
+}
+
 .navbar > .row {
     background-color: #da2738;
+    margin-left: unset;
+    margin-right: unset;
+    padding-top: 2px;
+    padding-bottom : 2px;
 }
 
 .copyright {

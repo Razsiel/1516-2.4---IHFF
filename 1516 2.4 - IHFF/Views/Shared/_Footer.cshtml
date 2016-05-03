@@ -1,7 +1,10 @@
 ﻿<footer class="navbar navbar-inverse">
     <div class="container">
         <div class="row">
-            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <!-- BRAND HERE -->
+                    <img src="~/Resources/Brand.png" class="brand" />
+            </div>
             <div class="col-xs-4">
                 <h3>Nieuwsbrief</h3>
                 <p>
@@ -10,20 +13,43 @@
             </div>
             <div class="col-xs-4">
                 <h3 class="white">Contact</h3>
+                <div class="row">
+                    <div class="col-xs-3">Telefoon:</div>
+                    <div class="col-xs-9">+31 (0) 555 555 5555</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">E-mail:</div>
+                    <div class="col-xs-9">info@ihff.com</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">Twitter:</div>
+                    <div class="col-xs-9">@@IHFF</div>
+                </div>
             </div>
         </div>
+        <br />
         <div class="row">
-            <div class="col-xs-4"></div>
-            <div class="col-xs-4"></div>
-            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <!-- LANGUAGE ICONS HERE -->
+                #PLACEHOLDER LANGUAGE
+            </div>
+            <div class="col-xs-4">
+                <!-- NEWSLETTER INPUT HERE -->
+                #PLACEHOLDER INPUT
+            </div>
+            <div class="col-xs-4">
+                <!-- SOCIAL MEDIA ICONS HERE -->
+                #PLACEHOLDER SOCIAL MEDIA
+            </div>
         </div>
+        <br />
     </div>
     <div class="row">
         <div class="container">
-            <div class="col-xs-4">
+            <div class="col-xs-6">
                 <p class="copyright">&copy; copyright @DateTime.Now.Year CMD. All rights reserved. </p>
             </div>
-            <div class="col-xs-8">
+            <div class="col-xs-6">
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>

@@ -2,13 +2,13 @@
     <div class="container">
         <div class="navbar-header">
             <div class="row">
-                <div class="col-xs-9">
-                    <a href="@Url.Action("Index", "Home")" class="col-lg-9">
+                <div class="col-xs-6 col-md-10">
+                    <a href="@Url.Action("Index", "Home")">
                         <img src="~/Resources/Brand.png" />
                     </a>
                 </div>
-                <div class="col-xs-3">
-                    @Html.ActionLink("My Wishlist", "Index", "Wishlist", new { @class = "btn btn-primary btn-lg btn-block pull-right" });
+                <div class="col-xs-6 col-md-2">
+                    @Html.ActionLink("My Wishlist", "Index", "Wishlist", new { @class = "btn btn-primary btn-lg btn-block pull-right" })
                 </div>
             </div>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
