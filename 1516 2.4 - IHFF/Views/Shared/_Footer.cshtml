@@ -1,0 +1,39 @@
+﻿<footer class="navbar navbar-inverse">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <h3>Nieuwsbrief</h3>
+                <p>
+                    Blijf op de hoogte van nieuwe ontwikkelingen of acties en schrijf je in voor de nieuwsbrief
+                </p>
+            </div>
+            <div class="col-xs-4">
+                <h3 class="white">Contact</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="col-xs-4">
+                <p class="copyright">&copy; copyright @DateTime.Now.Year CMD. All rights reserved. </p>
+            </div>
+            <div class="col-xs-8">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Films", "Index", "Movies")</li>
+                        <li>@Html.ActionLink("Restaurants", "Index", "Restaurant")</li>
+                        <li>@Html.ActionLink("Specials", "Index", "Specials")</li>
+                        <li>@Html.ActionLink("FAQ", "Index", "FAQ")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

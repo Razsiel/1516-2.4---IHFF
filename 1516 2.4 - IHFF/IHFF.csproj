@@ -160,6 +160,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Fonts\Rambla-Bold.otf" />
+    <Content Include="Content\Fonts\Rambla-BoldItalic.otf" />
+    <Content Include="Content\Fonts\Rambla-Italic.ttf" />
+    <Content Include="Content\Fonts\Rambla-Regular.otf" />
     <None Include="Resources\Brand.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -188,6 +192,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
