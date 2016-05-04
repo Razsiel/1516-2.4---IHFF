@@ -169,6 +169,7 @@
     <Content Include="Content\Fonts\Rambla-Regular.ttf" />
     <None Include="Resources\Brand.png" />
     <None Include="Resources\Placeholder.png" />
+    <None Include="Resources\star.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
