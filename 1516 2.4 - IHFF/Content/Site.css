@@ -16,6 +16,16 @@
     font-size: 14px;
 }
 
+a {
+    color: #da2738;
+    text-decoration: underline;
+}
+
+a:hover,
+a:focus {
+    color: #9f1f2c;
+}
+
 body {
     background-color: #eeeeee;
     color: #2c2e2d;
@@ -79,6 +89,13 @@ footer > .container > .row {
     margin-right: unset;
 }
 
+.banner {
+    background-image: url(../../../Resources/Placeholder.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+}
+
 /* helper classes for alligning things bottom right in a row*/
 .myrow {
     font-size: 0;
@@ -94,7 +111,7 @@ footer > .container > .row {
 }
 
 .alt-button {
-    border-radius: 10px !important;
+    border-radius: 8px !important;
 }
 
 .space-below {
@@ -114,12 +131,46 @@ footer > .container > .row {
     margin-top: 5px;
 }
 
+.thumbnail {
+    color: #000;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.thumbnail.recommendation {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #9f1f2c;
+    border: none;
+}
+
+.recommendation > p {
+    color: #fff;
+    font-size: 16px;
+    overflow: hidden;
+}
+
 .overlay {
     background-color: rgba(0, 0, 0, 0.35);
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .overlay > * {
     color: #fff;
+}
+
+.btn {
+    text-decoration: none;
+}
+
+hr.dashed {
+    border: 6px;
+    border-top: 0px;
+    border-color: #fff;
+    border-style: dashed;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 h2{
@@ -128,18 +179,13 @@ h2{
     font-weight: bold;
 }
 
-h4 > a{
-    color: #da2738;
-    text-decoration: underline;
+h3, 
+h4 {
+    font-weight: bold;
 }
 
-h4 > a :hover,
-h4 > a :focus {
-    color: #9f1f2c;
-}
-
-h4 > a:hover, h4 > a:active{
-    color: #9f1f2c;
+h4 {
+    color: #0B66BA;
 }
 
 .navbar{

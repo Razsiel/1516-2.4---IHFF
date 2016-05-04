@@ -168,6 +168,7 @@
     <Content Include="Content\Fonts\Rambla-BoldItalic.ttf" />
     <Content Include="Content\Fonts\Rambla-Regular.ttf" />
     <None Include="Resources\Brand.png" />
+    <None Include="Resources\Placeholder.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -197,6 +198,11 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Home\_Banner.cshtml" />
+    <Content Include="Views\Home\_MovieContent.cshtml" />
+    <Content Include="Views\Home\_RestaurantContent.cshtml" />
+    <Content Include="Views\Home\_SpecialsContent.cshtml" />
+    <Content Include="Views\Home\_InfoContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

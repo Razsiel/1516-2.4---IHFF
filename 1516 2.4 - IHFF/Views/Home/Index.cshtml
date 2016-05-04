@@ -2,47 +2,12 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="row myrow">
-    <div class="col-sm-4 col-lg-3 overlay">
-        <h2>
-            #IHFF 2016<br />
-            29 juni - 3 juli '16
-        </h2>
-        <p>
-            Dit vijfdaagse festival, durende van woensdag tot en met zondag vindt plaats in het centrum van Haarlem. 
-            Samen met de restaurant ondernemers, filmzalen en andere locaties biedt dit festival een uniqe ervaringen aan.
-        </p>
-        <br />
-        <br />
-        @Html.ActionLink("Lees verder", "", null, new { @class = "btn btn-default" })
-        <hr />
-    </div>
-    <div class="col-sm-8 col-lg-2 col-lg-offset-7 pull-down ">
-        <a href="@Url.Action("Index", "Movies")" class="btn btn-primary pull-right space-below alt-button">
-            View Schedule <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-        </a>
-        
-    </div>
-</div>
-<div class="row row-inverse">
-    <div class="col-md-6">
-        <h2>
-            Welkom bij het<br />
-            Internationaal Haarlems Film Festival
-        </h2>
-        <p>
-            Het IHFF bestaat al vele jaren en focused zich op films, cultuur, eten en de geweldige stad Haarlem!
-        </p>
-        <p>
-            Dit vijfdaagse festival, durende van woensdag tot en met zondag vindt plaats in het centrum van Haarlem. 
-            Samen met de restaurant ondernemers, filmzalen en andere locaties maken we er een groot feest van.
-        </p>
-        <p>
-            Het festival is ervoor om mensen kennis te laten maken met culinair, cultuur en films. 
-            Tevens kan op deze manier Haarlem op de kaart gezet worden!
-        </p>
-    </div>
-    <div class="col-md-6">
-
-    </div>
-</div>
+@Html.Partial("_Banner")
+<hr />
+@Html.Partial("_MovieContent")
+<hr />
+@Html.Partial("_RestaurantContent")
+<hr />
+@Html.Partial("_SpecialsContent")
+<hr />
+@Html.Partial("_InfoContent")
