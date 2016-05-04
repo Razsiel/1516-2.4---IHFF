@@ -280,3 +280,40 @@ h4 {
   border-color: #9f1f2c;
 }
 
+/* Breadcrumbs */
+.breadcrumb{
+    background-color: transparent;
+    margin-top: 15px;
+}
+
+.breadcrumb > li > a{
+    color: #da2738;
+}
+
+.breadcrumb > .active{
+    text-decoration: none;
+}
+
+/* Filmpage */
+.moviePoster{
+    max-width: 100%;
+}
+
+.movieRow{
+    margin-top: 30px;
+}
+
+.movieTitle{
+    margin: 0;
+    color: black;
+    text-decoration: none;
+}
+
+.movieTitle h3{
+    margin-top: 0;
+}
+
+a.movieTitle:hover{
+    text-decoration: none;
+    color: black;
+}
