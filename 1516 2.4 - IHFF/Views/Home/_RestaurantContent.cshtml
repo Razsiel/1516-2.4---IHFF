@@ -1,1 +1,61 @@
-﻿
+﻿@model IEnumerable<IHFF.Models.Movie>
+<div class="row text-right justify-height-container">
+    <div class="col-xs-12 col-sm-9">
+        <a href="@Url.Action("Index", "Movies")">
+            <h3>Dineren</h3>
+        </a>
+        <div class="row">
+            <p class="col-sm-8 pull-right">
+                Lekker eten voor of na een film kan ook natuurlijk!<br />
+                Het culinaire centrum van Haarlem staat volledig open voor gasten die gezellig 
+                willen kletsen over de films of activiteiten onder het genot van een heerlijk diner.<br />
+                <br />
+                Kijk welke restaurants meedoen met het festival en reserveer snel voor er geen plek meer is!
+            </p>
+        </div>
+        <h4>
+            Aanbevolen films <!-- Might need to change... -->
+        </h4>
+        <div class="container row-inverse">
+            <hr class="dashed" />
+            <div class="row recommendation">
+                <div class="col-sm-3 thumbnail recommendation">
+                    <a href="@Url.Action("Index", "Movies")">
+                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    </a>
+                    <p class="text-center">#TITLE</p>
+                    <ul class="list-inline rating text-center">
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 thumbnail recommendation">
+                    <a href="@Url.Action("Index", "Movies")">
+                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    </a>
+                    <p class="text-center">#TITLE</p>
+                </div>
+                <div class="col-sm-3 thumbnail recommendation">
+                    <a href="@Url.Action("Index", "Movies")">
+                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    </a>
+                    <p class="text-center">#TITLE</p>
+                </div>
+                <div class="col-sm-3 thumbnail recommendation">
+                    <a href="@Url.Action("Index", "Movies")">
+                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    </a>
+                    <p class="text-center">#TITLE</p>
+                </div>
+            </div>
+            <hr class="dashed" />
+        </div>
+    </div>
+    <div class="col-xs-0 col-sm-3 justify-height justify-height-container">
+        <img src="~/Resources/Placeholder.png" width="100%" class="justify-height"/>
+    </div>
+</div>
+

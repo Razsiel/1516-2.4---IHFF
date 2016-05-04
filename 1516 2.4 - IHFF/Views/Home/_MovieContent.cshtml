@@ -1,22 +1,25 @@
-﻿<div class="row">
-    <div class="col-xs-0 col-sm-3">
-        <img src="~/Resources/Placeholder.png" width="100%"/>
+﻿@model IEnumerable<IHFF.Models.Movie>
+<div class="row justify-height-container">
+    <div class="col-xs-0 col-sm-3 justify-height justify-height-container">
+        <img src="~/Resources/Placeholder.png" width="100%" class="justify-height"/>
     </div>
     <div class="col-xs-12 col-sm-9">
         <a href="@Url.Action("Index", "Movies")">
             <h3>Films</h3>
         </a>
-        <p>
-            Het Internationaal Haarlem Film Festival draait om films en gezelligheid. 
-            Daarom zijn er vele films beschikbaar om gezellig met vrienden of familie naar toe te gaan.
-            Er zijn vele locaties beschikbaar allen met hun eigen films en er zal altijd een film tussen zitten voor jou!
-        </p>
+        <div class="row">
+            <p class="col-sm-8">
+                Het Internationaal Haarlem Film Festival draait om films en gezelligheid.
+                Daarom zijn er vele films beschikbaar om gezellig met vrienden of familie naar toe te gaan.
+                Er zijn vele locaties beschikbaar allen met hun eigen films en er zal altijd een film tussen zitten voor jou!
+            </p>
+        </div>
         <h4>
             Aanbevolen films <!-- Might need to change... -->
         </h4>
         <div class="container row-inverse">
             <hr class="dashed" />
-            <div class="row">
+            <div class="row recommendation">
                 <div class="col-sm-3 thumbnail recommendation">
                     <a href="@Url.Action("Index", "Movies")">
                         <img src="~/Resources/Placeholder.png" class="img-responsive"/>
