@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-xs-6 col-md-10">
                     <a href="@Url.Action("Index", "Home")">
-                        <img src="~/Resources/Brand.png" />
+                        <img src="~/Resources/Brand.png" class="img-responsive"/>
                     </a>
                 </div>
                 <div class="col-xs-6 col-md-2">
@@ -34,7 +34,7 @@
         <div class="container">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { @class = "active"})</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active"})</li>
                     <li>@Html.ActionLink("Films", "Index", "Movies")</li>
                     <li>@Html.ActionLink("Restaurants", "Index", "Restaurant")</li>
                     <li>@Html.ActionLink("Specials", "Index", "Specials")</li>

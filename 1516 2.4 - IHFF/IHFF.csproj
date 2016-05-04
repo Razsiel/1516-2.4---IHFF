@@ -164,6 +164,9 @@
     <Content Include="Content\Fonts\Rambla-BoldItalic.otf" />
     <Content Include="Content\Fonts\Rambla-Italic.ttf" />
     <Content Include="Content\Fonts\Rambla-Regular.otf" />
+    <Content Include="Content\Fonts\Rambla-Bold.ttf" />
+    <Content Include="Content\Fonts\Rambla-BoldItalic.ttf" />
+    <Content Include="Content\Fonts\Rambla-Regular.ttf" />
     <None Include="Resources\Brand.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

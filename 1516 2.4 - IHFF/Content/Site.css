@@ -1,33 +1,24 @@
 ﻿@font-face {
     font-family: Rambla;
-    src: url(Fonts/Fonts/Rambla-Regular.otf);
+    src: url(Fonts/Fonts/Rambla-Regular.otf) format('opentype'),
+        url(Fonts/Fonts/Rambla-Regular.ttf) format('truetype');
 }
 @font-face {
     font-family: Rambla;
-    src: url(Fonts/Fonts/Rambla-Bold.otf);
+    src: url(Fonts/Fonts/Rambla-Bold.otf),
+        url(Fonts/Fonts/Rambla-Bold.ttf) format('truetype');
     font-weight: bold;
-}
-@font-face {
-    font-family: Rambla;
-    src: url(Fonts/Fonts/Rambla-Italic.ttf);
-    font-style: italic;
-}
-@font-face {
-    font-family: Rambla;
-    src: url(Fonts/Fonts/Rambla-Italic.ttf);
-    font-weight: bold;
-    font-style: italic;
 }
 
 * {
     border-radius: 0px !important;
-    font-family: Rambla;
+    font-family: Rambla, Arial, Helvetica, sans-serif;
+    font-size: 14px;
 }
 
 body {
     background-color: #eeeeee;
     color: #2c2e2d;
-    font-size: 14px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -53,6 +44,10 @@ textarea {
 
 /* ADDS */
 
+.glyphicon {
+    font-size: larger;
+}
+
 header {
     font-size: 16px;
 }
@@ -65,20 +60,72 @@ footer{
     width: 100%;
 }
 
+header > .container,
+header > .row > .container,     /* remove this line for responsive design if needed */
+footer > .container,
+footer > .row > .container {    /* same as above (responsive)*/
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+footer > .container > .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
 .navbar > .row {
     background-color: #da2738;
     margin-left: unset;
     margin-right: unset;
 }
 
+/* helper classes for alligning things bottom right in a row*/
+.myrow {
+    font-size: 0;
+}
+.myrow > * {
+    float: none;
+    display: inline-block;
+    font-size: initial; /* if using LESS it's quicker to just use @font-size-base */
+}
+
+.pull-down {
+    vertical-align: bottom;
+}
+
+.alt-button {
+    border-radius: 10px !important;
+}
+
+.space-below {
+    margin-bottom: 20px;
+}
+/**/
+
+.row-inverse {
+    background-color: #da2738;
+}
+
+.row-inverse > * {
+    color: #fff;
+}
+
 .copyright {
     margin-top: 5px;
 }
 
-/* OVERRIDES */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.overlay > * {
+    color: #fff;
+}
 
 h2{
-    color: #0b66ad;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 h4 > a{
@@ -110,6 +157,7 @@ h4 > a:hover, h4 > a:active{
 }
 
 .navbar-inverse .navbar-nav > li > a {
+    font-size: 16px;
     color: #ffffff;
 }
 
@@ -121,15 +169,12 @@ h4 > a:hover, h4 > a:active{
 .navbar-inverse .navbar-nav > li > a.active {
   color: #da2738;
   background-color: #ffffff;
+  font-weight: bold;
 }
 
 .navbar-collapse{
     padding-left: 0px;
     padding-right: 0px;
-}
-
-.body-content {
-    padding-top: 20px;
 }
 
 @media (min-width: 768px){
@@ -157,8 +202,8 @@ h4 > a:hover, h4 > a:active{
 
 
 .btn-default {
-    color: #da2738;
-    background-color: #ffffff;
+    color: #fff;
+    background-color: #333333;
     border: none;
 }
 
