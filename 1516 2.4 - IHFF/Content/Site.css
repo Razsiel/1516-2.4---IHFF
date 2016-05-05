@@ -230,9 +230,16 @@ li.rating > img {
 }
 
 h2{
-    color: #fff;
+    color: #0B66BA;
     font-size: 28px;
     font-weight: bold;
+}
+
+.row-inverse > h2,
+.row-inverse > * > h2,
+.overlay > h2,
+.label-default > h2 {
+    color: #fff;
 }
 
 h3, 
