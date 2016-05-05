@@ -389,3 +389,13 @@ a.movieTitle:hover{
     text-decoration: none;
     color: black;
 }
+
+/* Wishlist */
+ul.sm {
+    display: block !important;
+    padding: inherit;
+}
+
+ul.sm > li {
+    display: inline-block;
+}
