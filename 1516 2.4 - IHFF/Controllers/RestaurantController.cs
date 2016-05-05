@@ -15,5 +15,10 @@ namespace IHFF.Controllers
         {
             return View();
         }
+
+        public ActionResult Dijkers()
+        {
+            return View();
+        }
     }
 }
