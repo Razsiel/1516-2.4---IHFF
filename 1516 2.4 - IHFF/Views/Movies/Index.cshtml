@@ -1,6 +1,6 @@
 ﻿@using IHFF.Models
 @using IHFF.Helpers
-@model IEnumerable<Movie>
+@model IEnumerable<MoviesViewModel>
 
 @{
     ViewBag.Title = "Film Overzicht";
@@ -15,48 +15,59 @@
 
     <h2>@ViewBag.Title</h2>
 
-    @foreach (Movie item in Model)
+    @using (Html.BeginForm())
     {
-        <div class="row movieRow justify-height-container">
-            <div class="col-md-3">
-                @{
-                    if (item.Image != null)
-                    {
-                        <a href="#"><img src="data:image/jpg;base64, @item.Image" class="moviePoster" /></a>
+    
+        foreach (MoviesViewModel item in Model)
+        {
+            <div class="row movieRow justify-height-container">
+                <div class="col-md-3">
+                    @{
+                        if (item.Image != null)
+                        {
+                            <a href="#"><img src="data:image/jpg;base64, @item.Image" class="moviePoster" /></a>
+                        }
                     }
-                }
-            </div>
+                </div>
 
-            <div class="col-md-7 justify-height">
-                <a href="#" class="movieTitle">
-                    <h3>@item.Title</h3>
-                </a>
-                <p>
-                    @item.Description_NL.TrimStringIfLongerThan(320)
-                </p>
+                <div class="col-md-7 justify-height">
+                    <a href="#" class="movieTitle">
+                        <h3>@item.Title</h3>
+                    </a>
+                    <p>
+                        @item.Description.TrimStringIfLongerThan(320)
+                    </p>
 
-                <p>
-                    <b>
-                        Regisseur: @item.Director<br />
-                        Release: @item.YearOfRelease
-                    </b>
-                </p>
+                    <p>
+                        <b>
+                            Regisseur: @item.Director<br />
+                            Release: @item.YearOfRelease
+                        </b>
+                    </p>
 
-                <!--<div class="container pull-down">-->
+                    <!--<div class="container pull-down">-->
                     <div class="row moviePullDown">
                         <div class="col-md-7">
-                            vrijdag - test - test
+                            @Html.DropDownListFor(x => item.Id, new SelectList(item.Airings, "AiringId", "AiringText"), new { @id = item.Id, @name = "LocationId", @class = "movieDropDown" })
                         </div>
-                        <div class="col-md-2">
-                            aantal tickets
+                        <div class="col-md-3">
+                            <select name="ticketAmount" class="movieDropDown">
+                                @for (int i = 1; i <= 10; i++)
+                                {
+                                    <option value="@i">@i ticket(s)</option>
+                                }
+                            </select>
                         </div>
-                        <div class="col-md-2">
-                            BUTTON!
+                        <div class="col-md-2 pull-right">
+                            <!--<a class="btn btn-primary btn-block movieBtn" href="#">Toevoegen</a>-->
+                            <input type="submit" class="btn btn-primary btn-block movieBtn" value="Toevoegen" />
+                            <input type="hidden" name="movieId" value="@item.Id" />
                         </div>
                     </div>
-                <!--</div>-->
+                    <!--</div>-->
+                </div>
             </div>
-        </div>
-                    }
+        }
+    }
 
 </div>

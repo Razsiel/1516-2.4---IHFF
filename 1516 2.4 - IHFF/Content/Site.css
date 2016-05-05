@@ -395,3 +395,11 @@ a.movieTitle:hover{
     bottom: 0px;
     width: 100%;
 }
+
+.movieBtn {
+    width: 150%!important;
+}
+
+.movieDropDown{
+    max-width: 110%;
+}

@@ -23,7 +23,7 @@ namespace IHFF.Helpers
         {
             if (value.Length > maxLenght)
             {
-                return new HtmlString(value.Substring(value.Length - (maxLenght - 3)) + "... <a href=\"#\">[Lees meer...]</a>");
+                return new HtmlString(value.Substring(0, maxLenght) + "... <a href=\"#\">[Lees meer...]</a>");
             }
 
             return new HtmlString(value + " <a href=\"#\">[Lees meer...]</a>");
