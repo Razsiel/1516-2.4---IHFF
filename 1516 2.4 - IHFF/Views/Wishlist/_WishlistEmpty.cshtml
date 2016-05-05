@@ -1,0 +1,71 @@
+﻿@model IHFF.Models.Wishlist
+<div class="container">
+    <div class="row justify-height-container">
+        <div class="col-md-5 justify-height">
+            <h4 class="default">Uw wishlist is momenteel leeg.</h4>
+            <p>
+                Voeg activiteiten toe aan uw lijst en ga verder naar de 'check-out' om uw reservering(en) te plaatsen zodra u betaald hebt.
+                <br />
+                Kijk @Html.ActionLink("hier", "Index", "Movies") voor het filmoverzicht, bekijk het @Html.ActionLink("restaurantaanbod", "Index", "Restaurant") of koop een combi-ticket!
+            </p>
+            <br />
+            <div>
+                <h5>Vul hier uw wishlist code in</h5>
+                @using (Html.BeginForm())
+                {
+                    <div class="row">
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.UID, new { @class = "form-control", @placeholder = "IHFF0000" })
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="submit" value="Naar wishlist" class="btn btn-primary btn-block" />
+                        </div>
+                    </div>
+                }
+                <small>
+                    Deze wishlist code vind u in uw email inbox na het invullen van uw gegevens, er een wishlist is opgesteld en u op 'Opslaan' klikt. (Hieronder vind u een voorbeeld van de wishlist)
+                </small>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-1">
+            <h4 class="default">Suggesties</h4>
+            <div class="container row-inverse">
+                <div class="row">
+                    <div class="col-sm-4 thumbnail recommendation">
+                        <p class="text-center">#Title</p>
+                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    </div>
+                    <div class="col-sm-4 thumbnail recommendation">
+                        <p class="text-center">#Title</p>
+                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    </div>
+                    <div class="col-sm-4 thumbnail recommendation">
+                        <p class="text-center">#Title</p>
+                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
+                        [RATING]
+                        <p>
+                            In het pittoreske hartje van Haarlem, te midden van een zichtbaar stukje...
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.
+                            Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Preview of wishlist/cart -->
+<hr />
+
+

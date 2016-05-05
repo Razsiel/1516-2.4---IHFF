@@ -1,0 +1,40 @@
+﻿@using IHFF.Models
+@using IHFF.Helpers
+@model IEnumerable<WishlistItem>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">#DAY#</div>
+    </div>
+    <table>
+        <tr>
+            <th>Film</th>
+            <th>Locatie &Aacute; tijd</th>
+            <th>Beschikbaar</th>
+            <th>Aantal tickets</th>
+            <th>Prijs</th>
+        </tr>
+        @if (Model.IsNullOrEmpty())
+        {
+            <tr>
+                <td>Film titel</td>
+                <td>Locatie,<br />00:00 - 00:00</td>
+                <td></td>
+                <td></td>
+                <td>€0,00</td>
+            </tr>
+        }
+        else
+        {
+            foreach (WishlistItem item in Model)
+            {
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>@item.Amount</td>
+                    <td></td>
+                </tr>
+            }
+        }
+    </table>
+</div>

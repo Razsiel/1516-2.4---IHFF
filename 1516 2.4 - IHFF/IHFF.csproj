@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CollectionUtils.cs" />
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Interfaces\IMovieRepository.cs" />
     <Compile Include="Interfaces\IWishlistRepository.cs" />
@@ -209,6 +210,8 @@
     <Content Include="Views\Restaurant\index.cshtml" />
     <Content Include="Views\Restaurant\Index2.cshtml" />
     <Content Include="Views\Wishlist\Index.cshtml" />
+    <Content Include="Views\Wishlist\_WishlistEmpty.cshtml" />
+    <Content Include="Views\Wishlist\_Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
