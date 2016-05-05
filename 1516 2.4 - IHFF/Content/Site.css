@@ -389,3 +389,9 @@ a.movieTitle:hover{
     text-decoration: none;
     color: black;
 }
+
+.moviePullDown {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
