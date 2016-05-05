@@ -128,10 +128,15 @@ footer > .container > .row {
 
 .row-inverse {
     background-color: #da2738;
+    padding-top: 4px;
 }
 
 .row-inverse > * {
     color: #fff;
+}
+
+.label-default {
+    background-color: #333333;
 }
 
 .copyright {
@@ -180,6 +185,21 @@ footer > .container > .row {
     color: #fff;
 }
 
+.overlayable {
+    position: relative;
+    padding: unset;
+}
+
+.overlay-overlayable {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+.media-object {
+    margin-bottom: 10px;
+}
+
 .btn {
     text-decoration: none;
 }
@@ -222,6 +242,14 @@ h4 {
 
 h4 {
     color: #0B66BA;
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h6 {
+    font-weight: bold;
 }
 
 .navbar{

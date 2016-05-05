@@ -1,7 +1,7 @@
-﻿@model IEnumerable<IHFF.Models.Movie>
+﻿
 <div class="row text-right justify-height-container">
     <div class="col-xs-12 col-sm-9">
-        <a href="@Url.Action("Index", "Movies")">
+        <a href="@Url.Action("Index", "Restaurant")">
             <h3>Dineren</h3>
         </a>
         <div class="row">
@@ -14,15 +14,33 @@
             </p>
         </div>
         <h4>
-            Aanbevolen films <!-- Might need to change... -->
+            Populaire restaurants <!-- Might need to change... -->
         </h4>
         <div class="container row-inverse">
-            <hr class="dashed" />
             <div class="row recommendation">
                 <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Movies")">
+                    <a href="@Url.Action("Index", "Restaurant")">
                         <img src="~/Resources/Placeholder.png" class="img-responsive" />
                     </a>
+                </div>
+                <div class="col-sm-3 thumbnail recommendation">
+                    <a href="@Url.Action("Index", "Restaurant")">
+                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    </a>
+                </div>
+                <div class="col-sm-3 thumbnail recommendation">
+                    <a href="@Url.Action("Index", "Restaurant")">
+                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    </a>
+                </div>
+                <div class="col-sm-3 thumbnail recommendation">
+                    <a href="@Url.Action("Index", "Restaurant")">
+                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    </a>
+                </div>
+            </div>
+            <div class="row row-inverse">
+                <div class="col-xs-3">
                     <p class="text-center">#TITLE</p>
                     <ul class="list-inline rating text-center">
                         <li class="rating"><img src="~/Resources/star.png" /></li>
@@ -32,30 +50,42 @@
                         <li class="rating"><img src="~/Resources/star.png" /></li>
                     </ul>
                 </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Movies")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
+                <div class="col-xs-3">
                     <p class="text-center">#TITLE</p>
+                    <ul class="list-inline rating text-center">
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                    </ul>
                 </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Movies")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
+                <div class="col-xs-3">
                     <p class="text-center">#TITLE</p>
+                    <ul class="list-inline rating text-center">
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                    </ul>
                 </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Movies")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
+                <div class="col-xs-3">
                     <p class="text-center">#TITLE</p>
+                    <ul class="list-inline rating text-center">
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                        <li class="rating"><img src="~/Resources/star.png" /></li>
+                    </ul>
                 </div>
             </div>
-            <hr class="dashed" />
         </div>
     </div>
-    <div class="col-xs-0 col-sm-3 justify-height justify-height-container">
-        <img src="~/Resources/Placeholder.png" width="100%" class="justify-height"/>
+    <div class="col-xs-0 col-sm-3 justify-height justify-height-container overlayable">
+        <img src="~/Resources/Placeholder.png" class="justify-height img-responsive" />
+        <div class="overlay-overlayable label-default btn-block text-center"><h2>Restaurants</h2></div>
     </div>
 </div>
 

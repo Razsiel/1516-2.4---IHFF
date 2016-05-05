@@ -42,19 +42,23 @@
         <div class="row justify-height-container">
             <div class="thumbnail col-sm-6 justify-height">
                 <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                @Html.ActionLink("Bekijk het filmoverzicht", "Index", "Movies", null, new { @class = "btn btn-primary btn-block" })
+                <div class="overlayable">
+                    @Html.ActionLink("Bekijk het filmoverzicht", "Index", "Movies", null, new { @class = "btn btn-primary btn-block overlay-overlayable", @style = "bottom: 20px"})
+                </div>
                 <p>
                     Het IHFF bied meerdere films aan dit jaar, welke spectaculaire titels ga jij bekijken?
                 </p>
-                <hr />
+                <hr class="justify-height"/>
             </div>
             <div class="thumbnail col-sm-6 justify-height">
                 <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                @Html.ActionLink("Speciale tickets", "Index", "Movies", null, new { @class = "btn btn-primary btn-block" })
+                <div class="overlayable">
+                    @Html.ActionLink("Speciale tickets", "Index", "Specials", null, new { @class = "btn btn-primary btn-block overlay-overlayable", @style = "bottom: 20px" })
+                </div>
                 <p>
                     Het IHFF biedt nu ook speciale tickets aan die verschillende activiteiten combineren, verdubbel de pret!
                 </p>
-                <hr />
+                <hr class="pull-down"/>
             </div>
         </div>
     </div>
