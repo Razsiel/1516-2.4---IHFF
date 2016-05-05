@@ -390,12 +390,8 @@ a.movieTitle:hover{
     color: black;
 }
 
-/* Wishlist */
-ul.sm {
-    display: block !important;
-    padding: inherit;
-}
-
-ul.sm > li {
-    display: inline-block;
+.moviePullDown {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }

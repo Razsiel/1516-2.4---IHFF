@@ -17,6 +17,17 @@ namespace IHFF.Helpers
             string htmlString = string.Format("<img src='{0}' />", img);
             return new MvcHtmlString(htmlString);
         }
+
+        // Create a substring for movie descriptions
+        public static HtmlString TrimStringIfLongerThan(this string value, int maxLenght)
+        {
+            if (value.Length > maxLenght)
+            {
+                return new HtmlString(value.Substring(value.Length - (maxLenght - 3)) + "... <a href=\"#\">[Lees meer...]</a>");
+            }
+
+            return new HtmlString(value + " <a href=\"#\">[Lees meer...]</a>");
+        }
     }
 
     public enum ImageExtensions

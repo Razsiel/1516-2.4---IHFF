@@ -13,11 +13,11 @@
         <li class="active">Film overzicht</li>
     </ol>
 
-    <h4>@ViewBag.Title</h4>
+    <h2>@ViewBag.Title</h2>
 
     @foreach (Movie item in Model)
     {
-        <div class="row movieRow">
+        <div class="row movieRow justify-height-container">
             <div class="col-md-3">
                 @{
                     if (item.Image != null)
@@ -27,12 +27,12 @@
                 }
             </div>
 
-            <div class="col-md-7">
+            <div class="col-md-7 justify-height">
                 <a href="#" class="movieTitle">
                     <h3>@item.Title</h3>
                 </a>
                 <p>
-                    @item.Description <a href="#">[Lees meer...]</a>
+                    @item.Description_NL.TrimStringIfLongerThan(320)
                 </p>
 
                 <p>
@@ -42,8 +42,8 @@
                     </b>
                 </p>
 
-                <div class="container">
-                    <div class="row">
+                <!--<div class="container pull-down">-->
+                    <div class="row moviePullDown">
                         <div class="col-md-7">
                             vrijdag - test - test
                         </div>
@@ -54,7 +54,7 @@
                             BUTTON!
                         </div>
                     </div>
-                </div>
+                <!--</div>-->
             </div>
         </div>
                     }
