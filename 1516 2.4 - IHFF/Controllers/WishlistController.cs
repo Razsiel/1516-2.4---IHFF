@@ -11,22 +11,17 @@ namespace IHFF.Controllers
 {
     public class WishlistController : Controller
     {
-        IWishlistRepository repository = new WishlistRepository();
+        IWishlistRepository wishlistRepository = new WishlistRepository();
+        IWishlistItemRepository wishlistItemRepository = new WishlishItemrepository();
 
         public ActionResult Index()
         {
             return View(Wishlist.Instance);
         }
 
-        public ActionResult AddAiringToWishlist(AiringItem airingItem)
+        public ActionResult AddAiringToWishlist(Airing airing)
         {
-            Wishlist wishlist = repository.GetOrCreateWishlist(null);
-            WishlistItem item = new WishlistItem();
-            item.Wishlist = wishlist;
-            item.Wishlist_Id = wishlist.Id;
-            item.Amount = airingItem.amountOfTickets;
-
-            wishlist.WishlistItems.Add(item);
+            Wishlist wishlist = wishlistRepository.GetOrCreateWishlist(null);
 
             return RedirectToAction("Index");
         }

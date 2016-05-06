@@ -137,8 +137,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Interfaces\IWishlistItemRepository.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Models\ActivityType.cs" />
+    <Compile Include="Repositories\WishlishItemrepository.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

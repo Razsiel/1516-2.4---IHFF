@@ -1,6 +1,6 @@
 ﻿@using IHFF.Models
 @using IHFF.Helpers
-@model IEnumerable<MoviesViewModel>
+@model IEnumerable<Movie>
 
 @{
     ViewBag.Title = "Film Overzicht";
@@ -18,7 +18,7 @@
     @using (Html.BeginForm())
     {
     
-        foreach (MoviesViewModel item in Model)
+        foreach (Movie item in Model)
         {
             <div class="row movieRow justify-height-container">
                 <div class="col-md-3">
@@ -47,7 +47,7 @@
 
                     <div class="row moviePullDown">
                         <div class="col-md-7">
-                            @Html.DropDownListFor(x => item.Id, new SelectList(item.Airings, "AiringId", "AiringText"), new { @id = item.Id, @name = "LocationId", @class = "movieDropDown" })
+                            @Html.DropDownListFor(x => item.Airings, new SelectList(item.Airings, "Date", "Date"), new { @id = item.Id, @name = "airing", @class = "movieDropDown" })
                         </div>
                         <div class="col-md-3">
                             <select name="ticketAmount" class="movieDropDown">
@@ -67,7 +67,7 @@
                         <div class="col-md-2 pull-right">
                             <!--<a class="btn btn-primary btn-block movieBtn" href="#">Toevoegen</a>-->
                             <input type="submit" class="btn btn-primary btn-block movieBtn" value="Toevoegen" />
-                            <input type="hidden" name="Id" id="@item.Id" value="@item.Id"/>
+                            <!--<input type="hidden" name="Id" id="@item.Id" value="@item.Id"/>-->
                         </div>
                     </div>
                 </div>

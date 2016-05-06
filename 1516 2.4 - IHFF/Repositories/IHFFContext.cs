@@ -44,6 +44,21 @@ namespace IHFF.Repositories
                 .HasRequired<Movie>(a => a.Movie)
                 .WithMany(m => m.Airings)
                 .HasForeignKey(a => a.Movie_Id);
+
+            modelBuilder.Entity<WishlistItem>()
+                .HasRequired<Wishlist>(i => i.Wishlist)
+                .WithMany(w => w.WishlistItems)
+                .HasForeignKey(i => i.Wishlist_Id);
+
+            modelBuilder.Entity<WishlistItem>()
+                .HasRequired<ActivityType>(i => i.Item)
+                .WithMany(a => a.WishlistItems)
+                .HasForeignKey(i => i.ItemType);
+
+            modelBuilder.Entity<Airing>()
+                .HasRequired<Location>(a => a.Location)
+                .WithMany(l => l.Airings)
+                .HasForeignKey(a => a.Location_Id);
         }
     }
 }

@@ -17,11 +17,6 @@ namespace IHFF.Models
         public int Amount { get; set; }
         public bool Reserved { get; set; }
 
-        [NotMapped]
-        public string Name { get; set; }
-        [NotMapped]
-        public string Image { get; set; }
-        [NotMapped]
-        public DateTime Date { get; set; }
+        public virtual ActivityType Item { get; set; }
     }
 }

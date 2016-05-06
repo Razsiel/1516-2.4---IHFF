@@ -11,6 +11,7 @@ namespace IHFF.Repositories
     {
         private IHFFContext context = IHFFContext.Instance;
 
+        /*
         public IEnumerable<MoviesViewModel> GetAllMovies()
         {
             // Get the dutch culture
@@ -43,6 +44,7 @@ namespace IHFF.Repositories
 
             return movies;
         }
+        */
 
         // A method to round up or down the minutes
         public static DateTime Round(DateTime dt)
@@ -57,6 +59,7 @@ namespace IHFF.Repositories
             }
         }
 
+        /*
         public AiringItem GetAiringItem(int id, int amount)
         {
             // Get the dutch culture
@@ -74,6 +77,17 @@ namespace IHFF.Repositories
             TimeSpan endTime = Round(airing.Date + duration).TimeOfDay;
 
             return new AiringItem(airing.Id, locationName, locationRoom, airing.Date.TimeOfDay, endTime, dayOfWeek, amount, price);
+        }
+        */
+
+        public Airing GetAiring(int id)
+        {
+            return context.Airings.Where(a => a.Id == id).SingleOrDefault();
+        }
+
+        public IEnumerable<Movie> GetAllMovies()
+        {
+            return context.Movies;
         }
     }
 }
