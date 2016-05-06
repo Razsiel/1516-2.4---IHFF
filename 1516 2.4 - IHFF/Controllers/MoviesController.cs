@@ -19,9 +19,9 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int itemId)
+        public ActionResult Index(int Id, int ticketAmount)
         {
-
+            AiringItem item = moviesRepository.GetAiringItem(Id, ticketAmount);
 
             //Get airing and create wishlist item based on it
             return RedirectToAction("Index", "Wishlist");
