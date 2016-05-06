@@ -44,5 +44,7 @@ namespace IHFF.Models
         public TimeSpan Duration { get; set; }
         public string Description_NL { get; set; }
         public decimal Price { get; set; }
+
+        public virtual ICollection<Airing> Airings { get; set; }
     }
 }

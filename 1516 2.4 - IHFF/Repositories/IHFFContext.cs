@@ -40,7 +40,10 @@ namespace IHFF.Repositories
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Airing>()
+                .HasRequired<Movie>(a => a.Movie)
+                .WithMany(m => m.Airings)
+                .HasForeignKey(a => a.Movie_Id);
         }
     }
 }

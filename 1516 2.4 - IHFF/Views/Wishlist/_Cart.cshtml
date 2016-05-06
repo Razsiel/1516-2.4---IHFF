@@ -1,8 +1,8 @@
 ﻿@using IHFF.Models
 @using IHFF.Helpers
-@model IEnumerable<WishlistItem>
+@model Wishlist
 @{ 
-    /* Ienumerables for each day here */
+/* Ienumerables for each day here */
 }
 <div class="container">
     <!-- Empty -->
@@ -33,5 +33,37 @@
                 </td>
             </tr>
         </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <h4 class="default">Uw contact info</h4>
+            @using (Html.BeginForm())
+            {
+                <fieldset>
+                    <div class="form-group">
+                        @Html.LabelFor(m => Model.Name)
+                        @Html.TextBoxFor(m => Model.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => Model.EmailAddress)
+                        @Html.TextBoxFor(m => Model.EmailAddress, new { @class = "form-control", @placeholder = "voorbeeld@domein.nl" })
+                    </div>
+                </fieldset>
+            }
+            <div class="row myrow">
+                <div class="col-sm-8">
+                    <small>
+                        Om uw wishlist op te slaan of om deze af te rekenen hebben wij uw naam en e-mail adres nodig om de benodigde informatie door te sturen
+                    </small>
+                </div>
+                <div class="col-sm-4 pull-down">
+                    <div class="btn btn-primary btn-lg pull-right">Opslaan</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-sm-offset-3 right">
+            <h5>Kies uw betaalmethode</h5>
+            <div class="btn btn-primary btn-lg btn-block">Afrekenen</div>
+        </div>
     </div>
 </div>

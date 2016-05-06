@@ -127,6 +127,14 @@ footer > .container > .row {
     font-size: initial; /* if using LESS it's quicker to just use @font-size-base */
 }
 
+.myrow > div > small {
+    font-size: 75%;
+}
+
+input {
+    max-width: unset;
+}
+
 .pull-down {
     vertical-align: bottom;
 }

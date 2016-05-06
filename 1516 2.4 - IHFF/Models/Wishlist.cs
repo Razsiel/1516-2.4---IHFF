@@ -17,5 +17,7 @@ namespace IHFF.Models
         public string UID { get; set; }
 
         public ICollection<WishlistItem> WishlistItems { get; set; }
+
+        public static Wishlist Instance { get; set; }
     }
 }

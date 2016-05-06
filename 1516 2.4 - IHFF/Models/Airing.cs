@@ -25,5 +25,7 @@ namespace IHFF.Models
         public int Movie_Id { get; set; }
         public int Location_Id { get; set; }
         public int ActivityTypes_Id { get; set; }
+
+        public virtual Movie Movie { get; set; }
     }
 }
