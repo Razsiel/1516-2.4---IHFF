@@ -65,6 +65,15 @@ textarea {
     font-size: larger;
 }
 
+.default {
+    color: #333;
+}
+
+.disabled {
+    background-color: rgba(128, 128, 128, 0.5) !important;
+    border: none;
+}
+
 header {
     font-size: 16px;
 }
@@ -103,6 +112,11 @@ footer > .container > .row {
     background-position: 50%;
 }
 
+.panel-default > .panel-heading {
+    color: #0B66BA;
+    font-size: 20px;
+}
+
 /* helper classes for alligning things bottom right in a row*/
 .myrow {
     font-size: 0;
@@ -111,6 +125,14 @@ footer > .container > .row {
     float: none;
     display: inline-block;
     font-size: initial; /* if using LESS it's quicker to just use @font-size-base */
+}
+
+.myrow > div > small {
+    font-size: 75%;
+}
+
+input {
+    max-width: unset;
 }
 
 .pull-down {
@@ -124,7 +146,6 @@ footer > .container > .row {
 .space-below {
     margin-bottom: 20px;
 }
-/**/
 
 .row-inverse {
     background-color: #da2738;
@@ -394,4 +415,37 @@ a.movieTitle:hover{
     position: absolute;
     bottom: 0px;
     width: 100%;
+}
+
+.movieBtn {
+    width: 150%!important;
+}
+
+.movieDropDown{
+    max-width: 110%;
+}
+
+/* Wishlist */
+
+.pull-down-absolute {
+    position: absolute;
+    bottom: 0px;
+}
+
+.table > tbody > tr > td {
+    vertical-align: inherit;
+}
+
+td > img {
+    width: 15%;
+    height: auto;
+}
+
+td > input[type=checkbox] {
+    transform: scale(1.25);
+    margin: 10px;
+}
+
+.borderless {
+    border: none;
 }

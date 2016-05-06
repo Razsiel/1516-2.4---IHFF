@@ -33,12 +33,17 @@ namespace IHFF.Repositories
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
         public DbSet<WishlistItem> WishlistItems { get; set; }
+        public DbSet<Airing> Airings { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Airing>()
+                .HasRequired<Movie>(a => a.Movie)
+                .WithMany(m => m.Airings)
+                .HasForeignKey(a => a.Movie_Id);
         }
     }
 }

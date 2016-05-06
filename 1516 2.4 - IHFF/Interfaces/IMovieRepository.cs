@@ -9,6 +9,7 @@ namespace IHFF.Interfaces
 {
     public interface IMovieRepository
     {
-        IEnumerable<Movie> GetAllMovies();
+        IEnumerable<MoviesViewModel> GetAllMovies();
+        AiringItem GetAiringItem(int id);
     }
 }
