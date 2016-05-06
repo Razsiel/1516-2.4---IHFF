@@ -12,6 +12,7 @@ namespace IHFF.Controllers
     public class MoviesController : Controller
     {
         private IMovieRepository moviesRepository = new MoviesRepository();
+        private IWishlistRepository wishlistRepository = new WishlistRepository();
 
         public ActionResult Index()
         {
@@ -19,11 +20,24 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(Airing airing, int ticketAmount)
+        public ActionResult Index(int AiringId, int ticketAmount)
         {
+            /*Pseudo-code steps
 
-            //Get airing and create wishlist item based on it
-            return RedirectToAction("AddAiringToWishlist", "Wishlist");
+            - Get airing
+            - Get or create a wishlist
+            - Create wishlist item based on airing (activity)
+            - Add wishlistitem to wishlist
+
+            */
+            Airing airing = moviesRepository.GetAiring(AiringId);
+            Wishlist wishlist = wishlistRepository.GetOrCreateWishlist(null);
+
+            WishlistItem item = new WishlistItem(airing, wishlist, ticketAmount);
+            wishlist.WishlistItems.Add(item);
+            
+            Wishlist.Instance = wishlist;
+            return RedirectToAction("Index", "Wishlist");
         }
     }
 }

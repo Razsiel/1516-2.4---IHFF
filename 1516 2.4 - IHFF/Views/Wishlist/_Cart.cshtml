@@ -3,7 +3,6 @@
 @model Wishlist
 @{ 
     /* Ienumerables for each day here */
-    IEnumerable<WishlistItem> WednesdayItems = Model.WishlistItems.Where(x => x.Date.DayOfWeek == DayOfWeek.Wednesday);
 }
 <div class="container">
     <!-- Empty -->
@@ -19,7 +18,7 @@
                 <th>Prijs</th>
                 <th></th>
             </tr>
-            @if (!Model.WishlistItems.Any())
+            @if (true)
             {
                 <tr>
                     <td><input type="checkbox" /></td>
@@ -44,7 +43,7 @@
                         <td><input type="checkbox" /></td>
                         <td>
                             <img src="~/Resources/Placeholder.png" />
-                            @item.Name;
+                            @item.Item.Name;
                         </td>
                         <td>Locatie,<br />00:00 - 00:00</td>
                         <td></td>

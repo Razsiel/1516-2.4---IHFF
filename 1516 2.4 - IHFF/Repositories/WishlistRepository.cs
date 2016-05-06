@@ -11,10 +11,9 @@ namespace IHFF.Repositories
     {
         IHFFContext ctx = IHFFContext.Instance;
 
-        public void Add(WishlistItem item)
+        public void AddItem(WishlistItem item)
         {
             ctx.WishlistItems.Add(item);
-            item.Wishlist.WishlistItems.Add(item);
             ctx.SaveChanges();
         }
 
@@ -27,7 +26,7 @@ namespace IHFF.Repositories
                 code = newWishlist.UID;
                 ctx.SaveChanges();
             }
-            return Wishlist.Instance = ctx.Wishlists.Where(w => w.UID == code).FirstOrDefault();
+            return ctx.Wishlists.Where(w => w.UID == code).FirstOrDefault();
         }
 
         public void Remove(WishlistItem item)
@@ -38,7 +37,8 @@ namespace IHFF.Repositories
 
         public void SaveWishlist(Wishlist wishlist)
         {
-            throw new NotImplementedException();
+            Wishlist w = ctx.Wishlists.Where(x => x.UID == wishlist.UID).FirstOrDefault();
+            ctx.SaveChanges();
         }
 
         public void Update(WishlistItem item)

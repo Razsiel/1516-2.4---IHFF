@@ -17,16 +17,13 @@
 
     @using (Html.BeginForm())
     {
-    
         foreach (Movie item in Model)
         {
             <div class="row movieRow justify-height-container">
                 <div class="col-md-3">
-                    @{
-                        if (item.Image != null)
-                        {
-                            <a href="#"><img src="data:image/jpg;base64, @item.Image" class="moviePoster" /></a>
-                        }
+                    @if (item.Image != null)
+                    {
+                        <a href="#"><img src="data:image/jpg;base64, @item.Image" class="moviePoster" /></a>
                     }
                 </div>
 
@@ -47,7 +44,14 @@
 
                     <div class="row moviePullDown">
                         <div class="col-md-7">
-                            @Html.DropDownListFor(x => item.Airings, new SelectList(item.Airings, "Date", "Date"), new { @id = item.Id, @name = "airing", @class = "movieDropDown" })
+                            <!-- NEED TO LOOK AT PASSING CORRECT DATA -->
+                            <!--@Html.DropDownListFor(m => item, new SelectList(item.Airings, "Date", "AiringString"), new { @name = "AiringDate", @class = "movieDropDown" })-->
+                            <select name="AiringId" class="movieDropDown">
+                                @foreach (Airing airing in item.Airings)
+                                {
+                                    <option value="@airing.Id">@airing.AiringString</option>
+                                }
+                            </select>
                         </div>
                         <div class="col-md-3">
                             <select name="ticketAmount" class="movieDropDown">
@@ -67,7 +71,6 @@
                         <div class="col-md-2 pull-right">
                             <!--<a class="btn btn-primary btn-block movieBtn" href="#">Toevoegen</a>-->
                             <input type="submit" class="btn btn-primary btn-block movieBtn" value="Toevoegen" />
-                            <!--<input type="hidden" name="Id" id="@item.Id" value="@item.Id"/>-->
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,16 @@ namespace IHFF.Models
     [Table("WishlistItems")]
     public class WishlistItem
     {
+        public WishlistItem() { }
+
+        public WishlistItem(ActivityType activity, Wishlist wishlist, int tickets)
+        {
+            Item = activity;
+            Wishlist = wishlist;
+            Wishlist_Id = wishlist.Id;
+            Amount = tickets;
+        }
+
         [Key, Column(Order = 0)]
         public int Wishlist_Id { get; set; }
         public virtual Wishlist Wishlist { get; set; }

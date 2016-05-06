@@ -27,5 +27,17 @@ namespace IHFF.Models
 
         public virtual Movie Movie { get; set; }
         public virtual Location Location { get; set; }
+
+        public string AiringString
+        {
+            get
+            {
+                if (Location != null)
+                {
+                    return string.Format("{0}, {1}-{2}, {3} {4}", Date.DayOfWeek, Date.ToShortTimeString(), (Date.TimeOfDay.Add(Movie.Duration)), Location.Name, Location.Room);
+                }
+                return null;
+            }
+        }
     }
 }
