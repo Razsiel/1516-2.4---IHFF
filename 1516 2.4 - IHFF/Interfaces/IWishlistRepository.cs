@@ -10,11 +10,11 @@ namespace IHFF.Interfaces
     public interface IWishlistRepository
     {
         /// <summary>
-        /// Get the wishlist from the database based on the paramater 'code'
+        /// Get the wishlist from the database based on the paramater 'code'. If code is null or empty, creates a new wishlist
         /// </summary>
         /// <param name="code">Unique identifier to find the wishlist with (format: IHFF####)</param>
         /// <returns>Wishlist object</returns>
-        Wishlist GetWishlist(string code);  //READ
+        Wishlist GetOrCreateWishlist(string code);  //READ
 
         /// <summary>
         /// Adds wishlist item to current wishlist

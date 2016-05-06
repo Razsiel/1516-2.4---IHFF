@@ -17,5 +17,18 @@ namespace IHFF.Controllers
         {
             return View(Wishlist.Instance);
         }
+
+        public ActionResult AddAiringToWishlist(AiringItem airingItem)
+        {
+            Wishlist wishlist = repository.GetOrCreateWishlist(null);
+            WishlistItem item = new WishlistItem();
+            item.Wishlist = wishlist;
+            item.Wishlist_Id = wishlist.Id;
+            item.Amount = airingItem.amountOfTickets;
+
+            wishlist.WishlistItems.Add(item);
+
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -2,7 +2,8 @@
 @using IHFF.Helpers
 @model Wishlist
 @{ 
-/* Ienumerables for each day here */
+    /* Ienumerables for each day here */
+    IEnumerable<WishlistItem> WednesdayItems = Model.WishlistItems.Where(x => x.Date.DayOfWeek == DayOfWeek.Wednesday);
 }
 <div class="container">
     <!-- Empty -->
@@ -18,23 +19,47 @@
                 <th>Prijs</th>
                 <th></th>
             </tr>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>
-                    <img src="~/Resources/Placeholder.png" />
-                    Film titel
-                </td>
-                <td>Locatie,<br />00:00 - 00:00</td>
-                <td></td>
-                <td></td>
-                <td>€0,00</td>
-                <td>
-                    <button class="btn btn-primary disabled">Verwijder</button>
-                </td>
-            </tr>
+            @if (!Model.WishlistItems.Any())
+            {
+                <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                        <img src="~/Resources/Placeholder.png" />
+                        Film titel
+                    </td>
+                    <td>Locatie,<br />00:00 - 00:00</td>
+                    <td></td>
+                    <td></td>
+                    <td>€0,00</td>
+                    <td>
+                        <button class="btn btn-primary disabled">Verwijder</button>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (WishlistItem item in Model.WishlistItems)
+                {
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>
+                            <img src="~/Resources/Placeholder.png" />
+                            @item.Name;
+                        </td>
+                        <td>Locatie,<br />00:00 - 00:00</td>
+                        <td></td>
+                        <td></td>
+                        <td>€0,00</td>
+                        <td>
+                            <button class="btn btn-primary disabled">Verwijder</button>
+                        </td>
+                    </tr>
+                }
+            }
         </table>
     </div>
-    <div class="row">
+    <!-- Contact info and checkout -->
+    <div class="row"> 
         <div class="col-sm-5">
             <h4 class="default">Uw contact info</h4>
             @using (Html.BeginForm())

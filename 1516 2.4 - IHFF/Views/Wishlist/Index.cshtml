@@ -39,7 +39,11 @@
     </div>
 </div>
 <br />
-@Html.Partial("_WishlistEmpty", Model)
+<!-- Check if any items are in the wishlist or not -->
+@if (!Model.WishlistItems.Any()) 
+{
+    @Html.Partial("_WishlistEmpty", Model)
+}
 @Html.Partial("_Cart")
 <br />
 

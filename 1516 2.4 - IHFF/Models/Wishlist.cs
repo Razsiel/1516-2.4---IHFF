@@ -17,7 +17,16 @@ namespace IHFF.Models
         public string UID { get; set; }
 
         public ICollection<WishlistItem> WishlistItems { get; set; }
-
+        
         public static Wishlist Instance { get; set; }
+
+        public Wishlist()
+        {
+            Random rnd = new Random();
+            UID = "IHFF1234"; // string.Format("IHFF{0}", rnd.Next(0, 9999).ToString("D4"));
+            EmailAddress = "";
+            Name = "";
+            WishlistItems = new List<WishlistItem>();
+        }
     }
 }

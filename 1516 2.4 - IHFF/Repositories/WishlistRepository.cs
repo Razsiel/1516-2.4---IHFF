@@ -18,9 +18,16 @@ namespace IHFF.Repositories
             ctx.SaveChanges();
         }
 
-        public Wishlist GetWishlist(string code)
+        public Wishlist GetOrCreateWishlist(string code)
         {
-            return ctx.Wishlists.Where(w => w.UID == code).FirstOrDefault();
+            if (string.IsNullOrEmpty(code))
+            {
+                Wishlist newWishlist = new Wishlist();
+                ctx.Wishlists.Add(newWishlist);
+                code = newWishlist.UID;
+                ctx.SaveChanges();
+            }
+            return Wishlist.Instance = ctx.Wishlists.Where(w => w.UID == code).FirstOrDefault();
         }
 
         public void Remove(WishlistItem item)

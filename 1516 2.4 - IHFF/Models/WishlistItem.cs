@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IHFF.Models
@@ -15,5 +16,12 @@ namespace IHFF.Models
         public int ItemType { get; set; }
         public int Amount { get; set; }
         public bool Reserved { get; set; }
+
+        [NotMapped]
+        public string Name { get; set; }
+        [NotMapped]
+        public string Image { get; set; }
+        [NotMapped]
+        public DateTime Date { get; set; }
     }
 }
