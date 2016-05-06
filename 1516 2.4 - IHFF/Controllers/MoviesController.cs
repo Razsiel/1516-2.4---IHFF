@@ -21,6 +21,8 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult Index(int itemId)
         {
+
+
             //Get airing and create wishlist item based on it
             return RedirectToAction("Index", "Wishlist");
         }

@@ -45,7 +45,6 @@
                         </b>
                     </p>
 
-                    <!--<div class="container pull-down">-->
                     <div class="row moviePullDown">
                         <div class="col-md-7">
                             @Html.DropDownListFor(x => item.Id, new SelectList(item.Airings, "AiringId", "AiringText"), new { @id = item.Id, @name = "LocationId", @class = "movieDropDown" })
@@ -53,18 +52,24 @@
                         <div class="col-md-3">
                             <select name="ticketAmount" class="movieDropDown">
                                 @for (int i = 1; i <= 10; i++)
-                                {
-                                    <option value="@i">@i ticket(s)</option>
+                                { 
+                                    if (i == 1)
+                                    {
+                                        <option value="@i">@i ticket</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@i">@i tickets</option>
+                                    }
                                 }
                             </select>
                         </div>
                         <div class="col-md-2 pull-right">
                             <!--<a class="btn btn-primary btn-block movieBtn" href="#">Toevoegen</a>-->
                             <input type="submit" class="btn btn-primary btn-block movieBtn" value="Toevoegen" />
-                            <input type="hidden" name="movieId" value="@item.Id" />
+                            <input type="hidden" name="movieId" id="@item.Id" value=""/>
                         </div>
                     </div>
-                    <!--</div>-->
                 </div>
             </div>
         }

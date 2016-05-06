@@ -56,5 +56,24 @@ namespace IHFF.Repositories
                 return dt.AddMinutes(-dt.Minute % 10);
             }
         }
+
+        public AiringItem GetAiringItem(int id, int amount)
+        {
+            // Get the dutch culture
+            var culture = new System.Globalization.CultureInfo("nl-NL");
+
+            Airing airing = context.Airings.Where(x => x.Id == id).SingleOrDefault();
+
+            string locationName = context.Locations.SingleOrDefault(x => x.Id == airing.Location_Id).Name;
+            string locationRoom = context.Locations.SingleOrDefault(x => x.Id == airing.Location_Id).Room;
+            string dayOfWeek = culture.DateTimeFormat.GetDayName(airing.Date.DayOfWeek);
+
+            decimal price = context.Movies.SingleOrDefault(x => x.Id == airing.Movie_Id).Price * amount;
+
+            TimeSpan duration = context.Movies.SingleOrDefault(x => x.Id == airing.Movie_Id).Duration;
+            TimeSpan endTime = Round(airing.Date + duration).TimeOfDay;
+
+            return new AiringItem(airing.Id, locationName, locationRoom, airing.Date.TimeOfDay, endTime, dayOfWeek, amount, price);
+        }
     }
 }
