@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CollectionUtils.cs" />
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Interfaces\IMovieRepository.cs" />
     <Compile Include="Interfaces\IWishlistRepository.cs" />
@@ -175,6 +176,7 @@
     <None Include="Resources\Brand.png" />
     <None Include="Resources\Placeholder.png" />
     <None Include="Resources\star.png" />
+    <None Include="Resources\special tickets.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -210,10 +212,13 @@
     <Content Include="Views\Home\_SpecialsContent.cshtml" />
     <Content Include="Views\Home\_InfoContent.cshtml" />
     <Content Include="Views\Restaurant\index.cshtml" />
+    <Content Include="Views\Restaurant\Index2.cshtml" />
+    <Content Include="Views\Wishlist\Index.cshtml" />
+    <Content Include="Views\Wishlist\_WishlistEmpty.cshtml" />
+    <Content Include="Views\Wishlist\_Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Wishlist\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

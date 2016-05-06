@@ -65,6 +65,10 @@ textarea {
     font-size: larger;
 }
 
+.default {
+    color: #333;
+}
+
 header {
     font-size: 16px;
 }
@@ -124,7 +128,6 @@ footer > .container > .row {
 .space-below {
     margin-bottom: 20px;
 }
-/**/
 
 .row-inverse {
     background-color: #da2738;
@@ -402,4 +405,24 @@ a.movieTitle:hover{
 
 .movieDropDown{
     max-width: 110%;
+}
+
+/* Wishlist */
+
+.pull-down-absolute {
+    position: absolute;
+    bottom: 0px;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.overlay-wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.5);
 }
