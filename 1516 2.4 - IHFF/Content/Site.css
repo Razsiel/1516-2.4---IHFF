@@ -409,6 +409,14 @@ a.movieTitle:hover{
     width: 100%;
 }
 
+.movieBtn {
+    width: 150%!important;
+}
+
+.movieDropDown{
+    max-width: 110%;
+}
+
 /* Wishlist */
 
 .pull-down-absolute {
