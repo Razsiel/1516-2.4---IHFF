@@ -41,10 +41,11 @@
 <br />
 @if (Model == null)
 {
-    @Html.Partial("_WishlistEmpty", Model);
+    @Html.Partial("_WishlistEmpty", Model)
 }
 else
 {
-    @Html.Partial("_WishlistPopulated", Model);
+    @Html.Partial("_WishlistPopulated", Model)
 }
-@Html.Partial("_Cart");
+@Html.Partial("_Cart")
+

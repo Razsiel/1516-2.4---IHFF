@@ -147,6 +147,7 @@
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Interfaces\IMovieRepository.cs" />
     <Compile Include="Interfaces\IWishlistRepository.cs" />
+    <Compile Include="Models\ActivityType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Wishlist.cs" />
     <Compile Include="Models\WishlistItem.cs" />
