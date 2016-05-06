@@ -34,7 +34,19 @@ namespace IHFF.Models
             {
                 if (Location != null)
                 {
-                    return string.Format("{0}, {1}-{2}, {3} {4}", Date.DayOfWeek, Date.ToShortTimeString(), (Date.TimeOfDay.Add(Movie.Duration)), Location.Name, Location.Room);
+                    return string.Format("{0}, {1}-{2}, {3}", Date.DayOfWeek, Date.ToShortTimeString(), (Date.TimeOfDay.Add(Movie.Duration)), LocationString);
+                }
+                return null;
+            }
+        }
+
+        public override string LocationString
+        {
+            get
+            {
+                if (Location != null)
+                {
+                    return string.Format("{0}, {1}", Location.Name, Location.Room);
                 }
                 return null;
             }

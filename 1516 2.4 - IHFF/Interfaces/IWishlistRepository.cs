@@ -21,6 +21,7 @@ namespace IHFF.Interfaces
         /// </summary>
         /// <param name="item">The to-add wishlist item</param>
         void AddItem(WishlistItem item);        //CREATE
+        void Checkout(Wishlist wishlist);
         void Update(WishlistItem item);     //UPDATE
         void Remove(WishlistItem item);     //DELETE
         void SaveWishlist(Wishlist wishlist);

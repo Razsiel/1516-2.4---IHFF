@@ -15,7 +15,12 @@ namespace IHFF.Models
         public string Name { get; set; }
         [NotMapped]
         public DateTime Date { get; set; }
+        [NotMapped]
+        public string Image { get; set; }
 
         public virtual ICollection<WishlistItem> WishlistItems { get; set; }
+
+        [NotMapped]
+        public abstract string LocationString { get; }
     }
 }

@@ -17,6 +17,14 @@ namespace IHFF.Repositories
             ctx.SaveChanges();
         }
 
+        public void Checkout(Wishlist wishlist)
+        {
+            foreach (WishlistItem item in wishlist.WishlistItems)
+            {
+                item.Reserved = true;
+            }
+        }
+
         public Wishlist GetOrCreateWishlist(string code)
         {
             if (string.IsNullOrEmpty(code))

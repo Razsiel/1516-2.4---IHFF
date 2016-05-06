@@ -31,7 +31,9 @@ namespace IHFF.Controllers
 
             */
             Airing airing = moviesRepository.GetAiring(AiringId);
-            Wishlist wishlist = wishlistRepository.GetOrCreateWishlist(null);
+            airing.Name = airing.Movie.Title;
+            airing.Image = airing.Movie.Image;
+            Wishlist wishlist = wishlistRepository.GetOrCreateWishlist(Wishlist.Instance.UID);
 
             WishlistItem item = new WishlistItem(airing, wishlist, ticketAmount);
             wishlist.WishlistItems.Add(item);
