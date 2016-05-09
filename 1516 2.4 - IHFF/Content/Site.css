@@ -449,3 +449,7 @@ td > input[type=checkbox] {
 .borderless {
     border: none;
 }
+
+.primary-color {
+    color: #da2738;
+}
