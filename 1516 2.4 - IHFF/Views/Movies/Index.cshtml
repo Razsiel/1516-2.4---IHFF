@@ -32,13 +32,16 @@
                         <h3>@item.Title</h3>
                     </a>
                     <p>
-                        @item.Description.TrimStringIfLongerThan(320)
+                        @item.Description_NL.TrimStringIfLongerThan(320)
                     </p>
 
                     <p>
                         <b>
                             Regisseur: @item.Director<br />
                             Release: @item.YearOfRelease
+
+                           <!-- <p><a class="fancybox fancybox.ajax" href="~/Views/Movies/Test">test</a></p>-->
+                            @Html.ActionLink("test", "Test", null, new { @class = "fancybox" })
                         </b>
                     </p>
 
@@ -79,3 +82,24 @@
     }
 
 </div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $(".fancybox").click(function () {
+            $.fancybox.open({
+                content: $('<div>').load($(this).attr('href')),
+                maxWidth: 800,
+                type: 'ajax',
+                fitToView: false,
+                width: '70%',
+                height: '100%',
+                autoSize: false,
+                openEffect: 'fade',
+                closeEffect: 'fade'
+            });
+            return false;
+        })
+    })
+</script>
