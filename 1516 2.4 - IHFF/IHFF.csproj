@@ -153,6 +153,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MoviesViewModel.cs" />
+    <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Wishlist.cs" />
     <Compile Include="Models\WishlistItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -234,9 +235,11 @@
     <Content Include="Views\Restaurant\Dijkers.cshtml" />
     <Content Include="Views\Wishlist\_WishlistEmpty.cshtml" />
     <Content Include="Views\Wishlist\_Cart.cshtml" />
+    <Content Include="Views\Restaurant\index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\RestaurantInfo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
