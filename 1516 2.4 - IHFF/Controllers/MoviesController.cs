@@ -41,5 +41,10 @@ namespace IHFF.Controllers
             Wishlist.Instance = wishlist;
             return RedirectToAction("Index", "Wishlist");
         }
+
+        public ActionResult MovieInfo(int Id)
+        {
+            return PartialView("_MovieInfo", moviesRepository.GetMovie(Id));
+        }
     }
 }
