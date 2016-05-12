@@ -16,23 +16,29 @@
     <h2>@ViewBag.Title</h2>
 
     @using (Html.BeginForm())
-    {
+    {   
         foreach (Movie item in Model)
         {
             <div class="row movieRow justify-height-container">
                 <div class="col-md-3">
-                    @if (item.Image != null)
-                    {
-                        <a href="#"><img src="data:image/jpg;base64, @item.Image" class="moviePoster" /></a>
-                    }
+                    <div class="imgWrap">
+                        @if (item.Image != null)
+                        {
+                            @Html.ActionImage("MovieInfo", "data:image/jpg;base64, " + item.Image, null, "fancybox", "moviePoster", new { id = item.Id });
+                        }
+                        <p class="imgDescription fancybox" href="@Url.Action("MovieInfo", new { id = item.Id })">
+                            Meer info
+                        </p>
+                    </div>
                 </div>
-
+                
                 <div class="col-md-7 justify-height">
-                    <a href="#" class="movieTitle">
-                        <h3>@item.Title</h3>
-                    </a>
+                    <h3 class="movieTitle">
+                        @Html.ActionLink(@item.Title, "MovieInfo", new { id = item.Id }, new { @class = "fancybox movieTitle" })
+                    </h3>
+
                     <p>
-                        @item.Description.TrimStringIfLongerThan(320)
+                        @item.Description_NL.TrimStringIfLongerThan(320) @Html.ActionLink("[Lees meer...]", "MovieInfo", new { id = item.Id }, new { @class = "fancybox" })
                     </p>
 
                     <p>
@@ -56,7 +62,7 @@
                         <div class="col-md-3">
                             <select name="ticketAmount" class="movieDropDown">
                                 @for (int i = 1; i <= 10; i++)
-                                { 
+                                {
                                     if (i == 1)
                                     {
                                         <option value="@i">@i ticket</option>
@@ -77,5 +83,23 @@
             </div>
         }
     }
-
 </div>
+
+<script>
+    $(document).ready(function () {
+        $(".fancybox").click(function () {
+            $.fancybox.open({
+                content: $('<div>').load($(this).attr('href')),
+                maxWidth: 800,
+                type: 'ajax',
+                fitToView: false,
+                width: '70%',
+                height: '100%',
+                autoSize: false,
+                openEffect: 'fade',
+                closeEffect: 'fade'
+            });
+            return false;
+        })
+    })
+</script>

@@ -19,14 +19,38 @@ namespace IHFF.Helpers
         }
 
         // Create a substring for movie descriptions
-        public static HtmlString TrimStringIfLongerThan(this string value, int maxLenght)
+        public static string TrimStringIfLongerThan(this string value, int maxLenght)
         {
             if (value.Length > maxLenght)
             {
-                return new HtmlString(value.Substring(0, maxLenght) + "... <a href=\"#\">[Lees meer...]</a>");
+                return (value.Substring(0, maxLenght));
             }
+            
+            return value;
+        }
 
-            return new HtmlString(value + " <a href=\"#\">[Lees meer...]</a>");
+        // Creates an ActionLink with an image
+        public static MvcHtmlString ActionImage(this HtmlHelper html, string action, string imagePath, string controllerName = null,
+            string anchorClass = null, string imgClass = null, object routeValues = null, string alt = null)
+        {
+            var url = new UrlHelper(html.ViewContext.RequestContext);
+
+            // Build the <img> tag
+            var imgBuilder = new TagBuilder("img");
+            imgBuilder.MergeAttribute("src", url.Content(imagePath));
+            imgBuilder.MergeAttribute("alt", alt);
+            imgBuilder.MergeAttribute("class", imgClass);
+            string imgHtml = imgBuilder.ToString(TagRenderMode.SelfClosing);
+
+            // Build the <a> tag
+            var anchorBuilder = new TagBuilder("a");
+            anchorBuilder.MergeAttribute("href", url.Action(action, controllerName, routeValues));
+            anchorBuilder.MergeAttribute("class", anchorClass);
+            anchorBuilder.InnerHtml = imgHtml; // include the <img> tag inside
+            string anchorHtml = anchorBuilder.ToString(TagRenderMode.Normal);
+
+            return MvcHtmlString.Create(anchorHtml);
+
         }
     }
 

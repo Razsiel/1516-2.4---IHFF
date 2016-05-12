@@ -389,7 +389,35 @@ h6 {
 
 /* Filmpage */
 .moviePoster{
-    max-width: 100%;
+    vertical-align: middle;
+}
+
+.imgWrap:hover .moviePoster {
+    opacity: 0.3;
+    filter: alpha(opacity=30); /* For IE8 and earlier */
+}
+
+.imgWrap:hover .imgDescription {
+    visibility:visible;
+    opacity: 1;
+}
+
+.imgWrap {
+    position: relative;
+    text-align:center;
+}
+
+.imgDescription {
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+    left:0;
+    right:0;
+    color:#000;
+    font-size: 24px;
+    font-weight: bold;
+    visibility: hidden;
+    cursor: pointer;
 }
 
 .movieRow{
@@ -397,9 +425,11 @@ h6 {
 }
 
 .movieTitle{
-    margin: 0;
+    margin-top: 0;
     color: black;
     text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
 }
 
 .movieTitle h3{
