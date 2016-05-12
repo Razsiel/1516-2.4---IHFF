@@ -2,6 +2,16 @@
 
 @{
     ViewBag.Title = "Wishlist";
+
+    /*PSEUDO steps
+
+    - Check to see if wishlist contains items           x
+        - Split items into seperate lists by day        x
+        - for each day                                  
+            - show items in day list                    
+    - ELSE
+        - show empty -> END                             x
+    */
 }
 
 <div class="container">
@@ -44,6 +54,7 @@
 {
     @Html.Partial("_WishlistEmpty", Model)
 }
-@Html.Partial("_Cart")
+@Html.Partial("_Cart", Model)
+@Html.Partial("_Contact", Model)
 <br />
 

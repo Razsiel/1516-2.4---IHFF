@@ -3,125 +3,113 @@
 @model Wishlist
 @{ 
     /* Ienumerables for each day here */
+    //REMOVE LATER!!!
+    IEnumerable<WishlistItem> MondayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Monday);
+
+
     IEnumerable<WishlistItem> WednesdayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Wednesday);
     IEnumerable<WishlistItem> ThursdayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Thursday);
     IEnumerable<WishlistItem> FridayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Friday);
     IEnumerable<WishlistItem> SaturdayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Saturday);
     IEnumerable<WishlistItem> SundayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Sunday);
+
+    Dictionary<string, IEnumerable<WishlistItem>> AllItems = new Dictionary<string, IEnumerable<WishlistItem>>()
+    {
+        { "Maandag", MondayItems },
+        { "Woensdag", WednesdayItems },
+        { "Donderdag", ThursdayItems },
+        { "Vrijdag", FridayItems },
+        { "Zaterdag", SaturdayItems },
+        { "Zondag", SundayItems }
+    };
 }
 <div class="container">
     <!-- Empty -->
     <div class="panel panel-default borderless">
         <!-- foreach different day, render html -->
-        <div class="panel-heading">-Dag-</div>
-        <table class="table">
-            <tr>
-                <th></th>
-                <th>Film</th>
-                <th>Locatie &amp; tijd</th>
-                <th>Beschikbaar</th>
-                <th>Aantal tickets</th>
-                <th>Prijs</th>
-                <th></th>
-            </tr>
-            @if (!Model.WishlistItems.Any())
+        @foreach (KeyValuePair<string, IEnumerable<WishlistItem>> dayItems in AllItems)
+        {
+            if (dayItems.Value == null || !dayItems.Value.Any())
             {
-                <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>
-                        <img src="~/Resources/Placeholder.png" />
-                        Film titel
-                    </td>
-                    <td>Locatie,<br />00:00 - 00:00</td>
-                    <td></td>
-                    <td></td>
-                    <td>€0,00</td>
-                    <td>
-                        <button class="btn btn-primary disabled">Verwijder</button>
-                    </td>
-                </tr>
+                //Skip to next if collection is emtpy...
+                continue;
             }
-            else
-            {
-                foreach (WishlistItem item in Model.WishlistItems)
+            <div class="panel-heading">@dayItems.Key</div>
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>Film</th>
+                    <th>Locatie &amp; tijd</th>
+                    <th>Beschikbaar</th>
+                    <th>Aantal tickets</th>
+                    <th>Prijs</th>
+                    <th></th>
+                </tr>
+                @if (!Model.WishlistItems.Any())
                 {
-                    if (item.Reserved)
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>
+                            <img src="~/Resources/Placeholder.png" />
+                            Film titel
+                        </td>
+                        <td>Locatie,<br />00:00 - 00:00</td>
+                        <td></td>
+                        <td></td>
+                        <td>€0,00</td>
+                        <td>
+                            <button class="btn btn-primary disabled">Verwijder</button>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (WishlistItem item in dayItems.Value)
                     {
-                        <tr>
-                            <td></td>
-                            <td>
-                                <img src="data:image/jpg;base64, @item.Item.Image" />
-                                @item.Item.Name
-                                <div class="btn btn-info btn-block">Gereserveerd</div>
-                            </td>
-                            <td>
-                                @item.Item.LocationString
-                                <br />
-                                @item.Item.Date.TimeOfDay.ToString()
-                            </td>
-                            <td></td>
-                            <td>@item.Amount</td>
-                            <td>@((7.50 * item.Amount).ToString("C"))</td>
-                            <td></td>
-                        </tr>
-                    }
-                    else
-                    {
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>
-                                <img src="data:image/jpg;base64, @item.Item.Image" />
-                                @item.Item.Name
-                            </td>
-                            <td>
-                                @item.Item.LocationString
-                                <br />
-                                @item.Item.Date.TimeOfDay.ToString()
-                            </td>
-                            <td></td>
-                            <td>@item.Amount</td>
-                            <td>@((7.50 * item.Amount).ToString("C"))</td>
-                            <td>
-                                @Html.ActionLink("Verwijder", "RemoveItem", item, new { @class = "btn btn-primary" })
-                            </td>
-                        </tr>
+                        if (item.Reserved)
+                        {
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <img src="data:image/jpg;base64, @item.Item.Image" />
+                                    @item.Item.Name
+                                    <div class="btn btn-info btn-block">Gereserveerd</div>
+                                </td>
+                                <td>
+                                    @item.Item.LocationString
+                                    <br />
+                                    @item.Item.Date.TimeOfDay.ToString()
+                                </td>
+                                <td></td>
+                                <td>@item.Amount</td>
+                                <td>@((7.50 * item.Amount).ToString("C"))</td>
+                                <td></td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td><input type="checkbox" /></td>
+                                <td>
+                                    <img src="data:image/jpg;base64, @item.Item.Image" />
+                                    @item.Item.Name
+                                </td>
+                                <td>
+                                    @item.Item.LocationString
+                                    <br />
+                                    @item.Item.Date.TimeOfDay.ToString()
+                                </td>
+                                <td></td>
+                                <td>@item.Amount</td>
+                                <td>@((7.50 * item.Amount).ToString("C"))</td>
+                                <td>
+                                    @Html.ActionLink("Verwijder", "RemoveItem", null, new { wishlistItem = item }, new { @class = "btn btn-primary" })
+                                </td>
+                            </tr>
+                        }
                     }
                 }
-            }
-        </table>
-    </div>
-    <!-- Contact info and checkout -->
-    <div class="row"> 
-        <div class="col-sm-5">
-            <h4 class="default">Uw contact info</h4>
-            @using (Html.BeginForm())
-            {
-                <fieldset>
-                    <div class="form-group">
-                        @Html.LabelFor(m => Model.Name)
-                        @Html.TextBoxFor(m => Model.Name, new { @class = "form-control" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => Model.EmailAddress)
-                        @Html.TextBoxFor(m => Model.EmailAddress, new { @class = "form-control", @placeholder = "voorbeeld@domein.nl" })
-                    </div>
-                </fieldset>
-                <div class="row myrow">
-                    <div class="col-sm-8">
-                        <small>
-                            Om uw wishlist op te slaan of om deze af te rekenen hebben wij uw naam en e-mail adres nodig om de benodigde informatie door te sturen
-                        </small>
-                    </div>
-                    <div class="col-sm-4 pull-down">
-                        <input type="submit" class="btn btn-primary btn-lg pull-right" value="Opslaan">
-                    </div>
-                </div>
-            }
-            
-        </div>
-        <div class="col-sm-4 col-sm-offset-3 right">
-            <h5>Kies uw betaalmethode</h5>
-            @Html.ActionLink("Afrekenen", "Checkout", Wishlist.Instance, new { @class = "btn btn-primary btn-lg btn-block" })
-        </div>
+            </table>
+        }
     </div>
 </div>
