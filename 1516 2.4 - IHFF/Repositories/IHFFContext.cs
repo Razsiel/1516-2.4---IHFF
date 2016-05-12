@@ -35,6 +35,7 @@ namespace IHFF.Repositories
         public DbSet<WishlistItem> WishlistItems { get; set; }
         public DbSet<Airing> Airings { get; set; }
         public DbSet<Location> Locations { get; set; }
+        public DbSet<ActivityType> ActivityTypes { get; set; }
 
         #endregion
 

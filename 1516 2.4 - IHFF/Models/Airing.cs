@@ -11,7 +11,7 @@ namespace IHFF.Models
     {
         public Airing() { }
 
-        public Airing(int id, DateTime date, int movieId, int locationId, int activityType)
+        /*public Airing(int id, DateTime date, int movieId, int locationId, int activityType)
         {
             this.Id = id;
             this.Date = date;
@@ -19,11 +19,12 @@ namespace IHFF.Models
             this.Location_Id = locationId;
             this.ActivityTypes_Id = activityType;
             this.Name = Movie.Title;
-        }
+        }*/
 
         public int Movie_Id { get; set; }
         public int Location_Id { get; set; }
         public int ActivityTypes_Id { get; set; }
+        public override DateTime ActivityDate { get; set; }
 
         public virtual Movie Movie { get; set; }
         public virtual Location Location { get; set; }
@@ -34,7 +35,7 @@ namespace IHFF.Models
             {
                 if (Location != null)
                 {
-                    return string.Format("{0}, {1}-{2}, {3}", Date.DayOfWeek, Date.ToShortTimeString(), (Date.TimeOfDay.Add(Movie.Duration)), LocationString);
+                    return string.Format("{0}, {1}-{2}, {3}", ActivityDate.DayOfWeek, ActivityDate.ToShortTimeString(), (ActivityDate.TimeOfDay.Add(Movie.Duration)), LocationString);
                 }
                 return null;
             }

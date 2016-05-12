@@ -37,10 +37,11 @@ namespace IHFF.Repositories
             return ctx.Wishlists.Where(w => w.UID == code).FirstOrDefault();
         }
 
-        public void Remove(WishlistItem item)
+        public void Remove(Wishlist wishlist, WishlistItem wishlistItem)
         {
-            ctx.WishlistItems.Remove(item);
-            ctx.SaveChanges();
+            wishlist.WishlistItems.Remove(wishlistItem);
+            //ctx.WishlistItems.Remove(wishlistItem);
+            //ctx.SaveChanges();
         }
 
         public void SaveWishlist(Wishlist wishlist)
@@ -49,7 +50,7 @@ namespace IHFF.Repositories
             ctx.SaveChanges();
         }
 
-        public void Update(WishlistItem item)
+        public void Update(Wishlist wishlist, WishlistItem wishlistItem)
         {
             throw new NotImplementedException();
         }
