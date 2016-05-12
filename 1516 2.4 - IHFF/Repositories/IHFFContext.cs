@@ -35,7 +35,7 @@ namespace IHFF.Repositories
         public DbSet<WishlistItem> WishlistItems { get; set; }
         public DbSet<Airing> Airings { get; set; }
         public DbSet<Location> Locations { get; set; }
-
+        public DbSet<Restaurant> Restaurants { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -59,6 +59,7 @@ namespace IHFF.Repositories
                 .HasRequired<Location>(a => a.Location)
                 .WithMany(l => l.Airings)
                 .HasForeignKey(a => a.Location_Id);
+
         }
     }
 }

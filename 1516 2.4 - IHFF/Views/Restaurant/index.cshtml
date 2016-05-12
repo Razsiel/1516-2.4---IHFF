@@ -1,118 +1,26 @@
-﻿@{
+﻿@using IHFF.Models
+@using IHFF.Helpers
+@model IEnumerable<Restaurant>
+@{
     ViewBag.Title = "index";
 }
 
-<style>
-    h4 {
-        color: #da2738;
+<h2>RestaurantOverzicht</h2>
+<div class="container">
+    @foreach (Restaurant item in Model)
+    {
+        <div class="col-sm-4">
+            <div class="overlayable">
+                <a><img src="~/Resources/Placeholder.png" class="img-responsive" /></a>
+                <div class="overlay-overlayable" style="bottom: 20px">STERREN</div>
+            </div>
+
+
+            <h4 class="text-center primary-color">@item.Name</h4>
+            <p>RESTAURANTNAME</p>
+
+            @Html.ActionLink("RESTAURANT NAME", "Dijkers", "Restaurant", null, new { @class = "btn btn-primary btn-block" })
+            <br />
+        </div>
     }
-
-    col-sm-4 {
-        margin: 20px;
-    }
-</style>
-
-<h2 class="container">
-    RestaurantOverzicht
-</h2>
-
-<div class="container">
-    <div class="col-sm-4  ">
-        <a href="@Url.Action("Dijkers", "Restaurant")">
-            <img src="~/Resources/Placeholder.png" class="img-responsive" />
-        </a>
-    </div>
-    <div class="col-sm-4 ">
-        <a href="@Url.Action("Dijkers", "Restaurant")">
-            <img src="~/Resources/Placeholder.png" class="img-responsive" />
-        </a>
-    </div>
-    <div class="col-sm-4 ">
-        <a href="@Url.Action("Dijkers", "Restaurant")">
-            <img src="~/Resources/Placeholder.png" class="img-responsive" />
-        </a>
-    </div>
-</div>
-
-<div class="col-xs-4">
-    <h4 class="text-center">De Uitkijk</h4>
-</div>
-<div class="col-xs-4">
-    <h4 class="text-center">De Uitkijk</h4>
-</div>
-<div class="col-xs-4">
-    <h4 class="text-center">De Uitkijk</h4>
-</div>
-
-<div class="container">
-    <div class="col-xs-4">
-        <h5 class="text-center">Restaurant de Uitkijk is uniek gelegen op het Kopje van Bloemendaal, gr... lees verder</h5>
-        <div class="col-sm-4 container btn-block btn-primary ">
-            <h5 class="text-center">Reserveer nu</h5>
-        </div>
-    </div>
-    <div class="col-xs-4">
-        <h5 class="text-center">Het succesvolle restaurant van chef kok Jozua Jaring is net als ratatouille een... lees verder </h5>
-        <div class="col-sm-4 container btn-block btn-primary ">
-            <h5 class="text-center">Reserveer nu</h5>
-        </div>
-    </div>
-    <div class="col-xs-4">
-        <h5 class="text-center">Op ons krijtbord staat het wisselend menu van de chef gemaakt aan de hand van de... lees verder</h5>
-        <div class="col-sm-4 container btn-block btn-primary ">
-            <h5 class="text-center"> Reserveer nu </h5>
-            </a>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="col-sm-4 ">
-        <a href="@Url.Action("Dijkers", "Restaurant")">
-            <img src="~/Resources/Placeholder.png" class="img-responsive" />
-        </a>
-    </div>
-    <div class="col-sm-4 ">
-        <a href="@Url.Action("Dijkers", "Restaurant")">
-            <img src="~/Resources/Placeholder.png" class="img-responsive" />
-        </a>
-    </div>
-    <div class="col-sm-4 ">
-        <a href="@Url.Action("Dijkers", "Restaurant")">
-            <img src="~/Resources/Placeholder.png" class="img-responsive" />
-        </a>
-    </div>
-</div>
-
-<div class="col-xs-4">
-    <h4 class="text-center">De Uitkijk</h4>
-</div>
-
-<div class="col-xs-4">
-    <h4 class="text-center">De Uitkijk</h4>
-</div>
-<div class="col-xs-4">
-    <h4 class="text-center">De Uitkijk</h4>
-</div>
-
-<div class="container">
-    <div class="col-xs-4">
-        <h5 class="text-center">Restaurant de Uitkijk is uniek gelegen op het Kopje van Bloemendaal, gr... lees verder</h5>
-        <div class="col-sm-4 container btn-block btn-primary ">
-            <h5 class="text-center">Reserveer nu</h5>
-        </div>
-    </div>
-    <div class="col-xs-4">
-        <h5 class="text-center">Het succesvolle restaurant van chef kok Jozua Jaring is net als ratatouille een... lees verder </h5>
-        <div class="col-sm-4 container btn-block btn-primary ">
-            <h5 class="text-center">Reserveer nu</h5>
-        </div>
-    </div>
-    <div class="col-xs-4">
-        <h5 class="text-center">Op ons krijtbord staat het wisselend menu van de chef gemaakt aan de hand van de... lees verder</h5>
-        <div class="col-sm-4 container btn-block btn-primary ">
-            <h5 class="text-center">Reserveer nu</h5>
-        </div>
-    </div>
-
 </div>

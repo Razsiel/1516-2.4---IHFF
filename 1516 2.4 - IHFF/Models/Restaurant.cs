@@ -10,7 +10,15 @@ namespace IHFF.Models
     [Table("Restaurants")]
     public class Restaurant
     {
-        public Restaurant() { }
+        public Restaurant(int id, string name, int capacity, string address, string website, string info )
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Capacity = capacity;
+            this.Address = address;
+            this.Website = website;
+            this.Info = info;
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

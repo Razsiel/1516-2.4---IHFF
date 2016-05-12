@@ -139,6 +139,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Interfaces\IRestaurantRepository.cs" />
     <Compile Include="Models\ActivityType.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
@@ -159,6 +160,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IHFFContext.cs" />
     <Compile Include="Repositories\MoviesRepository.cs" />
+    <Compile Include="Repositories\RestaurantsRepository.cs" />
     <Compile Include="Repositories\WishlistRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -235,11 +237,12 @@
     <Content Include="Views\Restaurant\Dijkers.cshtml" />
     <Content Include="Views\Wishlist\_WishlistEmpty.cshtml" />
     <Content Include="Views\Wishlist\_Cart.cshtml" />
-    <Content Include="Views\Restaurant\index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\IRestaurantRepository\" />
     <Folder Include="Views\RestaurantInfo\" />
+    <Folder Include="Views\RestaurantsRepository\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

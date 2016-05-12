@@ -3,25 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IHFF.Models;
 using IHFF.Repositories;
 using IHFF.Interfaces;
 
 namespace IHFF.Controllers
 {
-    public class RestaurantController : Controller
+    public class RestaurantsController : Controller
     {
+        private IRestaurantRepository restaurantsRepository = new RestaurantsRepository();
         // GET: Restaurant
         public ActionResult Index()
         {
-            return View();
+           return View(restaurantsRepository.GetAllRestaurants());
         }
 
         public ActionResult Dijkers()
-        {
-            return View();
-        }
-
-        public ActionResult Index2()
         {
             return View();
         }
