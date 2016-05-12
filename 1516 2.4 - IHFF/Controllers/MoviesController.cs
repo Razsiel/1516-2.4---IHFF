@@ -42,9 +42,9 @@ namespace IHFF.Controllers
             return RedirectToAction("Index", "Wishlist");
         }
 
-        public ActionResult Test()
+        public ActionResult MovieInfo(int Id)
         {
-            return PartialView();
+            return PartialView("_MovieInfo", moviesRepository.GetMovie(Id));
         }
     }
 }

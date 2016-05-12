@@ -89,5 +89,10 @@ namespace IHFF.Repositories
         {
             return context.Movies;
         }
+
+        public Movie GetMovie(int id)
+        {
+            return context.Movies.SingleOrDefault(a => a.Id == id);
+        }
     }
 }
