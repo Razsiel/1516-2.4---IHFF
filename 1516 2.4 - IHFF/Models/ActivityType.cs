@@ -14,7 +14,7 @@ namespace IHFF.Models
         [NotMapped]
         public string Name { get; set; }
         [NotMapped]
-        public abstract DateTime ActivityDate { get; set; }
+        public DateTime Date { get; set; }
         [NotMapped]
         public string Image { get; set; }
 

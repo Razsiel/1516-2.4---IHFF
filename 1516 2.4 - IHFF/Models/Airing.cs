@@ -24,7 +24,7 @@ namespace IHFF.Models
         public int Movie_Id { get; set; }
         public int Location_Id { get; set; }
         public int ActivityTypes_Id { get; set; }
-        public override DateTime ActivityDate { get; set; }
+        public DateTime ActivityDate { get; set; }
 
         public virtual Movie Movie { get; set; }
         public virtual Location Location { get; set; }

@@ -33,6 +33,7 @@ namespace IHFF.Controllers
             Airing airing = moviesRepository.GetAiring(AiringId);
             airing.Name = airing.Movie.Title;
             airing.Image = airing.Movie.Image;
+            airing.Date = airing.ActivityDate;
             Wishlist wishlist = wishlistRepository.GetOrCreateWishlist(Wishlist.Instance.UID);
 
             WishlistItem item = new WishlistItem(airing, wishlist, ticketAmount);
