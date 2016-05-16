@@ -15,9 +15,9 @@
 
     <h2>@ViewBag.Title</h2>
 
-    @using (Html.BeginForm())
-    {   
-        foreach (Movie item in Model)
+    @foreach (Movie item in Model)
+    {
+        using (Html.BeginForm())
         {
             <div class="row movieRow justify-height-container">
                 <div class="col-md-3">
@@ -93,9 +93,7 @@
                 maxWidth: 800,
                 type: 'ajax',
                 fitToView: false,
-                width: '70%',
-                height: '100%',
-                autoSize: false,
+                autoSize: true,
                 openEffect: 'fade',
                 closeEffect: 'fade'
             });

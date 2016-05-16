@@ -239,6 +239,8 @@
     <Content Include="Views\Wishlist\_WishlistEmpty.cshtml" />
     <Content Include="Views\Wishlist\_Cart.cshtml" />
     <Content Include="Views\Wishlist\_Contact.cshtml" />
+    <Content Include="Views\Wishlist\_CartItem.cshtml" />
+    <Content Include="Views\Wishlist\_PopupSave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

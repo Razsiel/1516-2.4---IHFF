@@ -28,5 +28,8 @@ namespace IHFF.Models
         public bool Reserved { get; set; }
 
         public virtual ActivityType Item { get; set; }
+
+        [NotMapped]
+        public bool Selected { get; set; }
     }
 }

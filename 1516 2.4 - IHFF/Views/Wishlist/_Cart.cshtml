@@ -36,79 +36,43 @@
             }
             <div class="panel-heading">@dayItems.Key</div>
             <table class="table">
-                <tr>
-                    <th></th>
-                    <th>Film</th>
-                    <th>Locatie &amp; tijd</th>
-                    <th>Beschikbaar</th>
-                    <th>Aantal tickets</th>
-                    <th>Prijs</th>
-                    <th></th>
-                </tr>
-                @if (!Model.WishlistItems.Any())
-                {
+                <thead>
                     <tr>
-                        <td><input type="checkbox" /></td>
-                        <td>
-                            <img src="~/Resources/Placeholder.png" />
-                            Film titel
-                        </td>
-                        <td>Locatie,<br />00:00 - 00:00</td>
-                        <td></td>
-                        <td></td>
-                        <td>€0,00</td>
-                        <td>
-                            <button class="btn btn-primary disabled">Verwijder</button>
-                        </td>
+                        <th></th>
+                        <th>Film</th>
+                        <th>Locatie &amp; tijd</th>
+                        <th>Beschikbaar</th>
+                        <th>Aantal tickets</th>
+                        <th>Prijs</th>
+                        <th></th>
                     </tr>
-                }
-                else
-                {
-                    foreach (WishlistItem item in dayItems.Value)
+                </thead>
+                <tbody>
+                    @if (!Model.WishlistItems.Any())
                     {
-                        if (item.Reserved)
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>
+                                <img src="~/Resources/Placeholder.png" />
+                                Film titel
+                            </td>
+                            <td>Locatie,<br />00:00 - 00:00</td>
+                            <td></td>
+                            <td></td>
+                            <td>€0,00</td>
+                            <td>
+                                <button class="btn btn-primary disabled">Verwijder</button>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (WishlistItem item in dayItems.Value)
                         {
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <img src="data:image/jpg;base64, @item.Item.Image" />
-                                    @item.Item.Name
-                                    <div class="btn btn-info btn-block">Gereserveerd</div>
-                                </td>
-                                <td>
-                                    @item.Item.LocationString
-                                    <br />
-                                    @item.Item.Date.TimeOfDay.ToString()
-                                </td>
-                                <td></td>
-                                <td>@item.Amount</td>
-                                <td>@((7.50 * item.Amount).ToString("C"))</td>
-                                <td></td>
-                            </tr>
-                        }
-                        else
-                        {
-                            <tr>
-                                <td><input type="checkbox" /></td>
-                                <td>
-                                    <img src="data:image/jpg;base64, @item.Item.Image" />
-                                    @item.Item.Name
-                                </td>
-                                <td>
-                                    @item.Item.LocationString
-                                    <br />
-                                    @item.Item.Date.TimeOfDay.ToString()
-                                </td>
-                                <td></td>
-                                <td>@item.Amount</td>
-                                <td>@((7.50 * item.Amount).ToString("C"))</td>
-                                <td>
-                                    @Html.ActionLink("Verwijder", "RemoveItem", null, new { wishlistItem = item }, new { @class = "btn btn-primary" })
-                                </td>
-                            </tr>
+                            Html.RenderPartial("_CartItem", item);
                         }
                     }
-                }
+                </tbody>
             </table>
         }
     </div>

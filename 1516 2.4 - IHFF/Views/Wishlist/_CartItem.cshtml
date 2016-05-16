@@ -1,0 +1,48 @@
+﻿@using IHFF.Models
+@model WishlistItem
+
+<tr>
+    @if (Model.Reserved)
+    {
+        <td></td>
+        <td>
+            <img src="data:image/jpg;base64, @Model.Item.Image" />
+            @Model.Item.Name
+            <div class="btn btn-info btn-block">Gereserveerd</div>
+        </td>
+        <td>
+            @Model.Item.LocationString
+            <br />
+            @Model.Item.Date.TimeOfDay.ToString()
+        </td>
+        <td></td>
+        <td>@Model.Amount</td>
+        <td>@((7.50 * Model.Amount).ToString("C"))</td>
+        <td></td>
+    }
+    else
+    {
+        //GRRRRRRR.... can't get the remove to work....
+        using (Html.BeginForm())
+        {
+            <td>
+                @Html.CheckBoxFor(x => Model.Selected)
+            </td>
+            <td>
+                <img src="data:image/jpg;base64, @Model.Item.Image" />
+                @Model.Item.Name
+            </td>
+            <td>
+                @Model.Item.LocationString
+                <br />
+                @Model.Item.Date.TimeOfDay.ToString()
+            </td>
+            <td></td>
+            <td>@Model.Amount</td>
+            <td>@((7.50 * Model.Amount).ToString("C"))</td>
+            <td>
+                <input value="Verwijder" type="submit" class="btn btn-primary" />
+            </td>
+        }
+    }
+</tr>

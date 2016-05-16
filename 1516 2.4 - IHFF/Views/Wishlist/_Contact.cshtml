@@ -23,7 +23,7 @@
                         </small>
                     </div>
                     <div class="col-sm-4 pull-down">
-                        <input type="submit" class="btn btn-primary btn-lg pull-right" value="Opslaan">
+                        <div class="btn btn-primary btn-lg pull-right fancybox" href="@Url.Action("SaveWishlist", new { wishlist = Model })">Opslaan</div>
                     </div>
                 </div>
         }
@@ -35,3 +35,21 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $(".fancybox").click(function () {
+            $.fancybox.open({
+                content: $('<div>').load($(this).attr('href')),
+                maxWidth: 800,
+                type: 'ajax',
+                fitToView: false,
+                width: '70%',
+                height: '100%',
+                autoSize: false,
+                openEffect: 'fade',
+                closeEffect: 'fade'
+            });
+            return false;
+        })
+    })
+</script>
