@@ -15,5 +15,10 @@ namespace IHFF.Repositories
         {
             return context.Restaurants;
         }
+
+        public Restaurant GetRestaurant(int id)
+        {
+            return context.Restaurants.SingleOrDefault(a => a.Id == id);
+        }
     }
 }
