@@ -8,10 +8,12 @@
             {
             <fieldset>
                 <div class="form-group">
+                    @Html.ValidationMessageFor(m => Model.Name)
                     @Html.LabelFor(m => Model.Name)
                     @Html.TextBoxFor(m => Model.Name, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
+                    @Html.ValidationMessageFor(m => Model.EmailAddress)
                     @Html.LabelFor(m => Model.EmailAddress)
                     @Html.TextBoxFor(m => Model.EmailAddress, new { @class = "form-control", @placeholder = "voorbeeld@domein.nl" })
                 </div>
@@ -23,7 +25,7 @@
                         </small>
                     </div>
                     <div class="col-sm-4 pull-down">
-                        <div class="btn btn-primary btn-lg pull-right fancybox" href="@Url.Action("SaveWishlist", new { wishlist = Model })">Opslaan</div>
+                        <div class="btn btn-primary btn-lg pull-right fancybox" href="Url.Action("SaveWishlist", Model)">Opslaan</div>
                     </div>
                 </div>
         }
@@ -40,12 +42,10 @@
         $(".fancybox").click(function () {
             $.fancybox.open({
                 content: $('<div>').load($(this).attr('href')),
-                maxWidth: 800,
+                maxWidth: document.body.clientWidth * 0.35,
                 type: 'ajax',
-                fitToView: false,
-                width: '70%',
-                height: '100%',
-                autoSize: false,
+                fitToView: true,
+                autoSize: true,
                 openEffect: 'fade',
                 closeEffect: 'fade'
             });

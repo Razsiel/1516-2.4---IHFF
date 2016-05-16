@@ -12,7 +12,13 @@ namespace IHFF.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Required]
+        [RegularExpression(@"^[A-z0-9]+@(?:[A-z0-9]+\.)+[A-z]+$", ErrorMessage = "Vul aub een valide email in. voorbeeld: voorbeeld@email.nl")]
         public string EmailAddress { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "Namen moeten minimaal 2 karakters bevatten", MinimumLength = 2)]
         public string Name { get; set; }
         public string UID { get; set; }
 
@@ -35,7 +41,7 @@ namespace IHFF.Models
         public Wishlist()
         {
             Random rnd = new Random();
-            UID = "IHFF1234"; // string.Format("IHFF{0}", rnd.Next(0, 9999).ToString("D4"));
+            UID = "IHFF1234";//string.Format("IHFF{0}", rnd.Next(0, 9999).ToString("D4"));
             EmailAddress = "";
             Name = "";
             WishlistItems = new List<WishlistItem>();

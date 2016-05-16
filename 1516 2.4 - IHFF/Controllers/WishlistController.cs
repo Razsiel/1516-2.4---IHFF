@@ -19,11 +19,21 @@ namespace IHFF.Controllers
             return View(Wishlist.Instance);
         }
 
+        [HttpPost]
+        public ActionResult Index(string UID)
+        {
+            Wishlist.Instance = wishlistRepository.GetOrCreateWishlist(UID);
+            return RedirectToAction("Index");
+        }
+
         public ActionResult SaveWishlist(Wishlist wishlist)
         {
             Wishlist.Instance = wishlist;
-            //wishlistRepository.SaveWishlist(Wishlist.Instance);
-            return PartialView("_PopupSave", Wishlist.Instance);
+            //if (ModelState.IsValid)
+            //{
+                return PartialView("_PopupSave", Wishlist.Instance);
+            //}
+            //return View(wishlist);
         }
 
         public ActionResult Checkout(Wishlist wishlist)

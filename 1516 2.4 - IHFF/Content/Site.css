@@ -483,3 +483,8 @@ td > input[type=checkbox] {
 .primary-color {
     color: #da2738;
 }
+
+.fancybox-inner > div > .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}

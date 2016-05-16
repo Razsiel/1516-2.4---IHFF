@@ -1,6 +1,19 @@
 ﻿@using IHFF.Models
 @model Wishlist
 
+<h3>Uw wishlist is opgeslagen!</h3>
 <div class="row">
-    @Model.UID
+    <div class="col-sm-4">
+        <img src="~/Resources/special tickets.png" class="img-responsive" />
+    </div>
+    <div class="col-sm-8">
+        <h5>Uw wishlist code:</h5>
+        <h3>#@Model.UID</h3>
+    </div>
 </div>
+<p>
+    Deze code is naar uw e-mail adress @Model.EmailAddress gestuurd opdat u later uw wishlist kunt inzien en wijzigen.
+</p>
+<p>
+    U kunt nog nieuwe items blijven toevoegen.
+</p>
