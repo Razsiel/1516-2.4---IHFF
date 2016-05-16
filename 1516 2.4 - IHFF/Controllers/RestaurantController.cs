@@ -12,7 +12,7 @@ namespace IHFF.Controllers
     public class RestaurantsController : Controller
     {
         private IRestaurantRepository restaurantsRepository = new RestaurantsRepository();
-        // GET: Restaurant
+        
         public ActionResult Index()
         {
            return View(restaurantsRepository.GetAllRestaurants());
