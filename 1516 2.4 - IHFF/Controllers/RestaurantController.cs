@@ -9,7 +9,7 @@ using IHFF.Interfaces;
 
 namespace IHFF.Controllers
 {
-    public class RestaurantsController : Controller
+    public class RestaurantController : Controller
     {
         private IRestaurantRepository restaurantsRepository = new RestaurantsRepository();
         
