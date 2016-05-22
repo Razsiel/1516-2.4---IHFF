@@ -12,7 +12,8 @@ namespace IHFF.Models
     {
         public Movie() { }
 
-        public Movie(int id, string title, string director, Int16 yearOfRelease, byte rating, string actors, string description, string url, string image, string extra, TimeSpan duration, string description_NL, decimal price)
+        public Movie(int id, string title, string director, Int16 yearOfRelease, byte rating, string actors, string description, string url,
+            string image, string extra, TimeSpan duration, string description_NL, decimal price, string youtubeLink)
         {
             this.Id = id;
             this.Title = title;
@@ -27,6 +28,7 @@ namespace IHFF.Models
             this.Duration = duration;
             this.Description_NL = description_NL;
             this.Price = price;
+            this.YoutubeLink = youtubeLink;
         }
 
         [Key]
@@ -44,6 +46,7 @@ namespace IHFF.Models
         public TimeSpan Duration { get; set; }
         public string Description_NL { get; set; }
         public decimal Price { get; set; }
+        public string YoutubeLink { get; set; }
 
         public virtual ICollection<Airing> Airings { get; set; }
     }

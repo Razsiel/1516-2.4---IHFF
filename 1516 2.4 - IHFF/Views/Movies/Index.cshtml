@@ -15,83 +15,36 @@
 
     <h2>@ViewBag.Title</h2>
 
-    @foreach (Movie item in Model)
-    {
-        using (Html.BeginForm())
-        {
-            <div class="row movieRow justify-height-container">
-                <div class="col-md-3">
-                    <div class="imgWrap">
-                        @if (item.Image != null)
-                        {
-                            @Html.ActionImage("MovieInfo", "data:image/jpg;base64, " + item.Image, null, "fancybox", "moviePoster", new { id = item.Id });
-                        }
-                        <p class="imgDescription fancybox" href="@Url.Action("MovieInfo", new { id = item.Id })">
-                            Meer info
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="col-md-7 justify-height">
-                    <h3 class="movieTitle">
-                        @Html.ActionLink(@item.Title, "MovieInfo", new { id = item.Id }, new { @class = "fancybox movieTitle" })
-                    </h3>
-
-                    <p>
-                        @item.Description_NL.TrimStringIfLongerThan(320) @Html.ActionLink("[Lees meer...]", "MovieInfo", new { id = item.Id }, new { @class = "fancybox" })
-                    </p>
-
-                    <p>
-                        <b>
-                            Regisseur: @item.Director<br />
-                            Release: @item.YearOfRelease
-                        </b>
-                    </p>
-
-                    <div class="row moviePullDown">
-                        <div class="col-md-7">
-                            <!-- NEED TO LOOK AT PASSING CORRECT DATA -->
-                            
-                            <select name="AiringId" class="movieDropDown">
-                                @foreach (Airing airing in item.Airings)
-                                {
-                                    <option value="@airing.Id">@airing.AiringString</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <select name="ticketAmount" class="movieDropDown">
-                                @for (int i = 1; i <= 10; i++)
-                                {
-                                    if (i == 1)
-                                    {
-                                        <option value="@i">@i ticket</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@i">@i tickets</option>
-                                    }
-                                }
-                            </select>
-                        </div>
-                        <div class="col-md-2 pull-right">
-                            <!--<a class="btn btn-primary btn-block movieBtn" href="#">Toevoegen</a>-->
-                            <input type="submit" class="btn btn-primary btn-block movieBtn" value="Toevoegen" />
-                        </div>
-                    </div>
+    <div class="row">
+            <div class="navbar filter">
+                <div class="filterContainter">
+                    <ul class="nav nav-pills">
+                        <li>@Html.ActionLink("Bekijk alles", "GetMovies", "Movies", new { id = -1 }, new { @class = "active filterLink" })</li>
+                        <li>@Html.ActionLink("Woensdag", "GetMovies", "Movies", new { id = (int)DayOfWeek.Wednesday }, new { @class = "filterLink" })</li>
+                        <li>@Html.ActionLink("Donderdag", "GetMovies", "Movies", new { id = (int)DayOfWeek.Thursday }, new { @class = "filterLink" })</li>
+                        <li>@Html.ActionLink("Vrijdag", "GetMovies", "Movies", new { id = (int)DayOfWeek.Friday }, new { @class = "filterLink" })</li>
+                        <li>@Html.ActionLink("Zaterdag", "GetMovies", "Movies", new { id = (int)DayOfWeek.Saturday }, new { @class = "filterLink" })</li>
+                        <li>@Html.ActionLink("Zondag", "GetMovies", "Movies", new { id = (int)DayOfWeek.Sunday }, new { @class = "filterLink" })</li>
+                    </ul>
                 </div>
             </div>
-        }
-    }
+    </div>
+    <div id="spinner">
+        <img id="img-spinner" src="~/Resources/ajax-loader.gif" alt="Loading" />
+    </div>
+    <div class="movies">
+        @{Html.RenderPartial("_MovieView", Model);}
+    </div>
 </div>
 
 <script>
     $(document).ready(function () {
+        
         $(".fancybox").click(function () {
             $.fancybox.open({
                 content: $('<div>').load($(this).attr('href')),
-                maxWidth: 800,
                 type: 'ajax',
+                maxWidth: 800,
                 fitToView: false,
                 autoSize: true,
                 openEffect: 'fade',
@@ -99,5 +52,29 @@
             });
             return false;
         })
+
+        $(".filterLink").click(function (e) {
+            e.preventDefault();
+
+            var link = $(this).attr("href");
+
+            $("#spinner").show();
+            $(".movies").fadeTo(5, 0.4, function () { });
+
+            $.ajax({
+                url: link,
+                success: function (data) {
+                    $(".movies").fadeTo(5, 1, function () {
+                        $(".movies").html(data);
+                        $("#spinner").hide();
+                    });;
+                }
+            })
+
+            $(".filterLink").each(function () {
+                $(this).removeClass("active");
+            });
+            $(this).addClass('active');
+        });
     })
 </script>

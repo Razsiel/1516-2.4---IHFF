@@ -449,10 +449,54 @@ a.movieTitle:hover{
 
 .movieBtn {
     width: 150%!important;
+    margin-top: -5px;
 }
 
 .movieDropDown{
     max-width: 110%;
+}
+
+.movies {
+    margin-bottom: 20px;
+}
+
+.nav-pills > li {
+    display: inline-block;
+    float: left;
+    text-align: center;
+    width: 16.4%;
+    color: #0b66ba;
+}
+
+ul.nav-pills {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.filter{
+    width: 100%;
+    margin-top: 15px;
+}
+
+.filterContainter {
+    
+    border-bottom: 1px solid #0b66ba;
+}
+
+.nav-pills > li > a.active {
+    background-color: #0b66ba;
+    color: #fff;
+}
+
+.nav-pills > li > a {
+    color: #0b66ba;
+    text-decoration: none;
+}
+
+#spinner {
+    display: none;
+    position: absolute;
+    left: 50%;
 }
 
 /* Wishlist */

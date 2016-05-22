@@ -45,20 +45,7 @@ namespace IHFF.Repositories
             return movies;
         }
         */
-
-        // A method to round up or down the minutes
-        public static DateTime Round(DateTime dt)
-        {
-            if((dt.Minute % 10) >= 5)
-            {
-                return dt.AddMinutes((60 - dt.Minute) % 10);
-            }
-            else
-            {
-                return dt.AddMinutes(-dt.Minute % 10);
-            }
-        }
-
+        
         /*
         public AiringItem GetAiringItem(int id, int amount)
         {
@@ -93,6 +80,23 @@ namespace IHFF.Repositories
         public Movie GetMovie(int id)
         {
             return context.Movies.SingleOrDefault(a => a.Id == id);
+        }
+
+        public IEnumerable<Movie> GetMovies(int dayOfWeek)
+        {
+            if(dayOfWeek < 0)
+            {
+                return context.Movies;
+            }
+
+            IEnumerable<Airing> airings = context.Airings.ToList().Where(a => a.ActivityDate.DayOfWeek == (DayOfWeek)dayOfWeek);
+            List<Movie> movies = new List<Movie>();
+            foreach (Airing airing in airings)
+            {
+                movies.Add(context.Movies.Where(a => a.Id == airing.Movie_Id).SingleOrDefault());
+            }
+
+            return movies;
         }
     }
 }

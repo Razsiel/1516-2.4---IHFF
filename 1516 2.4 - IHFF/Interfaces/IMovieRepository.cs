@@ -13,5 +13,6 @@ namespace IHFF.Interfaces
         IEnumerable<Movie> GetAllMovies();
         Airing GetAiring(int id);
         Movie GetMovie(int id);
+        IEnumerable<Movie> GetMovies(int id);
     }
 }
