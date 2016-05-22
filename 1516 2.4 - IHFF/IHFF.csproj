@@ -241,12 +241,10 @@
     <Content Include="Views\Wishlist\_Contact.cshtml" />
     <Content Include="Views\Wishlist\_CartItem.cshtml" />
     <Content Include="Views\Wishlist\_PopupSave.cshtml" />
+    <Content Include="Views\Restaurant\RestaurantInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\IRestaurantRepository\" />
-    <Folder Include="Views\RestaurantInfo\" />
-    <Folder Include="Views\RestaurantsRepository\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

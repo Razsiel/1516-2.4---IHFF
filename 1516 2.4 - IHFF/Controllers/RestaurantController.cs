@@ -18,9 +18,9 @@ namespace IHFF.Controllers
            return View(restaurantsRepository.GetAllRestaurants());
         }
 
-        public ActionResult Dijkers()
+        public ActionResult RestaurantInfo(int Id)
         {
-            return View();
+            return View(restaurantsRepository.GetRestaurant(Id));
         }
     }
 }

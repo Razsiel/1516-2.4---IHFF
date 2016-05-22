@@ -12,7 +12,7 @@ namespace IHFF.Models
     {
         public Restaurant() { }
 
-        public Restaurant(int id, string name, int capacity, string address, string website, string info )
+        public Restaurant(int id, string name, int capacity, string address, string website, string info, string RestaurantInfo )
         {
             this.Id = id;
             this.Name = name;
@@ -20,6 +20,7 @@ namespace IHFF.Models
             this.Address = address;
             this.Website = website;
             this.Info = info;
+            this.RestaurantInfo = RestaurantInfo;
         }
 
         [Key]
@@ -31,6 +32,6 @@ namespace IHFF.Models
         public string Address { get; set; }
         public string Website { get; set; }
         public string Info { get; set; }
-
+        public string RestaurantInfo { get; set; }
     }
 }
