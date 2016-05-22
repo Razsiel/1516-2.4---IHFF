@@ -6,6 +6,7 @@
 }
 
 <h2>RestaurantOverzicht</h2>
+<br />
 <div class="container">
     @foreach (Restaurant item in Model)
     {
@@ -15,11 +16,13 @@
                 <div class="overlay-overlayable" style="bottom: 20px">STERREN</div>
             </div>
 
-
-            <h4 class="text-center primary-color">@item.Name</h4>
-            <p> @item.Info <p/>
-
-            @Html.ActionLink("Reserveer nu", "Dijkers", "Restaurant", null, new { @class = "btn btn-primary btn-block" })
+            <a href="@Url.Action("Index", "Restaurant")">
+                <h3 class="text-center">@item.Name</h3>
+            </a>
+            <br />
+            <p> @item.Info @Html.ActionLink("Lees verder", "RestaurantInfo", "Restaurant", new { item.Id }, new { @class = "" }) <p/>
+            
+            @Html.ActionLink("Reserveer nu", "RestaurantInfo", "Restaurant", new { item.Id }, new { @class = "btn btn-primary btn-block" })
             <br />
         </div>
     }

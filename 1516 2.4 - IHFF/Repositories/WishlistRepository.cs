@@ -25,16 +25,23 @@ namespace IHFF.Repositories
             }
         }
 
+        public ActivityType GetItem(int item_Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Wishlist GetOrCreateWishlist(string code)
         {
             if (string.IsNullOrEmpty(code))
             {
                 Wishlist newWishlist = new Wishlist();
+                Random rnd = new Random();
+                newWishlist.UID = string.Format("IHFF{0}", rnd.Next(0, 9999));
                 ctx.Wishlists.Add(newWishlist);
-                code = newWishlist.UID;
                 ctx.SaveChanges();
             }
-            return ctx.Wishlists.Where(w => w.UID == code).FirstOrDefault();
+            Wishlist wishlist = ctx.Wishlists.Where(w => w.UID == code).FirstOrDefault();
+            return wishlist;
         }
 
         public void Remove(Wishlist wishlist, WishlistItem wishlistItem)

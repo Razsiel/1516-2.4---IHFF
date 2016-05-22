@@ -3,10 +3,6 @@
 @model Wishlist
 @{ 
     /* Ienumerables for each day here */
-    //REMOVE LATER!!!
-    IEnumerable<WishlistItem> MondayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Monday);
-
-
     IEnumerable<WishlistItem> WednesdayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Wednesday);
     IEnumerable<WishlistItem> ThursdayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Thursday);
     IEnumerable<WishlistItem> FridayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Friday);
@@ -15,7 +11,6 @@
 
     Dictionary<string, IEnumerable<WishlistItem>> AllItems = new Dictionary<string, IEnumerable<WishlistItem>>()
     {
-        { "Maandag", MondayItems },
         { "Woensdag", WednesdayItems },
         { "Donderdag", ThursdayItems },
         { "Vrijdag", FridayItems },
