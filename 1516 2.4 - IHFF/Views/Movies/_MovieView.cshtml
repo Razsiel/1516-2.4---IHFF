@@ -36,9 +36,11 @@
                 </p>
 
                 <div class="row moviePullDown">
+                    <div class="col-md-12">
+                        <b>Prijs: &euro; @item.Price.ToString("N2") per ticket</b>
+                    </div>
+                    <br />
                     <div class="col-md-7">
-                        <!-- NEED TO LOOK AT PASSING CORRECT DATA -->
-
                         <select name="AiringId" class="movieDropDown">
                             @foreach (Airing airing in item.Airings)
                             {
@@ -70,3 +72,20 @@
         </div>
     }
 }
+<script>
+    $(document).ready(function () {
+
+        $(".fancybox").click(function () {
+            $.fancybox.open({
+                content: $('<div>').load($(this).attr('href')),
+                type: 'ajax',
+                maxWidth: 800,
+                fitToView: false,
+                autoSize: true,
+                openEffect: 'fade',
+                closeEffect: 'fade'
+            });
+            return false;
+        })
+    });
+</script>

@@ -34,6 +34,30 @@ namespace IHFF.Models
             }
         }
 
+        public string EndTime
+        {
+            get
+            {
+                if(Location != null)
+                {
+                    return RoundTheTime((ActivityDate.Add(Movie.Duration))).ToString("HH:mm");
+                }
+                return null;
+            }
+        }
+
+        public string DayName
+        {
+            get
+            {
+                if (Location != null){
+                    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("nl-NL");
+                    return culture.DateTimeFormat.GetDayName(ActivityDate.DayOfWeek);
+                }
+                return null;
+            }
+        }
+
         public override string LocationString
         {
             get

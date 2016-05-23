@@ -38,20 +38,7 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        
-        $(".fancybox").click(function () {
-            $.fancybox.open({
-                content: $('<div>').load($(this).attr('href')),
-                type: 'ajax',
-                maxWidth: 800,
-                fitToView: false,
-                autoSize: true,
-                openEffect: 'fade',
-                closeEffect: 'fade'
-            });
-            return false;
-        })
+    $(document).ready(function () { 
 
         $(".filterLink").click(function (e) {
             e.preventDefault();

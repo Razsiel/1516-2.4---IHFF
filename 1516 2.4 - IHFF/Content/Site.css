@@ -373,6 +373,14 @@ h6 {
   border-color: #9f1f2c;
 }
 
+.fancybox-skin {
+    margin-bottom: 20px!important;
+}
+
+.set-center{
+    text-align: center;
+}
+
 /* Breadcrumbs */
 .breadcrumb{
     background-color: transparent;
@@ -497,6 +505,27 @@ ul.nav-pills {
     display: none;
     position: absolute;
     left: 50%;
+}
+
+.fancybox-inner > div > .row > .moviePoster > img {
+    float: right;
+}
+
+/* Food&Film */
+div.food-and-film {
+    background-color: #CCC;
+}
+
+div.food-and-film > .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+div.food-and-film > h3 > span {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 20px;
+
 }
 
 /* Wishlist */
