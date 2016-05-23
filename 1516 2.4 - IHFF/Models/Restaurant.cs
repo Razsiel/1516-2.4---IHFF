@@ -12,7 +12,7 @@ namespace IHFF.Models
     {
         public Restaurant() { }
 
-        public Restaurant(int id, string name, int capacity, string address, string website, string info, string RestaurantInfo, string reserveringInfo)
+        public Restaurant(int id, string name, int capacity, string address, string website, string info, string RestaurantInfo,string contactInfo, string reserveringInfo, string openingsTijdenInfo)
         {
             this.Id = id;
             this.Name = name;
@@ -21,7 +21,9 @@ namespace IHFF.Models
             this.Website = website;
             this.Info = info;
             this.RestaurantInfo = RestaurantInfo;
+            this.contactInfo = contactInfo;
             this.reserveringInfo = reserveringInfo;
+            this.openingsTijdenInfo = openingsTijdenInfo;
         }
 
         [Key]
@@ -34,6 +36,8 @@ namespace IHFF.Models
         public string Website { get; set; }
         public string Info { get; set; }
         public string RestaurantInfo { get; set; }
+        public string contactInfo { get; set; }
         public string reserveringInfo { get; set; }
+        public string openingsTijdenInfo { get; set; }
     }
 }

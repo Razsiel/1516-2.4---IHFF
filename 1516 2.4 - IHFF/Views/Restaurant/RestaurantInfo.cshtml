@@ -17,15 +17,13 @@
     <h4 class="container">
         @Model.Name
     </h4>
-    
-    <p class="col-sm-7">
-        @MvcHtmlString.Create(Model.RestaurantInfo.Replace(Environment.NewLine, "<br />"))
-    </p>
+        <p class="col-sm-7">
+            @MvcHtmlString.Create(Model.RestaurantInfo.Replace(Environment.NewLine, "<br />"))
+        </p>
     <div class="col-sm-3  ">
         <a href="@Url.Action("Index", "Movies")">
             <img src="~/Resources/Placeholder.png" class="pull-left" />
         </a>
- 
     </div>
 </div>
 
@@ -33,22 +31,15 @@
     <br />
 </div>
 
-
 <div class="container">
     <h4 class="container">
         OpeningsTijden
     </h4>
 
     <p class="col-sm-5">
-        Maandag        Gesloten <br />
-        Dinsdag        11.00 - 22.00 <br />
-        Woensdag       11.00 - 22.00 <br />
-        Donderdag      11.00 - 22.00 <br />
-        Vrijdag        10.00 - 22.00 <br />
-        Zaterdag       11.00 - 22.00 <br />
-        Zondag         11.00 - 22.00 <br />
+        @MvcHtmlString.Create(Model.openingsTijdenInfo.Replace(Environment.NewLine, "<br />"))
+    </p>
 </div>
-
 
 <div class="row row-inverse">
         <br />
@@ -60,20 +51,8 @@
             </h4>
 
             <p class="col-sm-5">
-                 Adres Warmoestraat 5-7 <br />
-                    Postcode 2011 HN Haarlem <br />
-                    Tel. nr. +31 (0) 23 551 1564 <br />
-                    E-mail info@restaurantdijkers.nl <br />
-                <br />
-                    Telefonisch bereikbaar op; <br />
-                     Werkdagen: 9:15 - 17:00 <br />
-                     Vrijdag: 9:15 - 15:00 <br />
-                <br />
-                    Email's zullen binnen 24 uur behandeld <br />
-                    worden en zullen binnen 12-36 uur beantwoord <br />
-                    worden door een van onze medewerkers <br />
+                 @MvcHtmlString.Create(Model.contactInfo.Replace(Environment.NewLine, "<br />"))
             </p>
-
         <div class="col-sm-5 pull-right overlayable ">
             <img src="~/Resources/Placeholder.png" class="pull-left" />
 
@@ -123,8 +102,6 @@
             @MvcHtmlString.Create(Model.reserveringInfo.Replace(Environment.NewLine, "<br />"))
         </p>
 </div>
-
-
 
     <div class="row row-inverse">
         <br />
