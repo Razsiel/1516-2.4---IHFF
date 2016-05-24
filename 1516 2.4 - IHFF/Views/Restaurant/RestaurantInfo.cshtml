@@ -7,7 +7,7 @@
 
 <h2>@Model.Name</h2>
     
-   <img src="~/Resources/Placeholder.png" class="justify-height" />
+  <img src="data: image/jpg;base64, @Model.ResImage1"  style="width:100%;" />
     
 <div class="row row-inverse">
     <br />
@@ -22,7 +22,7 @@
         </p>
     <div class="col-sm-3  ">
         <a href="@Url.Action("Index", "Movies")">
-            <img src="~/Resources/Placeholder.png" class="pull-left" />
+            <img src="data: image/jpg;base64, @Model.ResImage2" />
         </a>
     </div>
 </div>
@@ -37,7 +37,7 @@
     </h4>
 
     <p class="col-sm-5">
-        @MvcHtmlString.Create(Model.openingsTijdenInfo.Replace(Environment.NewLine, "<br />"))
+        @MvcHtmlString.Create(Model.OpeningsTijdenInfo.Replace(Environment.NewLine, "<br />"))
     </p>
 </div>
 
@@ -49,10 +49,9 @@
             <h4 class="container">
                 Contact 
             </h4>
-
-            <p class="col-sm-5">
-                 @MvcHtmlString.Create(Model.contactInfo.Replace(Environment.NewLine, "<br />"))
-            </p>
+                 <p class="col-sm-5">
+                     @MvcHtmlString.Create(Model.ContactInfo.Replace(Environment.NewLine, "<br />"))
+                </p>
         <div class="col-sm-5 pull-right overlayable ">
             <img src="~/Resources/Placeholder.png" class="pull-left" />
 
@@ -62,14 +61,12 @@
 
             <div class="overlay-overlayable" style="bottom: 140px">
                     Datum : 
-
                     <select class="c-select ">
                         <option selected>Woendsdag</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
                     </select>
-                    
             </div>
             <div class="overlay-overlayable" style="bottom: 110px">
                 Tijdstip :  
@@ -79,7 +76,6 @@
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </select>
-                
             </div>
             <div class="overlay-overlayable" style="bottom: 80px"  >
                 Personen : 
@@ -89,7 +85,6 @@
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </select>
-                
             </div>
             <div class="overlay-overlayable" style="bottom: 25px">
                 @Html.ActionLink("Toevoegen", "RestaurantInfo", "Restaurant", new { }, new { @class = "btn btn-primary btn-block" })
@@ -99,7 +94,7 @@
 
  <div class="container">
         <p class="col-sm-5, text-right">
-            @MvcHtmlString.Create(Model.reserveringInfo.Replace(Environment.NewLine, "<br />"))
+            @MvcHtmlString.Create(Model.ReserveringInfo.Replace(Environment.NewLine, "<br />"))
         </p>
 </div>
 

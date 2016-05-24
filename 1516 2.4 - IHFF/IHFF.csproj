@@ -235,7 +235,6 @@
     <Content Include="Views\Home\_InfoContent.cshtml" />
     <Content Include="Views\Restaurant\Index.cshtml" />
     <Content Include="Views\Wishlist\Index.cshtml" />
-    <Content Include="Views\Restaurant\Dijkers.cshtml" />
     <Content Include="Views\Wishlist\_WishlistEmpty.cshtml" />
     <Content Include="Views\Wishlist\_Cart.cshtml" />
     <Content Include="Views\Wishlist\_Contact.cshtml" />
