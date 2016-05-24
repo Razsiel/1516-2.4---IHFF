@@ -13,7 +13,9 @@
         <div class="col-sm-4">
             <div class="overlayable">
                 <a><img src="data: image/jpg;base64, @item.Image" class="img-responsive" style="width:100%;"/></a>
-                <div class="overlay-overlayable" style="bottom: 20px">STERREN</div>
+                <div class="overlay-overlayable" style="bottom: 20px" >
+                    <img src="~/Resources/4 en half ster.png" style="width:50%;"/>
+                </div>
             </div>
 
             <a href="@Url.Action("RestaurantInfo", "Restaurant", new { item.Id })">
