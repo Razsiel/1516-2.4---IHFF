@@ -11,18 +11,15 @@ namespace IHFF.Repositories
     {
         IHFFContext ctx = IHFFContext.Instance;
 
-        public void AddItem(WishlistItem item)
+        public void AddItem(EventItem item)
         {
-            ctx.WishlistItems.Add(item);
+            ctx.EventItems.Add(item);
             ctx.SaveChanges();
         }
 
         public void Checkout(Wishlist wishlist)
         {
-            foreach (WishlistItem item in wishlist.WishlistItems)
-            {
-                item.Reserved = true;
-            }
+            
         }
 
         public ActivityType GetItem(int item_Id)
@@ -46,9 +43,7 @@ namespace IHFF.Repositories
 
         public void Remove(Wishlist wishlist, WishlistItem wishlistItem)
         {
-            wishlist.WishlistItems.Remove(wishlistItem);
-            //ctx.WishlistItems.Remove(wishlistItem);
-            //ctx.SaveChanges();
+            
         }
 
         public void SaveWishlist(Wishlist wishlist)

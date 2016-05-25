@@ -20,24 +20,10 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int AiringId, int ticketAmount)
+        public ActionResult Index(int EventId, int ticketAmount)
         {
-            /*Pseudo-code steps
-
-            - Get airing
-            - Get or create a wishlist
-            - Create wishlist item based on airing (activity)
-            - Add wishlistitem to wishlist
-
-            */
-            Airing airing = moviesRepository.GetAiring(AiringId);
-            airing.Name = airing.Movie.Title;
-            airing.Image = airing.Movie.Image;
-            airing.Date = airing.ActivityDate;
             Wishlist wishlist = wishlistRepository.GetOrCreateWishlist(Wishlist.Instance.UID);
-
-            WishlistItem item = new WishlistItem(airing, wishlist, ticketAmount);
-            wishlist.WishlistItems.Add(item);
+            //wishlist.WishlistEventItems.Add(moviesRepository.GetEvent(EventId));
             
             Wishlist.Instance = wishlist;
             return RedirectToAction("Index", "Wishlist");

@@ -43,9 +43,9 @@ namespace IHFF.Controllers
             return RedirectToAction("Index");
         }
         
-        public ActionResult RemoveItem(WishlistItem item)
+        public ActionResult RemoveItem(EventItem item)
         {
-            Wishlist.Instance.WishlistItems.Remove(item);
+            Wishlist.Instance.EventItems.Remove(item);
             return RedirectToAction("Index");
         }
     }

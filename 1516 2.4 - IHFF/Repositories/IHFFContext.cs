@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 using IHFF.Models;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace IHFF.Repositories
 {
@@ -11,7 +12,7 @@ namespace IHFF.Repositories
     {
         private static IHFFContext _instance;
 
-        public IHFFContext() : base("IHFFConnection")
+        public IHFFContext() : base("Local")
         {
 
         }
@@ -32,36 +33,30 @@ namespace IHFF.Repositories
         }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
-        public DbSet<WishlistItem> WishlistItems { get; set; }
-        public DbSet<Airing> Airings { get; set; }
         public DbSet<Location> Locations { get; set; }
-        public DbSet<ActivityType> ActivityTypes { get; set; }
-
         public DbSet<Restaurant> Restaurants { get; set; }
+
+        public DbSet<Event> Events { get; set; }
+        public DbSet<EventItem> EventItems { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Airing>()
-                .HasRequired<Movie>(a => a.Movie)
-                .WithMany(m => m.Airings)
-                .HasForeignKey(a => a.Movie_Id);
+            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<WishlistItem>()
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<Movie>().ToTable("Movie");
+            modelBuilder.Entity<Special>().ToTable("Special");
+            modelBuilder.Entity<Event>().ToTable("Event");
+            modelBuilder.Entity<Restaurant>().ToTable("Restaurant");
+
+            modelBuilder.Entity<Wishlist>().HasKey(w => w.UID);
+
+            modelBuilder.Entity<EventItem>()
                 .HasRequired<Wishlist>(i => i.Wishlist)
-                .WithMany(w => w.WishlistItems)
-                .HasForeignKey(i => i.Wishlist_Id);
-
-            modelBuilder.Entity<WishlistItem>()
-                .HasRequired<ActivityType>(i => i.Item)
-                .WithMany(a => a.WishlistItems)
-                .HasForeignKey(i => i.ItemType);
-
-            modelBuilder.Entity<Airing>()
-                .HasRequired<Location>(a => a.Location)
-                .WithMany(l => l.Airings)
-                .HasForeignKey(a => a.Location_Id);
-
+                .WithMany(w => w.EventItems)
+                .HasForeignKey(i => i.WishlistUID);
         }
     }
 }

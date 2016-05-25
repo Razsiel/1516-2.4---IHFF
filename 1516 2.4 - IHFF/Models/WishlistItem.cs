@@ -13,7 +13,7 @@ namespace IHFF.Models
         {
             Item = activity;
             Wishlist = wishlist;
-            Wishlist_Id = wishlist.Id;
+            //Wishlist_Id = wishlist.Id;
             Amount = tickets;
         }
 
