@@ -140,7 +140,6 @@
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Interfaces\IRestaurantRepository.cs" />
-    <Compile Include="Models\ActivityType.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -149,9 +148,7 @@
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Interfaces\IMovieRepository.cs" />
     <Compile Include="Interfaces\IWishlistRepository.cs" />
-    <Compile Include="Models\Airing.cs" />
     <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\ViewModelMovie.cs" />
     <Compile Include="Models\WishlistItem.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Movie.cs" />

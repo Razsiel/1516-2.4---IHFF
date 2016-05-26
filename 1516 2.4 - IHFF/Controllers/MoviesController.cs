@@ -23,7 +23,16 @@ namespace IHFF.Controllers
         public ActionResult Index(int EventId, int ticketAmount)
         {
             Wishlist wishlist = wishlistRepository.GetOrCreateWishlist(Wishlist.Instance.UID);
-            //wishlist.WishlistEventItems.Add(moviesRepository.GetEvent(EventId));
+            Event e = moviesRepository.GetAllMovies().First(x => x.EventId == EventId) as Event;
+
+            WishlistItem item = new WishlistItem();
+            item.Event = e;
+            item.Wishlist = wishlist;
+            item.Amount = ticketAmount;
+            item.EventId = e.EventId;
+            item.PayedFor = false;
+
+            wishlist.WishlistItems.Add(item);
             
             Wishlist.Instance = wishlist;
             return RedirectToAction("Index", "Wishlist");

@@ -22,7 +22,7 @@ namespace IHFF.Models
         public string Image { get; set; }
 
         [NotMapped]
-        public TimeSpan Duration { get; set; }
+        public override TimeSpan Duration { get; set; }
         [NotMapped]
         public string Description_NL { get; set; }
         [NotMapped]
@@ -31,5 +31,14 @@ namespace IHFF.Models
         [NotMapped]
         public IEnumerable<Event> Airings { get; set; }
 
+        public override string GetName()
+        {
+            return this.Title;
+        }
+
+        public override string GetImage()
+        {
+            return this.Image;
+        }
     }
 }

@@ -22,13 +22,9 @@ namespace IHFF.Repositories
             
         }
 
-        public ActivityType GetItem(int item_Id)
-        {
-            throw new NotImplementedException();
-        }
-
         public Wishlist GetOrCreateWishlist(string code)
         {
+            /*
             if (string.IsNullOrEmpty(code))
             {
                 Wishlist newWishlist = Wishlist.Instance;
@@ -38,6 +34,12 @@ namespace IHFF.Repositories
                 ctx.SaveChanges();
             }
             Wishlist wishlist = ctx.Wishlists.Where(w => w.UID == code).FirstOrDefault();
+            return wishlist;
+            */
+
+            Wishlist wishlist = Wishlist.Instance;
+            wishlist.UID = "IHFF1234";
+            wishlist.WishlistItems = new List<WishlistItem>();
             return wishlist;
         }
 
