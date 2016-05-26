@@ -27,5 +27,9 @@ namespace IHFF.Models
         public string Description_NL { get; set; }
         [NotMapped]
         public decimal Price { get; set; }
+
+        [NotMapped]
+        public IEnumerable<Event> Airings { get; set; }
+
     }
 }

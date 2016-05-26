@@ -53,12 +53,10 @@
                             <!-- NEED TO LOOK AT PASSING CORRECT DATA -->
                             
                             <select name="EventId" class="movieDropDown">
-                                <!--
-                                foreach (Event e in item.Events)
+                                @foreach (Event e in item.Airings)
                                 {
-                                    <option value="e.EventId">e.Date.ToString()</option>
-                                }-->
-                                <option value="@item.EventId">@item.Date.ToString()</option>
+                                    <option value="@e.EventId">@e.Date.ToString()</option>
+                                }
                             </select>
                         </div>
                         <div class="col-md-3">

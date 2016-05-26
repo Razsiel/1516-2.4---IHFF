@@ -21,7 +21,7 @@ namespace IHFF.Models
         [StringLength(100, ErrorMessage = "Namen moeten minimaal 2 karakters bevatten", MinimumLength = 2)]
         public string Name { get; set; }
 
-        public virtual ICollection<EventItem> EventItems { get; set; } = new List<EventItem>();
+        public virtual ICollection<WishlistItem> WishlistItems { get; set; }
 
         private static Wishlist _instance;
         public static Wishlist Instance
@@ -37,6 +37,6 @@ namespace IHFF.Models
             set { _instance = value; }
         }
 
-        public Wishlist() { }
+        private Wishlist() { }
     }
 }

@@ -24,26 +24,24 @@ namespace IHFF.Repositories
             }
         }
 
+        // Get unique movie titles -> new list
+        // for each unique movie get all the events associated with it
         public IEnumerable<Movie> GetAllMovies()
         {
-            List<Movie> Movies = context.Movies.ToList();
-            List<Event> Events = context.Events.ToList();
-            List<EventItem> EventItems = context.EventItems.ToList();
+            List<Movie> allMovies = context.Movies.ToList();
+            List<Movie> uniqueTitles = allMovies.GroupBy(m => m.Title).Select(grp => grp.First()).ToList();
 
-            List<Event> ofTypeEvent = context.Movies.OfType<Event>().ToList();
-            List<Movie> ofTypeMovie = context.Events.OfType<Movie>().ToList();
-
-            return Movies;
-        }
-
-        public Event GetEvent(int id)
-        {
-            return context.Events.SingleOrDefault(e => e.EventId == id);
+            foreach (Movie m in uniqueTitles)
+            {
+                m.Airings = allMovies.Where(x => x.Title == m.Title);
+            }
+            
+            return uniqueTitles;
         }
 
         public Movie GetMovie(int id)
         {
-            return context.Movies.SingleOrDefault(a => a.EventId == id);
+            return null;// context.Movies.SingleOrDefault(a => a.EventId == id);
         }
     }
 }

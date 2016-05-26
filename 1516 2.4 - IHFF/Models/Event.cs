@@ -8,10 +8,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IHFF.Models
 {
     [Table("Event")]
-    public abstract class Event : EventItem
+    public abstract class Event
     {
+        public int EventId { get; set; }
         public DateTime Date { get; set; }
         public int LocationId { get; set; }
-        public string ExtraInfo { get; set; }        
+        public string ExtraInfo { get; set; }
     }
 }

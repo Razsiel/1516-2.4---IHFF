@@ -37,7 +37,7 @@ namespace IHFF.Repositories
         public DbSet<Restaurant> Restaurants { get; set; }
 
         public DbSet<Event> Events { get; set; }
-        public DbSet<EventItem> EventItems { get; set; }
+        public DbSet<WishlistItem> WishlistItems { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -51,11 +51,9 @@ namespace IHFF.Repositories
             modelBuilder.Entity<Event>().ToTable("Event");
             modelBuilder.Entity<Restaurant>().ToTable("Restaurant");
 
-            modelBuilder.Entity<Wishlist>().HasKey(w => w.UID);
-
-            modelBuilder.Entity<EventItem>()
+            modelBuilder.Entity<WishlistItem>()
                 .HasRequired<Wishlist>(i => i.Wishlist)
-                .WithMany(w => w.EventItems)
+                .WithMany(w => w.WishlistItems)
                 .HasForeignKey(i => i.WishlistUID);
         }
     }

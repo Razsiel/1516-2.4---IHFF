@@ -11,9 +11,9 @@ namespace IHFF.Repositories
     {
         IHFFContext ctx = IHFFContext.Instance;
 
-        public void AddItem(EventItem item)
+        public void AddItem(WishlistItem item)
         {
-            ctx.EventItems.Add(item);
+            ctx.WishlistItems.Add(item);
             ctx.SaveChanges();
         }
 
@@ -31,7 +31,7 @@ namespace IHFF.Repositories
         {
             if (string.IsNullOrEmpty(code))
             {
-                Wishlist newWishlist = new Wishlist();
+                Wishlist newWishlist = Wishlist.Instance;
                 Random rnd = new Random();
                 newWishlist.UID = string.Format("IHFF{0}", rnd.Next(0, 9999));
                 ctx.Wishlists.Add(newWishlist);
