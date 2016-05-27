@@ -19,22 +19,15 @@ namespace IHFF.Repositories
 
         public void Checkout(Wishlist wishlist)
         {
-            foreach (WishlistItem item in wishlist.WishlistItems)
-            {
-                item.Reserved = true;
-            }
-        }
-
-        public ActivityType GetItem(int item_Id)
-        {
-            throw new NotImplementedException();
+            
         }
 
         public Wishlist GetOrCreateWishlist(string code)
         {
+            /*
             if (string.IsNullOrEmpty(code))
             {
-                Wishlist newWishlist = new Wishlist();
+                Wishlist newWishlist = Wishlist.Instance;
                 Random rnd = new Random();
                 newWishlist.UID = string.Format("IHFF{0}", rnd.Next(0, 9999));
                 ctx.Wishlists.Add(newWishlist);
@@ -42,13 +35,17 @@ namespace IHFF.Repositories
             }
             Wishlist wishlist = ctx.Wishlists.Where(w => w.UID == code).FirstOrDefault();
             return wishlist;
+            */
+
+            Wishlist wishlist = Wishlist.Instance;
+            wishlist.UID = "IHFF1234";
+            wishlist.WishlistItems = new List<WishlistItem>();
+            return wishlist;
         }
 
         public void Remove(Wishlist wishlist, WishlistItem wishlistItem)
         {
-            wishlist.WishlistItems.Remove(wishlistItem);
-            //ctx.WishlistItems.Remove(wishlistItem);
-            //ctx.SaveChanges();
+            
         }
 
         public void SaveWishlist(Wishlist wishlist)

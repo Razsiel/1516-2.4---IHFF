@@ -2,15 +2,18 @@
 @using IHFF.Helpers
 @model Wishlist
 @{ 
+    IEnumerable<WishlistItem> MondayItems = Model.WishlistItems.Where(x => x.Event.Date.DayOfWeek == DayOfWeek.Monday);
+
     /* Ienumerables for each day here */
-    IEnumerable<WishlistItem> WednesdayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Wednesday);
-    IEnumerable<WishlistItem> ThursdayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Thursday);
-    IEnumerable<WishlistItem> FridayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Friday);
-    IEnumerable<WishlistItem> SaturdayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Saturday);
-    IEnumerable<WishlistItem> SundayItems = Model.WishlistItems.Where(x => x.Item.Date.DayOfWeek == DayOfWeek.Sunday);
+    IEnumerable<WishlistItem> WednesdayItems = Model.WishlistItems.Where(x => x.Event.Date.DayOfWeek == DayOfWeek.Wednesday);
+    IEnumerable<WishlistItem> ThursdayItems = Model.WishlistItems.Where(x => x.Event.Date.DayOfWeek == DayOfWeek.Thursday);
+    IEnumerable<WishlistItem> FridayItems = Model.WishlistItems.Where(x => x.Event.Date.DayOfWeek == DayOfWeek.Friday);
+    IEnumerable<WishlistItem> SaturdayItems = Model.WishlistItems.Where(x => x.Event.Date.DayOfWeek == DayOfWeek.Saturday);
+    IEnumerable<WishlistItem> SundayItems = Model.WishlistItems.Where(x => x.Event.Date.DayOfWeek == DayOfWeek.Sunday);
 
     Dictionary<string, IEnumerable<WishlistItem>> AllItems = new Dictionary<string, IEnumerable<WishlistItem>>()
     {
+        { "Maandag", MondayItems},
         { "Woensdag", WednesdayItems },
         { "Donderdag", ThursdayItems },
         { "Vrijdag", FridayItems },

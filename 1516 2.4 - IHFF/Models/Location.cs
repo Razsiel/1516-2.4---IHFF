@@ -12,20 +12,12 @@ namespace IHFF.Models
     {
         public Location() { }
 
-        public Location(int id, string name, string room, int capacity)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Room = room;
-            this.Capacity = capacity;
-        }
-
         [Key]
-        public int Id { get; set; }
+        public int LocationId { get; set; }
         public string Name { get; set; }
         public string Room { get; set; }
         public int Capacity { get; set; }
 
-        public virtual ICollection<Airing> Airings { get; set; }
+        public ICollection<Event> Events { get; set; }
     }
 }
