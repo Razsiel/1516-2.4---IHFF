@@ -10,6 +10,8 @@ namespace IHFF.Models
         public string Name { get; set; }
         public override TimeSpan Duration { get; set; }
 
+        public override string ExtraInfo { get; set; }
+
         public override string GetName()
         {
             return this.Name;

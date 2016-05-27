@@ -19,14 +19,18 @@ namespace IHFF.Helpers
         }
 
         // Create a substring for movie descriptions
-        public static string TrimStringIfLongerThan(this string value, int maxLenght)
+        public static string TrimStringIfLongerThan(this string value, int maxLength)
         {
-            if (value.Length > maxLenght)
+            if (!value.IsNullOrEmpty())
             {
-                return (value.Substring(0, maxLenght) + "...");
-            }
+                if (value.Length > maxLength)
+                {
+                    return (value.Substring(0, maxLength) + "...");
+                }
 
-            return value;
+                return value;
+            }
+            return null;
         }
     }
 }

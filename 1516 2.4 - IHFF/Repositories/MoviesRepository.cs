@@ -11,30 +11,17 @@ namespace IHFF.Repositories
     {
         private IHFFContext context = IHFFContext.Instance;
 
-        // A method to round up or down the minutes
-        public static DateTime Round(DateTime dt)
-        {
-            if((dt.Minute % 10) >= 5)
-            {
-                return dt.AddMinutes((60 - dt.Minute) % 10);
-            }
-            else
-            {
-                return dt.AddMinutes(-dt.Minute % 10);
-            }
-        }
-
         // Get unique movie titles -> new list
         // for each unique movie get all the events associated with it
         public IEnumerable<Movie> GetAllMovies()
         {
             List<Movie> allMovies = context.Movies.ToList();
-            List<Movie> uniqueTitles = allMovies.GroupBy(m => m.Title).Select(grp => grp.First()).ToList();
+            List<Movie> uniqueTitles = context.Movies.ToList().GroupBy(m => m.Title).Select(grp => grp.First()).ToList();
 
             foreach (Movie m in uniqueTitles)
-        {
+            {
                 m.Airings = allMovies.Where(x => x.Title == m.Title);
-        }
+            }
 
             return uniqueTitles;
         }
@@ -44,6 +31,9 @@ namespace IHFF.Repositories
             return null;// context.Movies.SingleOrDefault(a => a.EventId == id);
         }
 
+        //Get all movies
+        //Filter based on event date
+        //Set all movie airings
         public IEnumerable<Movie> GetMovies(int dayOfWeek)
         {
             if(dayOfWeek < 0)
@@ -51,12 +41,12 @@ namespace IHFF.Repositories
                 return context.Movies;
             }
 
-            IEnumerable<Airing> airings = context.Airings.ToList().Where(a => a.ActivityDate.DayOfWeek == (DayOfWeek)dayOfWeek);
-            List<Movie> movies = new List<Movie>();
-            foreach (Airing airing in airings)
+            IEnumerable<Movie> movies = context.Movies.ToList().Where(a => a.Date.DayOfWeek == (DayOfWeek)dayOfWeek);
+            /*List<Movie> movies = new List<Movie>();
+            foreach (Event airing in airings)
             {
-                movies.Add(context.Movies.Where(a => a.Id == airing.Movie_Id).SingleOrDefault());
-            }
+                movies.Add(context.Movies.Where(m => m.EventId == airing.EventId).SingleOrDefault());
+            }*/
 
             return movies;
         }

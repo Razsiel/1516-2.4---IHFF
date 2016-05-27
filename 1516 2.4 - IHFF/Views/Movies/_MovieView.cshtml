@@ -11,9 +11,9 @@
                 <div class="imgWrap">
                     @if (item.Image != null)
                     {
-                        @Html.ActionImage("MovieInfo", "data:image/jpg;base64, " + item.Image, null, "fancybox", "moviePoster", new { id = item.Id });
+                        @Html.ActionImage("MovieInfo", "data:image/jpg;base64, " + item.Image, null, "fancybox", "moviePoster", new { id = item.EventId });
                     }
-                    <p class="imgDescription fancybox" href="@Url.Action("MovieInfo", new { id = item.Id })">
+                    <p class="imgDescription fancybox" href="@Url.Action("MovieInfo", new { id = item.EventId })">
                         Meer info
                     </p>
                 </div>
@@ -21,11 +21,11 @@
 
             <div class="col-md-7 justify-height">
                 <h3 class="movieTitle">
-                    @Html.ActionLink(@item.Title, "MovieInfo", new { id = item.Id }, new { @class = "fancybox movieTitle" })
+                    @Html.ActionLink(@item.Title, "MovieInfo", new { id = item.EventId }, new { @class = "fancybox movieTitle" })
                 </h3>
 
                 <p>
-                    @item.Description_NL.TrimStringIfLongerThan(320) @Html.ActionLink("[Lees meer...]", "MovieInfo", new { id = item.Id }, new { @class = "fancybox" })
+                    @item.Description_NL.TrimStringIfLongerThan(320) @Html.ActionLink("[Lees meer...]", "MovieInfo", new { id = item.EventId }, new { @class = "fancybox" })
                 </p>
 
                 <p>
@@ -41,10 +41,10 @@
                     </div>
                     <br />
                     <div class="col-md-7">
-                        <select name="AiringId" class="movieDropDown">
-                            @foreach (Airing airing in item.Airings)
+                        <select name="EventId" class="movieDropDown">
+                            @foreach (Event e in item.Airings)
                             {
-                                <option value="@airing.Id">@airing.AiringString</option>
+                                <option value="@e.EventId">@e.AiringString</option>
                             }
                         </select>
                     </div>

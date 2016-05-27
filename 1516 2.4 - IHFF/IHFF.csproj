@@ -139,6 +139,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Interfaces\IRestaurantRepository.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
@@ -212,7 +213,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <None Include="Views\Movies\_MovieInfo.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -242,6 +242,7 @@
     <Content Include="Views\Wishlist\_PopupSave.cshtml" />
     <Content Include="Views\Restaurant\RestaurantInfo.cshtml" />
     <Content Include="Views\Movies\_MovieView.cshtml" />
+    <Content Include="Views\Movies\_MovieInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
