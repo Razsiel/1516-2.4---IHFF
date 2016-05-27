@@ -42,5 +42,10 @@ namespace IHFF.Controllers
         {
             return PartialView("_MovieInfo", moviesRepository.GetMovie(Id));
         }
+
+        public ActionResult GetMovies(int Id)
+        {
+            return PartialView("_MovieView", moviesRepository.GetMovies(Id));
+        }
     }
 }

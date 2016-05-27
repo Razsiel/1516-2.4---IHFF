@@ -139,6 +139,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Interfaces\IRestaurantRepository.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
@@ -162,6 +163,7 @@
     <Compile Include="Repositories\WishlistRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\ajax-loader.gif" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fancybox\blank.gif" />
@@ -233,18 +235,16 @@
     <Content Include="Views\Home\_InfoContent.cshtml" />
     <Content Include="Views\Restaurant\Index.cshtml" />
     <Content Include="Views\Wishlist\Index.cshtml" />
-    <Content Include="Views\Restaurant\Dijkers.cshtml" />
     <Content Include="Views\Wishlist\_WishlistEmpty.cshtml" />
     <Content Include="Views\Wishlist\_Cart.cshtml" />
     <Content Include="Views\Wishlist\_Contact.cshtml" />
     <Content Include="Views\Wishlist\_CartItem.cshtml" />
     <Content Include="Views\Wishlist\_PopupSave.cshtml" />
+    <Content Include="Views\Restaurant\RestaurantInfo.cshtml" />
+    <Content Include="Views\Movies\_MovieView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\IRestaurantRepository\" />
-    <Folder Include="Views\RestaurantInfo\" />
-    <Folder Include="Views\RestaurantsRepository\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

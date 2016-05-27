@@ -32,16 +32,33 @@ namespace IHFF.Repositories
             List<Movie> uniqueTitles = allMovies.GroupBy(m => m.Title).Select(grp => grp.First()).ToList();
 
             foreach (Movie m in uniqueTitles)
-            {
+        {
                 m.Airings = allMovies.Where(x => x.Title == m.Title);
-            }
-            
+        }
+
             return uniqueTitles;
         }
 
         public Movie GetMovie(int id)
         {
             return null;// context.Movies.SingleOrDefault(a => a.EventId == id);
+        }
+
+        public IEnumerable<Movie> GetMovies(int dayOfWeek)
+        {
+            if(dayOfWeek < 0)
+            {
+                return context.Movies;
+            }
+
+            IEnumerable<Airing> airings = context.Airings.ToList().Where(a => a.ActivityDate.DayOfWeek == (DayOfWeek)dayOfWeek);
+            List<Movie> movies = new List<Movie>();
+            foreach (Airing airing in airings)
+            {
+                movies.Add(context.Movies.Where(a => a.Id == airing.Movie_Id).SingleOrDefault());
+            }
+
+            return movies;
         }
     }
 }

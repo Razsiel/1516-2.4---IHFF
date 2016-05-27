@@ -1,11 +1,10 @@
 ﻿<script>
-        $(document).ready(function () {
-            $("#navbar-collapse collapse > ul > li").click(function () {
-                $("#navbar-collapse collapse > ul > li").each(function () {
+    $(document).ready(function () {
+            $(".menu").click(function () {
+                $(".menu").each(function () {
                     $(this).removeClass("active");
                 });
                 $(this).addClass('active');
-
             });
         });
 </script>
@@ -34,11 +33,11 @@
         <div class="container">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active"})</li>
-                    <li>@Html.ActionLink("Films", "Index", "Movies")</li>
-                    <li>@Html.ActionLink("Restaurants", "Index", "Restaurant")</li>
-                    <li>@Html.ActionLink("Specials", "Index", "Specials")</li>
-                    <li>@Html.ActionLink("FAQ", "Index", "FAQ")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active menu"})</li>
+                    <li>@Html.ActionLink("Films", "Index", "Movies", null, new { @class = "menu" })</li>
+                    <li>@Html.ActionLink("Restaurants", "Index", "Restaurant", null, new { @class = "menu" })</li>
+                    <li>@Html.ActionLink("Specials", "Index", "Specials", null, new { @class = "menu" })</li>
+                    <li>@Html.ActionLink("FAQ", "Index", "FAQ", null, new { @class = "menu" })</li>
                 </ul>
             </div>
         </div>

@@ -25,7 +25,34 @@ namespace IHFF.Models
             {
                 if (Location != null)
                 {
-                    return string.Format("{0}, {1}-{2}, {3}", Date.DayOfWeek, Date.ToShortTimeString(), (Date.TimeOfDay.Add(Duration)), LocationString);
+                    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("nl-NL");
+                    return string.Format("{0}, {1}-{2}, {3}", culture.DateTimeFormat.GetDayName(ActivityDate.DayOfWeek), 
+                        RoundTheTime(ActivityDate).ToString("HH:mm"), 
+                        RoundTheTime((ActivityDate.Add(Movie.Duration))).ToString("HH:mm"), LocationString);
+                }
+                return null;
+            }
+        }
+
+        public string EndTime
+        {
+            get
+            {
+                if(Location != null)
+                {
+                    return RoundTheTime((ActivityDate.Add(Movie.Duration))).ToString("HH:mm");
+                }
+                return null;
+            }
+        }
+
+        public string DayName
+        {
+            get
+            {
+                if (Location != null){
+                    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("nl-NL");
+                    return culture.DateTimeFormat.GetDayName(ActivityDate.DayOfWeek);
                 }
                 return null;
             }
@@ -39,6 +66,19 @@ namespace IHFF.Models
                     return string.Format("{0}, {1}", Location.Name, Location.Room);
                 }
                 return null;
+            }
+        }
+
+        // A method to round up or down the minutes for 
+        public DateTime RoundTheTime(DateTime dt)
+        {
+            if ((dt.Minute % 10) >= 5)
+            {
+                return dt.AddMinutes((60 - dt.Minute) % 10);
+            }
+            else
+            {
+                return dt.AddMinutes(-dt.Minute % 10);
             }
         }
 

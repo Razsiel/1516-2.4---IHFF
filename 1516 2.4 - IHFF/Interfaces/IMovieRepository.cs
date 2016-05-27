@@ -12,5 +12,6 @@ namespace IHFF.Interfaces
         //IEnumerable<MoviesViewModel> GetAllMovies();
         IEnumerable<Movie> GetAllMovies();
         Movie GetMovie(int id);
+        IEnumerable<Movie> GetMovies(int id);
     }
 }
