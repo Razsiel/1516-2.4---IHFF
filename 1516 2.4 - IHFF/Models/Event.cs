@@ -14,11 +14,12 @@ namespace IHFF.Models
         public int EventId { get; set; }
         public DateTime Date { get; set; }
         public int LocationId { get; set; }
-        public abstract string ExtraInfo { get; set; }
+
+        //public virtual string ExtraInfo { get; set; }
         public string Discriminator { get; set; }
 
-        [NotMapped]
-        public abstract TimeSpan Duration { get; set; }
+
+        //public virtual TimeSpan Duration { get; set; }
         public virtual Location Location { get; set; }
 
         public string AiringString
@@ -30,7 +31,7 @@ namespace IHFF.Models
                     System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("nl-NL");
                     return string.Format("{0}, {1}-{2}, {3}", culture.DateTimeFormat.GetDayName(Date.DayOfWeek), 
                         DateTimeHelper.Round(Date).ToString("HH:mm"),
-                        DateTimeHelper.Round((Date.Add(this.Duration))).ToString("HH:mm"), LocationString);
+                        DateTimeHelper.Round((Date.Add((this as Movie).Duration))).ToString("HH:mm"), LocationString);
                 }
                 return null;
             }
@@ -42,7 +43,7 @@ namespace IHFF.Models
             {
                 if(Location != null)
                 {
-                    return DateTimeHelper.Round((Date.Add(this.Duration))).ToString("HH:mm");
+                    return DateTimeHelper.Round((Date.Add((this as Movie).Duration))).ToString("HH:mm");
                 }
                 return null;
             }

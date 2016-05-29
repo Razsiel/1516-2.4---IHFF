@@ -38,8 +38,8 @@ namespace IHFF.Models
         public string Description { get; set; }
         public string IMDBUrl { get; set; }
         public string Image { get; set; }
-        public override string ExtraInfo { get; set; }
-        public override TimeSpan Duration { get; set; }
+        public string ExtraInfo { get; set; }
+        public TimeSpan Duration { get; set; }
         public string Description_NL { get; set; }
         public decimal Price { get; set; }
         public string YoutubeLink { get; set; }
