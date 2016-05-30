@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using IHFF.Models;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IHFF.Repositories
 {
