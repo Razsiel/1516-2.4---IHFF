@@ -468,6 +468,19 @@ a.movieTitle:hover{
     margin-bottom: 20px;
 }
 
+
+.fancybox-inner > div > .row > .moviePoster > img {
+    float: right;
+}
+
+/* SpecialsPage */
+.specialImage {
+    width: 90%;
+    height: 90%;
+    float: right;
+}
+
+/* Special && Movie */
 .nav-pills > li {
     display: inline-block;
     float: left;
@@ -505,10 +518,6 @@ ul.nav-pills {
     display: none;
     position: absolute;
     left: 50%;
-}
-
-.fancybox-inner > div > .row > .moviePoster > img {
-    float: right;
 }
 
 /* Food&Film */

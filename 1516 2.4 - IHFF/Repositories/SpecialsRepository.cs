@@ -14,24 +14,19 @@ namespace IHFF.Repositories
         // Get unique specials titles -> new list
         public IEnumerable<Special> GetAllSpecials()
         {
-            List<Special> uniqueSpecials = context.Specials.ToList().GroupBy(m => m.Name).Select(grp => grp.First()).ToList();
-            
-            return uniqueSpecials;
-        }
+            List<Special> uniqueSpecials = context.Specials.Where(s => s.Discriminator == "S").ToList().GroupBy(m => m.Name).Select(grp => grp.First()).ToList();
 
-        public Special GetSpecial(int id)
-        {
-            return context.Specials.FirstOrDefault(a => a.EventId == id);
+            return uniqueSpecials;
         }
 
         public IEnumerable<Special> GetSpecials(int dayOfWeek)
         {
             if (dayOfWeek < 0)
             {
-                return context.Specials.ToList().GroupBy(m => m.Name).Select(grp => grp.First()).ToList(); ;
+                return context.Specials.Where(s => s.Discriminator == "S").ToList().GroupBy(m => m.Name).Select(grp => grp.First()).ToList();
             }
 
-            IEnumerable<Special> specials = context.Specials.ToList().Where(a => a.Date.DayOfWeek == (DayOfWeek)dayOfWeek);
+            IEnumerable<Special> specials = context.Specials.Where(s => s.Discriminator == "S").ToList().Where(a => a.Date.DayOfWeek == (DayOfWeek)dayOfWeek);
 
             return specials;
         }

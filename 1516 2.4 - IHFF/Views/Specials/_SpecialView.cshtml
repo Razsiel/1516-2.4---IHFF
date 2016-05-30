@@ -7,37 +7,29 @@
     using (Html.BeginForm())
     {
         <div class="row movieRow justify-height-container">
-            <div class="col-md-3">
-                <div class="imgWrap">
-                    <p class="imgDescription fancybox" href="@Url.Action("MovieInfo", new { id = item.EventId })">
-                        Meer info
-                    </p>
-                    IMAGE!
-                </div>
-            </div>
 
             <div class="col-md-7 justify-height">
                 <h3 class="movieTitle">
-                    @Html.ActionLink(@item.Name, "MovieInfo", new { id = item.EventId }, new { @class = "fancybox movieTitle" })
+                    @item.Name
                 </h3>
 
-                <p>
-                    @item.ExtraInfo @Html.ActionLink("[Lees meer...]", "MovieInfo", new { id = item.EventId }, new { @class = "fancybox" })
-                </p>
+                @{if (!item.ExtraInfo.IsEmpty())
+                    {
+                        <p>
+                            Extra informatie: @item.ExtraInfo
+                        </p>
+                    }
+                }
 
-                <p>
-                    <b>
-                        Tijd: @item.Duration<br />
-                    </b>
-                </p>
+                <b>Duur:</b> @item.Duration.ToString("hh\\:mm") uur
 
-                <div class="row moviePullDown">
+                <div class="row">
                     <div class="col-md-12">
-                        <b>Prijs: &euro; bedrag per ticket</b>
+                        <b>Prijs:</b> Gratis
                     </div>
                     <br />
                     <div class="col-md-7">
-                        Lijstje
+                        @item.GetLocationString().UppercaseFirst()
                     </div>
                     <div class="col-md-3">
                         <select name="ticketAmount" class="movieDropDown">
@@ -55,14 +47,26 @@
                         </select>
                     </div>
                     <div class="col-md-2 pull-right">
-                        <!--<a class="btn btn-primary btn-block movieBtn" href="#">Toevoegen</a>-->
                         <input type="submit" class="btn btn-primary btn-block movieBtn" value="Toevoegen" />
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-5">
+                @{ if (item.Name.Contains("lezing") || item.Name.Contains("Lezing"))
+                    {
+                        <img src="~/Resources/lecture.jpg" class="specialImage" />
+                    }
+                    else
+                    {
+                        <img src="~/Resources/discussion_forum.jpg" class="specialImage" />
+                    }
+                }
+            </div>
         </div>
-    }
-}
+                        }
+                    }
+
 <script>
     $(document).ready(function () {
 
@@ -80,4 +84,3 @@
         })
     });
 </script>
-
