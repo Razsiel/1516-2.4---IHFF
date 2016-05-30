@@ -9,8 +9,16 @@ namespace IHFF.Models
     {
         public string Name { get; set; }
         public TimeSpan Duration { get; set; }
-
         public string ExtraInfo { get; set; }
+
+        public Special(string name, TimeSpan duration, string extraInfo)
+        {
+            this.Name = name;
+            this.Duration = duration;
+            this.ExtraInfo = extraInfo;
+        }
+
+        public Special() { }
 
         public override string GetName()
         {

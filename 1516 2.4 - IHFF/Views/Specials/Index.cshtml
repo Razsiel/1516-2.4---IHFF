@@ -1,0 +1,67 @@
+﻿@using IHFF.Models
+@using IHFF.Helpers
+@model IEnumerable<Special>
+
+@{
+    ViewBag.Title = "Specials Overzicht";
+}
+
+<div class="container">
+
+    <ol class="breadcrumb">
+        <li><a href="/Home">Home</a></li>
+        <li class="active">Specials overzicht</li>
+    </ol>
+
+    <h2>@ViewBag.Title</h2>
+
+    <div class="row">
+        <div class="navbar filter">
+            <div class="filterContainter">
+                <ul class="nav nav-pills">
+                    <!--<li>@Html.ActionLink("Bekijk alles", "GetMovies", "Movies", new { id = -1 }, new { @class = "active filterLink" })</li>
+                    <li>@Html.ActionLink("Woensdag", "GetMovies", "Movies", new { id = (int)DayOfWeek.Wednesday }, new { @class = "filterLink" })</li>
+                    <li>@Html.ActionLink("Donderdag", "GetMovies", "Movies", new { id = (int)DayOfWeek.Thursday }, new { @class = "filterLink" })</li>
+                    <li>@Html.ActionLink("Vrijdag", "GetMovies", "Movies", new { id = (int)DayOfWeek.Friday }, new { @class = "filterLink" })</li>
+                    <li>@Html.ActionLink("Zaterdag", "GetMovies", "Movies", new { id = (int)DayOfWeek.Saturday }, new { @class = "filterLink" })</li>
+                    <li>@Html.ActionLink("Zondag", "GetMovies", "Movies", new { id = (int)DayOfWeek.Sunday }, new { @class = "filterLink" })</li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="spinner">
+        <img id="img-spinner" src="~/Resources/ajax-loader.gif" alt="Loading" />
+    </div>
+    <div class="movies">
+        @{Html.RenderPartial("_SpecialView", Model);}
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $(".filterLink").click(function (e) {
+            e.preventDefault();
+
+            var link = $(this).attr("href");
+
+            $("#spinner").show();
+            $(".movies").fadeTo(5, 0.4, function () { });
+
+            $.ajax({
+                url: link,
+                success: function (data) {
+                    $(".movies").fadeTo(5, 1, function () {
+                        $(".movies").html(data);
+                        $("#spinner").hide();
+                    });;
+                }
+            })
+
+            $(".filterLink").each(function () {
+                $(this).removeClass("active");
+            });
+            $(this).addClass('active');
+        });
+    })
+</script>

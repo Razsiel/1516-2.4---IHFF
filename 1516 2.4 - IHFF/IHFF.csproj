@@ -139,6 +139,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Controllers\SpecialsController.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Interfaces\IRestaurantRepository.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Helpers\CollectionUtils.cs" />
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Interfaces\IMovieRepository.cs" />
+    <Compile Include="Interfaces\ISpecialsRepository.cs" />
     <Compile Include="Interfaces\IWishlistRepository.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\WishlistItem.cs" />
@@ -161,6 +163,7 @@
     <Compile Include="Repositories\IHFFContext.cs" />
     <Compile Include="Repositories\MoviesRepository.cs" />
     <Compile Include="Repositories\RestaurantsRepository.cs" />
+    <Compile Include="Repositories\SpecialsRepository.cs" />
     <Compile Include="Repositories\WishlistRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +250,8 @@
     <Content Include="Views\Restaurant\RestaurantInfo.cshtml" />
     <Content Include="Views\Movies\_MovieView.cshtml" />
     <Content Include="Views\Movies\_MovieInfo.cshtml" />
+    <Content Include="Views\Specials\Index.cshtml" />
+    <Content Include="Views\Specials\_SpecialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

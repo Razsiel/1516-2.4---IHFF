@@ -28,7 +28,7 @@ namespace IHFF.Repositories
 
         public Movie GetMovie(int id)
         {
-            return null;// context.Movies.SingleOrDefault(a => a.EventId == id);
+            return context.Movies.FirstOrDefault(a => a.EventId == id);
         }
 
         //Get all movies

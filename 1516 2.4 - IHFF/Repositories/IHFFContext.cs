@@ -35,6 +35,7 @@ namespace IHFF.Repositories
         public DbSet<Wishlist> Wishlists { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Special> Specials { get; set; }
 
         public DbSet<Event> Events { get; set; }
         public DbSet<WishlistItem> WishlistItems { get; set; }
