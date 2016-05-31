@@ -45,7 +45,9 @@ namespace IHFF.Repositories
 
         public Wishlist GetWishlist(string UID)
         {
-            return ctx.Wishlists.FirstOrDefault(x => x.UID == UID);
+            Wishlist wishlist = ctx.Wishlists.FirstOrDefault(x => x.UID == UID);
+            wishlist.WishlistItems = ctx.WishlistItems.Where(x => x.WishlistUID == UID).ToList();
+            return wishlist;
         }
 
         public void Remove(Wishlist wishlist, WishlistItem wishlistItem)
@@ -69,7 +71,7 @@ namespace IHFF.Repositories
             // If not, then add it to the DB
             foreach (WishlistItem item in w.WishlistItems)
             {
-                if (!ctx.WishlistItems.Contains(item))
+                if (ctx.WishlistItems.Find(item.EventId) == null)
                 {
                     ctx.WishlistItems.Add(item);
                 }

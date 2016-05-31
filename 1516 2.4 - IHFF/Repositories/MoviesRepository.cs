@@ -15,16 +15,11 @@ namespace IHFF.Repositories
         // for each unique movie get all the events associated with it
         public IEnumerable<Movie> GetAllMovies()
         {
-            List<Movie> allMovie = context.Movies.ToList();
-            //List<Movie> uniqueTitles = context.Movies.ToList().GroupBy(m => m.Title).Select(grp => grp.First()).ToList();
-
             List<Movie> allMovies = context.Movies.Where(s => s.Discriminator == "M").ToList().GroupBy(m => m.Title).Select(grp => grp.First()).ToList();
             
             foreach (Movie m in allMovies)
             {
-                m.Airings = allMovie.Where(x => x.Title == m.Title);
-                // Deze geeft foutmelding --> m.Airings = context.Events.Where(s => s.Discriminator == "M" && s.EventId == m.EventId).ToList();
-                
+                m.Airings = context.Events.Where(s => s.Discriminator == "M" && s.EventId == m.EventId);
             }
 
             return allMovies;

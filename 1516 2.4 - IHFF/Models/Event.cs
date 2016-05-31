@@ -11,6 +11,7 @@ namespace IHFF.Models
     [Table("Event")]
     public abstract class Event
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EventId { get; set; }
         public DateTime Date { get; set; }
         public int LocationId { get; set; }

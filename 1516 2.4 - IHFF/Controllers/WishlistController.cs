@@ -12,7 +12,7 @@ namespace IHFF.Controllers
     public class WishlistController : Controller
     {
         IWishlistRepository wishlistRepository = new WishlistRepository();
-        IMovieRepository movieRepository = new MoviesRepository();
+        IMovieRepository moviesRepository = new MoviesRepository();
 
         public ActionResult Index()
         {
@@ -20,10 +20,10 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string UID)
+        public ActionResult GetWishlist(string UID)
         {
             Wishlist.Instance = wishlistRepository.GetWishlist(UID);
-            return View(Wishlist.Instance);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

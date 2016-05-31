@@ -57,6 +57,11 @@ namespace IHFF.Repositories
                 .HasRequired<Wishlist>(i => i.Wishlist)
                 .WithMany(w => w.WishlistItems)
                 .HasForeignKey(i => i.WishlistUID);
+
+            modelBuilder.Entity<Wishlist>()
+                .HasMany<WishlistItem>(w => w.WishlistItems)
+                .WithRequired(i => i.Wishlist)
+                .HasForeignKey(i => i.WishlistUID);
         }
     }
 }

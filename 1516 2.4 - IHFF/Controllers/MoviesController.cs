@@ -22,22 +22,13 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult Index(int EventId, int ticketAmount)
         {
-            Wishlist wishlist = wishlistRepository.GetOrCreateWishlist(Wishlist.Instance.UID);
+            Wishlist wishlist = wishlistRepository.GetWishlist(Wishlist.Instance.UID);
             Event e = moviesRepository.GetAllMovies().First(x => x.EventId == EventId) as Event;
 
-            WishlistItem item = new WishlistItem();
-            item.EventId = e.EventId;
-            item.Event = e;
-            item.WishlistUID = wishlist.UID;
-            item.Wishlist = wishlist;
-            item.Amount = ticketAmount;
-            item.PayedFor = false;
-            item.LocationId = e.LocationId;
-            item.Location = e.Location;
-            item.Date = e.Date;
+            WishlistItem item = new WishlistItem(e, ticketAmount, wishlist);
 
             wishlist.WishlistItems.Add(item);
-            
+
             Wishlist.Instance = wishlist;
             return RedirectToAction("Index", "Wishlist");
         }
