@@ -26,7 +26,11 @@
                     </small>
                 </div>
                 <div class="col-sm-4 pull-down">
-                    <input type="submit" class="btn btn-primary btn-lg pull-right fancybox" value="Opslaan" />
+                    <a class="btn btn-primary btn-lg pull-right fancybox" 
+                       href="@Url.Action("SaveWishlist", new { Name = Model.Name, Email = Model.Email })">
+                        Opslaan
+                    </a>
+                    <!--<input type="submit" class="btn btn-primary btn-lg pull-right fancybox" value="Opslaan" />-->
                 </div>
             </div>
         }

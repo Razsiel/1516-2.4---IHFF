@@ -13,7 +13,7 @@
         <td>
             <!--Model.Event.LocationString-->
             <br />
-            @Model.Event.Date.TimeOfDay.ToString()
+            @Model.Date.TimeOfDay.ToString()
         </td>
         <td></td>
         <td>@Model.Amount</td>
@@ -25,7 +25,7 @@
         using (Html.BeginForm())
         {
             <td>
-                @Html.CheckBoxFor(x => Model.PayedFor)
+                @Html.CheckBoxFor(x => x.PayedFor)
             </td>
             <td>
                 <img src="data:image/jpg;base64, @Model.Event.GetImage()" />
@@ -34,7 +34,7 @@
             <td>
                 <!--Model.Event.LocationString-->
                 <br />
-                @Model.Event.Date.TimeOfDay.ToString()
+                @Model.Date.TimeOfDay.ToString()
             </td>
             <td></td>
             <td>@Model.Amount</td>

@@ -26,14 +26,14 @@ namespace IHFF.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        
         public ActionResult SaveWishlist(string Name, string Email)
         {
             if (ModelState.IsValid)
             {
                 Wishlist.Instance.Name = Name;
                 Wishlist.Instance.Email = Email;
-                wishlistRepository.SaveWishlist(Wishlist.Instance);
+                //wishlistRepository.SaveWishlist(Wishlist.Instance);
                 return PartialView("_PopupSave", Wishlist.Instance);
             }
             return View(Wishlist.Instance);

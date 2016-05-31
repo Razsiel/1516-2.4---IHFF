@@ -38,9 +38,9 @@ namespace IHFF.Controllers
             return RedirectToAction("Index", "Wishlist");
         }
 
-        public ActionResult RestaurantInfo(int Id)
+        public ActionResult RestaurantInfo(int EventId)
         {
-            return View(restaurantsRepository.GetRestaurant(Id));
+            return View(restaurantsRepository.GetRestaurant(EventId));
         }
     }
 }
