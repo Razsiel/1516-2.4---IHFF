@@ -15,12 +15,12 @@ namespace IHFF.Repositories
         // for each unique movie get all the events associated with it
         public IEnumerable<Movie> GetAllMovies()
         {
-            List<Movie> allMovies = context.Movies.ToList();
+            List<Movie> allMovieEvents = context.Movies.ToList();
             List<Movie> uniqueTitles = context.Movies.ToList().GroupBy(m => m.Title).Select(grp => grp.First()).ToList();
 
             foreach (Movie m in uniqueTitles)
             {
-                m.Airings = allMovies.Where(x => x.Title == m.Title);
+                m.Airings = allMovieEvents.Where(x => x.Title == m.Title);
             }
 
             return uniqueTitles;

@@ -43,6 +43,11 @@ namespace IHFF.Repositories
             return wishlist;
         }
 
+        public Wishlist GetWishlist(string UID)
+        {
+            return ctx.Wishlists.FirstOrDefault(x => x.UID == UID);
+        }
+
         public void Remove(Wishlist wishlist, WishlistItem wishlistItem)
         {
             
@@ -50,7 +55,27 @@ namespace IHFF.Repositories
 
         public void SaveWishlist(Wishlist wishlist)
         {
+            //Check whether the wishlist already exists in the db
             Wishlist w = ctx.Wishlists.Where(x => x.UID == wishlist.UID).FirstOrDefault();
+
+            // Add the wishlist to the DB if it hasn't been found
+            if (w == null)
+            {
+                w = ctx.Wishlists.Add(wishlist);
+            }
+
+            // Iterate through all wishlistitems
+            // Check whether the item has already been saved in the DB before
+            // If not, then add it to the DB
+            foreach (WishlistItem item in w.WishlistItems)
+            {
+                if (!ctx.WishlistItems.Contains(item))
+                {
+                    ctx.WishlistItems.Add(item);
+                }
+            }
+
+            // Save wishlist changes
             ctx.SaveChanges();
         }
 

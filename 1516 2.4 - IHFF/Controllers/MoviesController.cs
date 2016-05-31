@@ -26,11 +26,15 @@ namespace IHFF.Controllers
             Event e = moviesRepository.GetAllMovies().First(x => x.EventId == EventId) as Event;
 
             WishlistItem item = new WishlistItem();
+            item.EventId = e.EventId;
             item.Event = e;
+            item.WishlistUID = wishlist.UID;
             item.Wishlist = wishlist;
             item.Amount = ticketAmount;
-            item.EventId = e.EventId;
             item.PayedFor = false;
+            item.LocationId = e.LocationId;
+            item.Location = e.Location;
+            item.Date = e.Date;
 
             wishlist.WishlistItems.Add(item);
             

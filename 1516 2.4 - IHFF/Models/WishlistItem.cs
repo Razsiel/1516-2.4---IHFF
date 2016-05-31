@@ -7,9 +7,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IHFF.Models
 {
-    [Table("EventItem")]
+    [Table("WishlistItem")]
     public class WishlistItem
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WishlistItemId { get; set; }
         public int Amount { get; set; }
         public bool PayedFor { get; set; }
@@ -19,5 +20,9 @@ namespace IHFF.Models
 
         public int EventId { get; set; }
         public virtual Event Event { get; set; }
+
+        public DateTime Date { get; set; }
+        public int LocationId { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

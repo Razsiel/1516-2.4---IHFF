@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IHFF.Models
 {
-    [Table("Wishlists")]
+    [Table("Wishlist")]
     public class Wishlist
     {
         [Key]
@@ -15,8 +15,9 @@ namespace IHFF.Models
 
         [Required]
         [RegularExpression(@"^[A-z0-9]+@(?:[A-z0-9]+\.)+[A-z]+$", ErrorMessage = "Vul aub een valide email in. voorbeeld: voorbeeld@email.nl")]
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
 
+        [NotMapped]
         [Required]
         [StringLength(100, ErrorMessage = "Namen moeten minimaal 2 karakters bevatten", MinimumLength = 2)]
         public string Name { get; set; }
@@ -37,6 +38,9 @@ namespace IHFF.Models
             set { _instance = value; }
         }
 
-        private Wishlist() { }
+        private Wishlist()
+        {
+            WishlistItems = new List<WishlistItem>();
+        }
     }
 }
