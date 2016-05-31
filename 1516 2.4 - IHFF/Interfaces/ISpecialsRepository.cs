@@ -10,7 +10,6 @@ namespace IHFF.Interfaces
     interface ISpecialsRepository
     {
         IEnumerable<Special> GetAllSpecials();
-        Special GetSpecial(int id);
         IEnumerable<Special> GetSpecials(int id);
     }
 }
