@@ -20,16 +20,5 @@ namespace IHFF.Repositories
         {
             return context.Restaurants.SingleOrDefault(a => a.EventId == id);
         }
-
-        public void CreateReservation(Restaurant r, int amount, int tijd, int datum)
-        {
-            RestaurantReservation reservering = new RestaurantReservation();
-            reservering.Amount = amount;
-            reservering.Tijd = tijd ;
-            reservering.Datum = datum;
-            reservering.EventId = r.EventId;
-            context.RestaurantReservations.Add(reservering);
-            context.SaveChanges();
-        }
     }
 }

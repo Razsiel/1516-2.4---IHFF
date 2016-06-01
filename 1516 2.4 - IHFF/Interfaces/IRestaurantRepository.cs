@@ -11,6 +11,5 @@ namespace IHFF.Interfaces
     {
         IEnumerable<Restaurant> GetAllRestaurants();
         Restaurant GetRestaurant(int id);
-        void CreateReservation(Restaurant r, int amount, int tijd, int datum);
     }
 }
