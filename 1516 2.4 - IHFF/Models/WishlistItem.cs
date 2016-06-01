@@ -42,5 +42,8 @@ namespace IHFF.Models
         public virtual Location Location { get; set; }
 
         public string Discriminator { get; set; }
+
+        [NotMapped]
+        public bool Selected { get; set; }
     }
 }

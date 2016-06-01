@@ -11,7 +11,7 @@
             <div class="btn btn-info btn-block">Gereserveerd</div>
         </td>
         <td>
-            <!--Model.Event.LocationString-->
+            @Model.Event.LocationString
             <br />
             @Model.Date.TimeOfDay.ToString()
         </td>
@@ -25,23 +25,52 @@
         using (Html.BeginForm())
         {
             <td>
-                @Html.CheckBoxFor(x => x.PayedFor)
+                @Html.CheckBoxFor(x => x.Selected, new { @id = "selectedItem" })
             </td>
             <td>
                 <img src="data:image/jpg;base64, @Model.Event.GetImage()" />
                 @Model.Event.GetName()
             </td>
             <td>
-                <!--Model.Event.LocationString-->
+                @Model.Event.LocationString
                 <br />
                 @Model.Date.TimeOfDay.ToString()
             </td>
             <td></td>
-            <td>@Model.Amount</td>
+            <td>
+                <select name="Amount" id="dropAmount">
+                @for (int i = 1; i <= 10; i++)
+                {
+                    if (Model.Amount == i)
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i">@i</option>
+                    }
+                }
+                </select>
+            </td>
             <td>@((7.50 * Model.Amount).ToString("C"))</td>
             <td>
+                <input type="hidden" name="WishlistItemId" value="@Model.WishlistItemId" />
                 <input value="Verwijder" type="submit" class="btn btn-primary" />
             </td>
         }
     }
 </tr>
+
+<script>
+    $('#dropAmount').on('change', function ()
+    {
+        alert("amount changed!");
+        var form = $(this).parents('form').submit();
+    });
+
+    $('#selectedItem').on('change', function ()
+    {
+        alert("selection changed!");
+        var form = $(this).parents('form').submit();
+    });
+</script>

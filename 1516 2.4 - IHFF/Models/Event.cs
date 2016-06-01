@@ -75,5 +75,6 @@ namespace IHFF.Models
 
         public abstract string GetName();
         public abstract string GetImage();
+        public abstract decimal GetPrice();
     }
 }

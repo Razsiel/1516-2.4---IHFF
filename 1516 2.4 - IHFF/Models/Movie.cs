@@ -56,5 +56,10 @@ namespace IHFF.Models
         {
             return this.Image;
         }
+
+        public override decimal GetPrice()
+        {
+            return this.Price;
+        }
     }
 }
