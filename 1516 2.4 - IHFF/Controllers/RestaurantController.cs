@@ -20,21 +20,11 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int Datum, int Tijd, int AantalPersonen)
+        public ActionResult Index(int Datum, int Tijd, int Amount, int RestaurantId)
         {
-            Wishlist wishlist = wishlistRepository.GetOrCreateWishlist(Wishlist.Instance.UID);
-            // Event e = restaurantsRepository.GetAllRestaurants().First(x => x.EventId == EventId) as Event;
+            Restaurant restaurant = restaurantsRepository.GetRestaurant(RestaurantId);
 
-            WishlistItem item = new WishlistItem();
-            //item.Event = e;
-            item.Wishlist = wishlist;
-            item.Amount = AantalPersonen;
-            //item.EventId = e.EventId;
-            item.PayedFor = false;
-
-            wishlist.WishlistItems.Add(item);
-
-            Wishlist.Instance = wishlist;
+            restaurantsRepository.CreateReservation(restaurant, Amount, Tijd, Datum);
             return RedirectToAction("Index", "Wishlist");
         }
 
