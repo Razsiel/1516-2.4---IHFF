@@ -17,15 +17,18 @@
                 <div class="overlay-overlayable" style="bottom: 20px" >
                     <img src="~/Resources/4 en half ster.png" style="width:50%; float:right; margin-right: 10px;"/>
                 </div>
+                <div class="overlay-overlayable" style="bottom: 95px; right: 40px">
+                    <a><img src="data: image/png;base64, @item.ResImage3" class="img-responsive" style="width:35%;" /></a>
+                </div>
             </div>
 
-            <a href="@Url.Action("RestaurantInfo", "Restaurant", new { item.Id })">
+            <a href="@Url.Action("RestaurantInfo", "Restaurant", new { item.EventId })">
                 <h3 class="text-center">@item.Name</h3>
             </a>
             <br />
-            <p> @item.Info @Html.ActionLink("Lees verder", "RestaurantInfo", "Restaurant", new { item.Id }, new { @class = "" }) <p/>
+            <p> @item.Info @Html.ActionLink("Lees verder", "RestaurantInfo", "Restaurant", new { item.EventId }, new { @class = "" }) <p/>
             
-            @Html.ActionLink("Reserveer nu", "RestaurantInfo", "Restaurant", new { item.Id }, new { @class = "btn btn-primary btn-block" })
+            @Html.ActionLink("Reserveer nu", "RestaurantInfo", "Restaurant", new { item.EventId }, new { @class = "btn btn-primary btn-block" })
             <br />
         </div>
     }

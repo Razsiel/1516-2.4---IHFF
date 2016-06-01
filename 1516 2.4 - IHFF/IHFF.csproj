@@ -153,6 +153,7 @@
     <Compile Include="Interfaces\ISpecialsRepository.cs" />
     <Compile Include="Interfaces\IWishlistRepository.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\RestaurantReservation.cs" />
     <Compile Include="Models\WishlistItem.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -209,6 +210,8 @@
     <Content Include="Resources\Icons\twitter.png" />
     <Content Include="Resources\lecture.jpg" />
     <Content Include="Resources\Reserveren Image.png" />
+    <Content Include="Resources\ReserverenLogo.png" />
+    <Content Include="Resources\technology %281%29.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -265,6 +268,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Resources\Images\" />
+    <Folder Include="Views\RestaurantReservation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
