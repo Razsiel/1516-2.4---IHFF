@@ -1,44 +1,52 @@
 ﻿@using IHFF.Models
 @model Wishlist
 
-<div class="row">
-    <div class="col-sm-5">
-        <h4 class="default">Uw contact info</h4>
-        @using (Html.BeginForm("SaveWishlist", "Wishlist", FormMethod.Post))
-        {
-            @Html.ValidationSummary()
-            <fieldset>
-                <div class="form-group">
-                    @Html.ValidationMessageFor(m => Model.Name)
-                    @Html.LabelFor(m => Model.Name)
-                    @Html.TextBoxFor(m => Model.Name, new { @class = "form-control" })
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5">
+            <h4 class="default">Uw contact info</h4>
+            @using (Html.BeginForm("SaveWishlist", "Wishlist", FormMethod.Post))
+            {
+                @Html.ValidationSummary()
+                <fieldset>
+                    <div class="form-group">
+                        @Html.ValidationMessageFor(m => Model.Name)
+                        @Html.LabelFor(m => Model.Name)
+                        @Html.TextBoxFor(m => Model.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.ValidationMessageFor(m => Model.Email)
+                        @Html.LabelFor(m => Model.Email)
+                        @Html.TextBoxFor(m => Model.Email, new { @class = "form-control", @placeholder = "voorbeeld@domein.nl" })
+                    </div>
+                </fieldset>
+                <div class="row myrow">
+                    <div class="col-sm-8">
+                        <small>
+                            Om uw wishlist op te slaan of om deze af te rekenen hebben wij uw naam en e-mail adres nodig om de benodigde informatie door te sturen
+                        </small>
+                    </div>
+                    <div class="col-sm-4 pull-down">
+                        <a class="btn btn-primary btn-lg pull-right fancybox"
+                           href="@Url.Action("SaveWishlist", new { Name = Model.Name, Email = Model.Email })">
+                            Opslaan
+                        </a>
+                        <!--<input type="submit" class="btn btn-primary btn-lg pull-right fancybox" value="Opslaan" />-->
+                    </div>
                 </div>
-                <div class="form-group">
-                    @Html.ValidationMessageFor(m => Model.Email)
-                    @Html.LabelFor(m => Model.Email)
-                    @Html.TextBoxFor(m => Model.Email, new { @class = "form-control", @placeholder = "voorbeeld@domein.nl" })
-                </div>
-            </fieldset>
-            <div class="row myrow">
-                <div class="col-sm-8">
-                    <small>
-                        Om uw wishlist op te slaan of om deze af te rekenen hebben wij uw naam en e-mail adres nodig om de benodigde informatie door te sturen
-                    </small>
-                </div>
-                <div class="col-sm-4 pull-down">
-                    <a class="btn btn-primary btn-lg pull-right fancybox" 
-                       href="@Url.Action("SaveWishlist", new { Name = Model.Name, Email = Model.Email })">
-                        Opslaan
-                    </a>
-                    <!--<input type="submit" class="btn btn-primary btn-lg pull-right fancybox" value="Opslaan" />-->
-                </div>
-            </div>
-        }
+            }
 
-    </div>
-    <div class="col-sm-4 col-sm-offset-3 right">
-        <h5>Kies uw betaalmethode</h5>
-        @Html.ActionLink("Afrekenen", "Checkout", Wishlist.Instance, new { @class = "btn btn-primary btn-lg btn-block" })
+        </div>
+        <div class="col-sm-4 col-sm-offset-3 right">
+            <h5 class="text-center">Kies uw betaalmethode</h5>
+            <div class="row">
+                <!-- Payment methods HERE -->
+            </div>
+            <p class="text-right">
+                Totaal: @Model.GetTotalPrice().ToString("C")
+            </p>
+            @Html.ActionLink("Afrekenen", "Checkout", Wishlist.Instance, new { @class = "btn btn-primary btn-lg btn-block" })
+        </div>
     </div>
 </div>
 

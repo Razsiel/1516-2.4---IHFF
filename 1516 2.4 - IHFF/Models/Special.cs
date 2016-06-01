@@ -38,5 +38,10 @@ namespace IHFF.Models
             DateTimeHelper.Round(Date).ToString("HH:mm"),
             DateTimeHelper.Round((Date.Add(Duration))).ToString("HH:mm"), LocationString);
         }
+
+        public override decimal GetPrice()
+        {
+            return 0;
+        }
     }
 }

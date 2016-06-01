@@ -200,6 +200,13 @@
     <None Include="Resources\star.png" />
     <None Include="Resources\special tickets.png" />
     <Content Include="Resources\discussion_forum.jpg" />
+    <Content Include="Resources\Icons\circle.png" />
+    <Content Include="Resources\Icons\facebook.png" />
+    <Content Include="Resources\Icons\google-plus.png" />
+    <Content Include="Resources\Icons\note.png" />
+    <Content Include="Resources\Icons\favorited.png" />
+    <Content Include="Resources\Icons\ticket.png" />
+    <Content Include="Resources\Icons\twitter.png" />
     <Content Include="Resources\lecture.jpg" />
     <Content Include="Resources\Reserveren Image.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -257,6 +264,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Resources\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

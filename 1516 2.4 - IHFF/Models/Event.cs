@@ -29,7 +29,7 @@ namespace IHFF.Models
         //public virtual string ExtraInfo { get; set; }
         public string Discriminator { get; set; }
 
-        
+
 
 
         //public virtual TimeSpan Duration { get; set; }
@@ -84,7 +84,8 @@ namespace IHFF.Models
                 return null;
             }
         }
-
+        
+        public virtual decimal GetPrice() { return 0; }
         public virtual string GetName() { return null; }
         public virtual string GetImage() { return null; }
     }
