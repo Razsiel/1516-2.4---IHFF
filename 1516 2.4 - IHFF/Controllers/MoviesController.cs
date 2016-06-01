@@ -40,6 +40,10 @@ namespace IHFF.Controllers
 
         public ActionResult GetMovies(int Id)
         {
+            if(Id < 0)
+            {
+                return PartialView("_MovieView", moviesRepository.GetAllMovies());
+            }
             return PartialView("_MovieView", moviesRepository.GetMovies(Id));
         }
     }

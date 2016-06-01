@@ -9,8 +9,18 @@ using IHFF.Helpers;
 namespace IHFF.Models
 {
     [Table("Event")]
-    public abstract class Event
+    public class Event
     {
+        public Event(int eventId, DateTime date, int locationId, string discriminator)
+        {
+            this.EventId = eventId;
+            this.Date = date;
+            this.LocationId = locationId;
+            this.Discriminator = discriminator;
+        }
+
+        public Event() { }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EventId { get; set; }
         public DateTime Date { get; set; }
@@ -18,6 +28,8 @@ namespace IHFF.Models
 
         //public virtual string ExtraInfo { get; set; }
         public string Discriminator { get; set; }
+
+        
 
 
         //public virtual TimeSpan Duration { get; set; }
@@ -73,7 +85,7 @@ namespace IHFF.Models
             }
         }
 
-        public abstract string GetName();
-        public abstract string GetImage();
+        public virtual string GetName() { return null; }
+        public virtual string GetImage() { return null; }
     }
 }
