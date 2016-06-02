@@ -11,15 +11,16 @@
     @foreach (Restaurant item in Model)
     {
 
-        <div class="col-sm-4">
+    <div class="col-sm-4">
             <div class="overlayable">
-                <a><img src="data: image/jpg;base64, @item.Image" class="img-responsive" style="width:100%;"/></a>
+                        <a><img src="data: image/jpg;base64, @item.Image" class="img-responsive" style="width:100%;"/></a>
                 <div class="overlay-overlayable" style="bottom: 20px" >
-                    <img src="~/Resources/4 en half ster.png" style="width:50%; float:right; margin-right: 10px;"/>
+                        <img src="~/Resources/4 en half ster.png" style="width:50%; float:right; margin-right: 10px;"/>
                 </div>
-                <div class="overlay-overlayable" style="bottom: 95px; right: 40px">
-                    <a><img src="data: image/png;base64, @item.ResImage3" class="img-responsive" style="width:35%;" /></a>
-                </div>
+            </div>
+
+            <div class="overlay-overlayable" style="bottom: 310px; left: -17px">
+                <a><img src="data: image/png;base64, @item.ResImage3" class="img-responsive" style="width:30%;" /></a>
             </div>
 
             <a href="@Url.Action("RestaurantInfo", "Restaurant", new { item.EventId })">
@@ -31,5 +32,5 @@
             @Html.ActionLink("Reserveer nu", "RestaurantInfo", "Restaurant", new { item.EventId }, new { @class = "btn btn-primary btn-block" })
             <br />
         </div>
-    }
-</div>
+      }
+  </div>

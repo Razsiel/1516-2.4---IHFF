@@ -22,9 +22,15 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult Index(int Datum, int Tijd, int Amount, int RestaurantId)
         {
-            Restaurant restaurant = restaurantsRepository.GetRestaurant(RestaurantId);
+            Wishlist wishlist = wishlistRepository.GetWishlist(Wishlist.Instance.UID);
+            //Event e = restaurantsRepository.GetAllRestaurants().First(x => x.RestaurantId == RestaurantId) as Event;
 
+            Restaurant restaurant = restaurantsRepository.GetRestaurant(RestaurantId);
             restaurantsRepository.CreateReservation(restaurant, Amount, Tijd, Datum);
+
+            //WishlistItem item = new WishlistItem(e, Amount, wishlist);
+            //wishlist.WishlistItems.Add(item);
+            Wishlist.Instance = wishlist;
             return RedirectToAction("Index", "Wishlist");
         }
 
