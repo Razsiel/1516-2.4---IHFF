@@ -6,21 +6,21 @@
 }
 
 <h2>@Model.Name</h2>
-    
-  <img src="data: image/jpg;base64, @Model.ResImage1"  style="width:100%;" />
-    
+
+<img src="data: image/jpg;base64, @Model.ResImage1" style="width:100%;"/>
+
 <div class="row row-inverse">
     <br />
 </div>
 
-<div class="container" style="padding-left:0px; padding-right:0px;" >
-    <h4  style="left:5.0%;">
+<div class="container" style="padding-left:0px; padding-right:0px;">
+    <h4 style="left:5.0%;">
         @Model.Name
     </h4>
-        <p class="col-xs-7" style="right:1.0%;">
-            @MvcHtmlString.Create(Model.RestaurantInfo.Replace(Environment.NewLine, "<br />"))
-        </p>
-    <div class="col-sm-offset-7" >
+    <p class="col-xs-7" style="right:1.0%;">
+        @MvcHtmlString.Create(Model.RestaurantInfo.Replace(Environment.NewLine, "<br />"))
+    </p>
+    <div class="col-sm-offset-7">
         <a href="@Url.Action("Index", "Movies")">
             <img src="data: image/jpg;base64, @Model.ResImage2" style="margin-bottom:25px;" />
         </a>
@@ -46,42 +46,48 @@
 </div>
 
 <div>
-    
-            <h4 >
-                Contact 
-            </h4>
-                 <p class="col-xs-7" style="right:1.0%;" >
-                     @MvcHtmlString.Create(Model.ContactInfo.Replace(Environment.NewLine, "<br />"))
-                </p>
-        <div class="col-sm-5 pull-right overlayable ">
-            <img src="~/Resources/Reserveren Image.png" />
 
-            <div class="overlay-overlayable" style="bottom: 235px; margin-left:217px">
-               <h4> Maak een reservering </h4>
-            </div>
+    <h4>
+        Contact
+    </h4>
+    <p class="col-xs-7" style="right:1.0%;">
+        @MvcHtmlString.Create(Model.ContactInfo.Replace(Environment.NewLine, "<br />"))
+    </p>
+    <div class="col-sm-5 pull-right overlayable ">
+        <img src="~/Resources/Reserveren Image.png" />
 
-            @using (Html.BeginForm())
+        <div class="overlay-overlayable" style="bottom: 235px; margin-left:217px">
+            <h4> Maak een reservering </h4>
+        </div>
+
+        @using (Html.BeginForm())
             {
             <div class="overlay-overlayable" style="bottom: 210px; margin-left:235px">
-                    Datum :
-                    <select name="Datum" class="c-select ">
-                        <option selected>Woendsdag</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                Datum :
+                <select name="Datum" class="c-select ">
+                    <option selected>Maandag</option>
+                    <option value="1">Dindsdag</option>
+                    <option value="2">Woendsdag</option>
+                    <option value="3">Donderdag</option>
+                    <option value="4">Vrijdag</option>
+                </select>
             </div>
             <div class="overlay-overlayable" style="bottom: 175px; margin-left:235px">
-                Tijdstip :   
+                Tijdstip :
                 <select name="Tijd" class="c-select pull-right">
-                    <option selected>19:30          </option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    @{
+                        TimeSpan startTime = TimeSpan.FromHours(13);
+                        TimeSpan endTime = TimeSpan.FromHours(21);
+                        TimeSpan interval = TimeSpan.FromMinutes(15);
+                    }
+                    @for (TimeSpan time = startTime; time < endTime; time = time.Add(interval))
+                    {
+                        <option value="@time">@time.ToString(@"hh\:mm")</option>
+                    }
                 </select>
             </div>
             <div class="overlay-overlayable" style="bottom: 135px; margin-left:235px">
-                Aantal : 
+                Aantal ‎ ‎‎‎‎‎:
                 <select name="AantalPersonen" class="c-select pull-right">
                     @for (int i = 1; i < 10; i++)
                     {
@@ -91,21 +97,36 @@
                 </select>
             </div>
 
+            <div class="overlay-overlayable" style="bottom: 160px; margin-left: 30px">
+                <img src="~/Resources/ReserverenLogo.png" class="img-responsive media-object" />
+            </div>
+
             <div class="overlay-overlayable" style="bottom: 75px; margin-left: 235px">
+                <input type="hidden" name="RestaurantId" value="@Model.EventId" />
                 <input type="submit" class="btn btn-primary btn-block movieBtn" value="Toevoegen" />
             </div>
-            }
-        </div>
 
+            <div class="overlay-overlayable" style="bottom: 75px; margin-left: 30px">
+                <h5>
+                    Stel hier uw reservering<br />
+                    samen door een datum,<br />
+                    tijd en het aantal<br />
+                    personen te kiezen.
+                </h5>
+            </div>
+
+                        }
     </div>
+
+</div>
 <br />
 
- <div class="container">
-        <p class="col-sm-offset-7">
-            @MvcHtmlString.Create(Model.ReserveringInfo.Replace(Environment.NewLine, "<br />"))
-        </p>
+<div class="container">
+    <p class="col-sm-offset-7">
+        @MvcHtmlString.Create(Model.ReserveringInfo.Replace(Environment.NewLine, "<br />"))
+    </p>
 </div>
 
-    <div class="row row-inverse">
-        <br />
-    </div>
+<div class="row row-inverse">
+    <br />
+</div>

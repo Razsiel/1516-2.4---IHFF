@@ -12,8 +12,8 @@ namespace IHFF.Models
     {
         public Movie() { }
 
-        public Movie(string title, string director, Int16 yearOfRelease, byte rating, string actors, string description, string url,
-            string image, string extra, TimeSpan duration, string description_NL, decimal price, string youtubeLink)
+        public Movie(int eventId, DateTime date, int locationId, string discriminator, string title, string director, Int16 yearOfRelease, byte rating, string actors, string description, string url,
+            string image, string extra, TimeSpan duration, string description_NL, decimal price, string youtubeLink) : base(eventId, date, locationId, discriminator)
         {
             this.Title = title;
             this.Director = director;
