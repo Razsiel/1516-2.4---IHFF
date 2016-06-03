@@ -19,7 +19,21 @@ namespace IHFF.Controllers
         {
             return View(specialsRepository.GetAllSpecials());
         }
-        
+
+        [HttpPost]
+        public ActionResult Index(int EventId, int ticketAmount)
+        {
+            Wishlist wishlist = wishlistRepository.GetWishlist(Wishlist.Instance.UID);
+            Event e = specialsRepository.GetAllSpecials().First(x => x.EventId == EventId) as Event;
+
+            WishlistItem item = new WishlistItem(e, ticketAmount, wishlist);
+
+            wishlist.WishlistItems.Add(item);
+
+            Wishlist.Instance = wishlist;
+            return RedirectToAction("Index", "Wishlist");
+        }
+
         public ActionResult GetSpecials(int Id)
         {
             return PartialView("_SpecialView", specialsRepository.GetSpecials(Id));

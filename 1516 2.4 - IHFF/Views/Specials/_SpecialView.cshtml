@@ -4,7 +4,7 @@
 
 @foreach (Special item in Model)
 {
-    using (Html.BeginForm())
+    using (Html.BeginForm("Index", "Specials"))
     {
         <div class="row movieRow justify-height-container">
 
@@ -30,6 +30,7 @@
                     <br />
                     <div class="col-md-7">
                         @item.GetLocationString().UppercaseFirst()
+                        <input type="hidden" name="EventId" value="@item.EventId" />
                     </div>
                     <div class="col-md-3">
                         <select name="ticketAmount" class="movieDropDown">

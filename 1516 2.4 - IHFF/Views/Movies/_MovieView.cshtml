@@ -43,13 +43,21 @@
                     <div class="col-md-7">
                         <select name="EventId" class="movieDropDown">
 
-
-
-                            @foreach (Event e in item.Airings)
-                            {
-                                <option value="@e.EventId">@e.AiringString</option>
+                            @{ if (item.Airings == null)
+                                {
+                                    <option value="@item.EventId">@item.AiringString</option>
+                                }
+                                else
+                                {
+                                    foreach (Event e in item.Airings)
+                                    {
+                                        <option value="@e.EventId">@e.AiringString</option>
+                                    }
+                                }
                             }
+                            
                         </select>
+
                     </div>
                     <div class="col-md-3">
                         <select name="ticketAmount" class="movieDropDown">

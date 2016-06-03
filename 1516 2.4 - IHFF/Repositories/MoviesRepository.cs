@@ -16,52 +16,7 @@ namespace IHFF.Repositories
         public IEnumerable<Movie> GetAllMovies()
         {
             List<Movie> allMovies = context.Movies.Where(s => s.Discriminator == "M").ToList().GroupBy(m => m.Title).Select(grp => grp.First()).ToList();
-            //IEnumerable<IGrouping<string, Event>> groups = context.Events.Where(s => s.Discriminator == "M").ToList().GroupBy(m => m.GetName());
-
-            /*List<Movie> temp = context.Movies.Where(s => s.Discriminator == "M").ToList();
-
-            List<Movie> allMovies = new List<Movie>();
-
-            foreach(Movie m in temp)
-            {
-                if (allMovies.Any(item => item.EventId == m.EventId))
-                {
-                    //Movie movie = allMovies.First(item => item.EventId == m.EventId);
-                }
-                else
-                    allMovies.Add(m);
-            }
-
-            foreach (Movie m in allMovies)
-            {
-                List<Event> airings = new List<Event>();
-                foreach (Event e in temp)
-                {
-                    if (m.Title == e.GetName())
-                    {
-                        airings.Add(e);
-                    }
-                }
-                m.Airings = airings;
-            }
-
-            /*foreach (Movie m in allMovies)
-            {
-                IEnumerable<IGrouping<string, Event>> events = groups.Where(x => x.Key == m.Title);
-                m.Airings = events.SelectMany(grp => grp);
-            }*/
-
-            /* var temp = from Event in context.Events
-                       where
-                         Event.Discriminator == "M"
-                       select new
-                       {
-                           EventId = Event.EventId,
-                           Date = Event.Date,
-                           LocationId = Event.LocationId,
-                           Discriminator = Event.Discriminator
-                       }; */
-
+            
             var temp = from Movie in context.Movies
             join Event in context.Events
                   on new { Movie.EventId, Discriminator = "M" }
@@ -134,19 +89,72 @@ namespace IHFF.Repositories
         //Set all movie airings
         public IEnumerable<Movie> GetMovies(int dayOfWeek)
         {
-            if(dayOfWeek < 0)
+
+            //IEnumerable<Movie> movies = context.Movies.ToList().Where(a => a.Date.DayOfWeek == (DayOfWeek)dayOfWeek);
+
+            List<Movie> allMovies = context.Movies.Where(s => s.Discriminator == "M").ToList().GroupBy(m => m.Title).Select(grp => grp.First()).ToList();
+
+            DateTime firstSunday = new DateTime(1753, 1, 7);
+
+            var temp = from Movie in context.Movies
+                       join Event in context.Events
+                             on new { Movie.EventId, Discriminator = "M" }
+                         equals new { Event.EventId, Event.Discriminator}
+                       where System.Data.Entity.DbFunctions.DiffDays(firstSunday, Event.Date) % 7 == dayOfWeek
+                       select new
+                       {
+                           EventId = Movie.EventId,
+                           Title = Movie.Title,
+                           Director = Movie.Director,
+                           YearOfRelease = Movie.YearOfRelease,
+                           IMDBRating = Movie.IMDBRating,
+                           Actors = Movie.Actors,
+                           Description = Movie.Description,
+                           IMDBUrl = Movie.IMDBUrl,
+                           Image = Movie.Image,
+                           ExtraInfo = Movie.ExtraInfo,
+                           Duration = Movie.Duration,
+                           Description_NL = Movie.Description_NL,
+                           Price = Movie.Price,
+                           YoutubeLink = Movie.YoutubeLink,
+                           Date = Event.Date,
+                           LocationId = Event.LocationId,
+                           Discriminator = Event.Discriminator
+                       };
+
+            
+            List<Movie> events = new List<Movie>();
+            foreach (var item in temp)
             {
-                return context.Movies;
+                Movie m = new Movie(
+                    item.EventId,
+                    item.Date,
+                    item.LocationId,
+                    item.Discriminator,
+                    item.Title,
+                    item.Director,
+                    item.YearOfRelease,
+                    item.IMDBRating,
+                    item.Actors,
+                    item.Description,
+                    item.IMDBUrl,
+                    item.Image,
+                    item.ExtraInfo,
+                    item.Duration,
+                    item.Description_NL,
+                    item.Price,
+                    item.YoutubeLink);
+                m.Location = context.Locations.FirstOrDefault(x => x.LocationId == m.LocationId);
+
+                events.Add(m);
             }
 
-            IEnumerable<Movie> movies = context.Movies.ToList().Where(a => a.Date.DayOfWeek == (DayOfWeek)dayOfWeek);
-            /*List<Movie> movies = new List<Movie>();
-            foreach (Event airing in airings)
+            foreach (Movie m in allMovies)
             {
-                movies.Add(context.Movies.Where(m => m.EventId == airing.EventId).SingleOrDefault());
-            }*/
+                m.Airings = events.Where(x => x.EventId == m.EventId);
+            }
 
-            return movies;
+            return events;
         }
     }
 }
