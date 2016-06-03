@@ -8,27 +8,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IHFF.Models
 {
-    [Table("Restaurants")]
+    [Table("RestaurantReservation")]
     public class RestaurantReservation
     {
         public RestaurantReservation() { }
-        
-        public RestaurantReservation( int EventId, string name, int amount, int tijd, int datum)
+
+        public RestaurantReservation(int EventId, string name, int amount, int tijd, int datum)
         {
             this.EventId = EventId;
-            this.Name = name;
             this.Amount = amount;
-            this.Tijd = tijd;
-            this.Datum = datum;
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, Column(Order = 0)]
         public int EventId { get; set; }
-        public string Name { get; set; }
-        public int Amount { get; set;}
-        public int Tijd { get; set; }
-        public int Datum { get; set; }
+
+        [Key, Column(Order = 1)]
+        public DateTime Date { get; set; }
+
+        [Key, Column(Order = 2)]
+        public int Amount { get; set; }
 
         public virtual Restaurant Restaurant { get; set; }
     }

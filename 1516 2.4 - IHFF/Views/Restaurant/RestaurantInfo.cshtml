@@ -61,20 +61,20 @@
         </div>
 
         @using (Html.BeginForm())
-            {
+        {
             <div class="overlay-overlayable" style="bottom: 210px; margin-left:235px">
                 Datum :
-                <select name="Datum" class="c-select ">
-                    <option selected>Maandag</option>
-                    <option value="1">Dindsdag</option>
-                    <option value="2">Woendsdag</option>
-                    <option value="3">Donderdag</option>
-                    <option value="4">Vrijdag</option>
+                <select name="Date" class="c-select ">
+                    <option selected value="6">Maandag</option>
+                    <option value="7">Dinsdag</option>
+                    <option value="8">Woensdag</option>
+                    <option value="9">Donderdag</option>
+                    <option value="10">Vrijdag</option>
                 </select>
             </div>
             <div class="overlay-overlayable" style="bottom: 175px; margin-left:235px">
                 Tijdstip :
-                <select name="Tijd" class="c-select pull-right">
+                <select name="Time" class="c-select pull-right">
                     @{
                         TimeSpan startTime = TimeSpan.FromHours(13);
                         TimeSpan endTime = TimeSpan.FromHours(21);
@@ -88,7 +88,7 @@
             </div>
             <div class="overlay-overlayable" style="bottom: 135px; margin-left:235px">
                 Aantal ‎ ‎‎‎‎‎:
-                <select name="AantalPersonen" class="c-select pull-right">
+                <select name="Amount" class="c-select pull-right">
                     @for (int i = 1; i < 10; i++)
                     {
                         <option value="@i">@i personen</option>
@@ -114,8 +114,7 @@
                     personen te kiezen.
                 </h5>
             </div>
-
-                        }
+        }
     </div>
 
 </div>

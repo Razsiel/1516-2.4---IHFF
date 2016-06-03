@@ -53,6 +53,7 @@ namespace IHFF.Repositories
             modelBuilder.Entity<Special>().ToTable("Special");
             modelBuilder.Entity<Event>().ToTable("Event");
             modelBuilder.Entity<Restaurant>().ToTable("Restaurant");
+            modelBuilder.Entity<RestaurantReservation>().ToTable("RestaurantReservation");
 
             modelBuilder.Entity<WishlistItem>()
                 .HasRequired<Wishlist>(i => i.Wishlist)
@@ -63,6 +64,11 @@ namespace IHFF.Repositories
                 .HasMany<WishlistItem>(w => w.WishlistItems)
                 .WithRequired(i => i.Wishlist)
                 .HasForeignKey(i => i.WishlistUID);
+
+            modelBuilder.Entity<RestaurantReservation>()
+                .HasRequired<Restaurant>(res => res.Restaurant)
+                .WithMany(r => r.Reservations)
+                .HasForeignKey(res => res.EventId);
         }
     }
 }

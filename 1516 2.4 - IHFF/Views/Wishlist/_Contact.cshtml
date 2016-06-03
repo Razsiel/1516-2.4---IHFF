@@ -32,7 +32,7 @@
                             href="@Url.Action("SaveWishlist", new { Name = Model.Name, Email = Model.Email })">
                             Opslaan
                         </a>
-                        <!--<input type="submit" class="btn btn-primary btn-lg pull-right fancybox" value="Opslaan" />-->
+                        <input type="submit" class="btn btn-primary btn-lg pull-right fancybox" value="Opslaan" />
                     </div>
                 </div>
             </div>
@@ -40,19 +40,19 @@
                 <h5 class="text-right">Kies uw betaalmethode</h5>
                 <div class="row payment2">
                     <div class="col-md-4">
-                        <input checked="checked" type="radio" id="paypal" name="payment" value="paypal" />
+                        <input checked="checked" type="radio" id="paypal" name="Payment" value="paypal" />
                         <label class="payment-selection" for="paypal">
                             <img src="~/Resources/Icons/paypal.png" class="img-responsive" alt="Online betalen met PayPal" />
                         </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="radio" id="iDeal" name="payment" value="iDeal" />
+                        <input type="radio" id="iDeal" name="Payment" value="iDeal" />
                         <label class="payment-selection" for="iDeal">
                             <img src="~/Resources/Icons/iDeal.png" class="img-responsive" alt="Online betalen met iDeal" />
                         </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="radio" id="cash" name="payment" value="cash" />
+                        <input type="radio" id="cash" name="Payment" value="cash" />
                         <label class="payment-selection" for="cash">
                             <img src="~/Resources/Icons/cash_icon.png" class="img-responsive" alt="Contant betalen bij kassa" />
                         </label>

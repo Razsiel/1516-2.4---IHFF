@@ -26,6 +26,18 @@ namespace IHFF.Models
             Discriminator = e.Discriminator;
         }
 
+        public WishlistItem(RestaurantReservation r, Wishlist wishlist)
+        {
+            Amount = r.Amount;
+            PayedFor = false;
+            WishlistUID = wishlist.UID;
+            Wishlist = wishlist;
+            EventId = r.EventId;
+            Reservation = r;
+            Date = r.Date;
+            Discriminator = "R";
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WishlistItemId { get; set; }
         public int Amount { get; set; }
@@ -36,6 +48,7 @@ namespace IHFF.Models
 
         public int EventId { get; set; }
         public virtual Event Event { get; set; }
+        public virtual RestaurantReservation Reservation { get; set; }
 
         public DateTime Date { get; set; }
         public int LocationId { get; set; }
@@ -45,5 +58,73 @@ namespace IHFF.Models
 
         [NotMapped]
         public bool Selected { get; set; }
+
+        public ItemType GetItemType()
+        {
+            switch (this.Discriminator)
+            {
+                case "M":
+                case "S":
+                default:
+                    return ItemType.Event;
+                case "R":
+                    return ItemType.Reservation;
+            }
+        }
+
+        public string GetName()
+        {
+            switch (GetItemType())
+            {
+                case ItemType.Event:
+                    return Event.GetName();
+                case ItemType.Reservation:
+                    return Reservation.Restaurant.Name;
+                default:
+                    return "";
+            }
+        }
+        public string GetLocation()
+        {
+            switch (GetItemType())
+            {
+                case ItemType.Event:
+                    return Event.LocationString;
+                case ItemType.Reservation:
+                    return Reservation.Restaurant.Address;
+                default:
+                    return "";
+            }
+        }
+        public string GetImage()
+        {
+            switch (GetItemType())
+            {
+                case ItemType.Event:
+                    return Event.GetImage();
+                case ItemType.Reservation:
+                    return Reservation.Restaurant.Image;
+                default:
+                    return "";
+            }
+        }
+        public decimal GetPrice()
+        {
+            switch (GetItemType())
+            {
+                case ItemType.Event:
+                    return Event.GetPrice();
+                case ItemType.Reservation:
+                    return 10;
+                default:
+                    return 0;
+            }
+        }
+    }
+
+    public enum ItemType
+    {
+        Event,
+        Reservation
     }
 }

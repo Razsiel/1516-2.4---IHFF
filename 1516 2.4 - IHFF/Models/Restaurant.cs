@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IHFF.Models
 {
-    [Table("Restaurants")]
+    [Table("Restaurant")]
     public class Restaurant
     {
         public Restaurant() { }

@@ -22,10 +22,10 @@
             <tr>
                 @foreach (WishlistItem item in Model.WishlistItems)
                 {
-                    <td>@item.Event.GetName()</td>
-                    <td>@item.Event.LocationString</td>
+                    <td>@item.GetName()</td>
+                    <td>@item.GetLocation()</td>
                     <td>@item.Amount</td>
-                    <td>@item.Event.GetPrice()</td>
+                    <td>@item.GetPrice()</td>
                 }
             </tr>
         </tbody>

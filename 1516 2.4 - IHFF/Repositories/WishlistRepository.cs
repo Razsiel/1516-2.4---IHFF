@@ -63,8 +63,12 @@ namespace IHFF.Repositories
         public Wishlist GetWishlist(string UID)
         {
             Wishlist wishlist = ctx.Wishlists.FirstOrDefault(x => x.UID == UID);
-            wishlist.WishlistItems = ctx.WishlistItems.Where(x => x.WishlistUID == UID).ToList();
-            return wishlist;
+            if (wishlist != null)
+            {
+                wishlist.WishlistItems = ctx.WishlistItems.Where(x => x.WishlistUID == UID).ToList();
+                Wishlist.Instance = wishlist;
+            }
+            return Wishlist.Instance;
         }
 
         public void Remove(Wishlist wishlist, WishlistItem wishlistItem)

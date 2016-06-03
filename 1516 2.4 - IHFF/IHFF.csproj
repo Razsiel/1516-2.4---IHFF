@@ -165,7 +165,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IHFFContext.cs" />
     <Compile Include="Repositories\MoviesRepository.cs" />
-    <Compile Include="Repositories\RestaurantsRepository.cs" />
+    <Compile Include="Repositories\RestaurantsRepository.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Repositories\SpecialsRepository.cs" />
     <Compile Include="Repositories\WishlistRepository.cs" />
   </ItemGroup>

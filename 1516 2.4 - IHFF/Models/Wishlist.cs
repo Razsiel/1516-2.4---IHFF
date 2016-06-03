@@ -12,7 +12,9 @@ namespace IHFF.Models
     {
         private Wishlist()
         {
+            Random r = new Random();
             WishlistItems = new List<WishlistItem>();
+            UID = string.Format("IHFF{0}", r.Next(0, 9999).ToString("0000"));
         }
 
         private static Wishlist _instance;
@@ -47,7 +49,7 @@ namespace IHFF.Models
             decimal totalPrice = 0;
             foreach (WishlistItem item in this.WishlistItems)
             {
-                totalPrice += item.Selected ? item.Amount * item.Event.GetPrice() : 0;
+                totalPrice += item.Selected ? item.Amount * item.GetPrice() : 0;
             }
             return totalPrice;
         }

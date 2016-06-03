@@ -8,16 +8,16 @@
         <td>
             <div class="row">
                 <div class="col-sm-3" style="padding-left: 0px;">
-                    <img src="data:image/jpg;base64, @Model.Event.GetImage()" class="img-responsive"/>
+                    <img src="data:image/jpg;base64, @Model.GetImage()" class="img-responsive"/>
                 </div>
                 <div class="col-sm-8" style="padding-left: 0px;">
-                    <h5>@Model.Event.GetName()</h5>
+                    @Model.GetName()
                     <div class="btn no-btn-info pull-down">Gereserveerd</div>
                 </div>
             </div>
         </td>
         <td>
-            @Model.Event.LocationString
+            @Model.GetLocation()
             <br />
             @Model.Date.TimeOfDay.ToString()
         </td>
@@ -39,15 +39,15 @@
         <td>
             <div class="row">
                 <div class="col-sm-3" style="padding-left: 0px;">
-                    <img src="data:image/jpg;base64, @Model.Event.GetImage()" class="img-responsive" />
+                    <img src="data:image/jpg;base64, @Model.GetImage()" class="img-responsive" />
                 </div>
                 <div class="col-sm-8" style="padding-left: 0px;">
-                    <h5>@Model.Event.GetName()</h5>
+                    <h5>@Model.GetName()</h5>
                 </div>
             </div>
         </td>
         <td>
-            @Model.Event.LocationString
+            @Model.GetLocation()
             <br />
             @Model.Date.TimeOfDay.ToString()
         </td>
@@ -72,7 +72,19 @@
                 <input type="hidden" name="WishlistItemId" value="@Model.WishlistItemId" />
             }
         </td>
-        <td>@((7.50 * Model.Amount).ToString("C", Globals.CurrentCulture))</td>
+        <td>
+            @switch (Model.GetItemType())
+            {
+                case ItemType.Event:
+                    @((Model.GetPrice() * Model.Amount).ToString("C", Globals.CurrentCulture))
+                    break;
+                case ItemType.Reservation:
+                    @Model.GetPrice().ToString("C", Globals.CurrentCulture)
+                    break;
+                default:
+                    break;
+            }
+        </td>
         
         using (Html.BeginForm("RemoveItem", "Wishlist", FormMethod.Post))
         {

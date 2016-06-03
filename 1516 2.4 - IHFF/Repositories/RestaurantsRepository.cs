@@ -21,15 +21,29 @@ namespace IHFF.Repositories
             return context.Restaurants.SingleOrDefault(a => a.EventId == id);
         }
 
-        public void CreateReservation(Restaurant r, int amount, int tijd, int datum)
+        public RestaurantReservation CreateReservation(Restaurant r, int amount, TimeSpan time, int date)
         {
-            RestaurantReservation reservering = new RestaurantReservation();
-            reservering.Amount = amount;
-            reservering.Tijd = tijd ;
-            reservering.Datum = datum;
-            reservering.EventId = r.EventId;
-            context.RestaurantReservations.Add(reservering);
-            context.SaveChanges();
+            //Create a new reservation locally
+            RestaurantReservation reservation = new RestaurantReservation();
+            DateTime d = new DateTime(2016, 6, date, time.Hours, time.Minutes, 0);
+
+            reservation.Amount = amount;
+            reservation.Date = d;
+            reservation.EventId = r.EventId;
+            reservation.Restaurant = r;
+
+            //Get reserving
+            RestaurantReservation dbRes = context.RestaurantReservations.Where(x => x.EventId == reservation.EventId && x.Date == reservation.Date && x.Amount == reservation.Amount).First();
+
+            //If it doesn't exist, add it to the database
+            if (dbRes == null)
+            {
+                context.RestaurantReservations.Add(reservation);
+                context.SaveChanges();
+                dbRes = reservation;
+            }
+
+            return dbRes;
         }
     }
 }
