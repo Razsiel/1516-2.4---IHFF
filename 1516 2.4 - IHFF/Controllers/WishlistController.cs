@@ -23,22 +23,26 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int Amount, int WishlistItemId)
+        public ActionResult AmountChange(int Amount, int WishlistItemId)
         {
-            return RedirectToAction("Index");
+            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.WishlistItemId == WishlistItemId);
+            item.Amount = Amount;
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
-        public ActionResult Index(bool Selected, int WishlistItemId)
+        public ActionResult SelectedChange(bool Selected, int WishlistItemId)
         {
-            return RedirectToAction("Index");
+            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.WishlistItemId == WishlistItemId);
+            item.Selected = Selected;
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
         public ActionResult GetWishlist(string UID)
         {
             Wishlist.Instance = wishlistRepository.GetWishlist(UID);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
         
         public ActionResult SaveWishlist(string Name, string Email)
@@ -54,14 +58,23 @@ namespace IHFF.Controllers
             return View(Wishlist.Instance);
         }
 
-        public ActionResult Checkout(Wishlist wishlist)
+        public ActionResult Checkout(string Name, string Email)
         {
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                Wishlist.Instance.Name = Name;
+                Wishlist.Instance.Email = Email;
+                wishlistRepository.Checkout(Wishlist.Instance);
+                return PartialView("_PopupOrder", Wishlist.Instance);
+            }
+            return RedirectToAction(nameof(Index));
         }
         
-        public ActionResult RemoveItem(WishlistItem item)
+        public ActionResult RemoveItem(int WishlistItemId)
         {
-            return RedirectToAction("Index");
+            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.WishlistItemId == WishlistItemId);
+            wishlistRepository.Remove(Wishlist.Instance, item);
+            return RedirectToAction(nameof(Index));
         }
 
         public bool SendEmail(Wishlist wishlist)

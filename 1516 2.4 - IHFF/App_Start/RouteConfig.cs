@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace _1516_2._4___IHFF
+namespace IHFF
 {
     public class RouteConfig
     {

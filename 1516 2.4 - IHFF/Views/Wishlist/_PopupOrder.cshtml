@@ -1,0 +1,48 @@
+﻿@using IHFF.Models
+@model Wishlist
+
+@{ 
+    string codeSelected = "";
+    foreach (WishlistItem item in Model.WishlistItems.Where(x => x.Selected == true))
+    {
+        codeSelected += item.WishlistItemId;
+    }
+    string uniqueCode = string.Format("#{0}{1}", Model.UID, codeSelected);
+}
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h3>Reservering geplaatst!</h3>
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="~/Resources/Icons/ticket.png" class="img-responsive right" />
+            </div>
+            <div class="col-sm-6">
+                <h5>Uw reserverings nummer:</h5>
+                <h2 class="primary-color">#@Model.UID</h2>
+            </div>
+        </div>
+        <p>
+            Er is een kopie van uw reservering(en) naar <a>@Model.Email</a> gestuurd.
+        </p>
+        <p>
+            U kunt uw tickets ophalen bij de balie van het iHff
+        </p>
+        <p>
+            Vergeet niet uw reserveringsnummer en een identifactiebewijs mee te nemen.
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-offset-8">
+        <button class="btn btn-warning btn-block" id="print">
+            Print
+        </button>
+    </div>
+</div>
+
+<script>
+    $('#print').click(function () {
+        window.print();
+    })
+</script>

@@ -19,8 +19,13 @@
                     </a>
                 </div>
                 <div class="col-xs-8 col-sm-4 col-md-2 pull-right">
-                    @Html.ActionLink("My Wishlist", "Index", "Wishlist", null, new { @class = "btn btn-primary btn-lg btn-block pull-right" })
+                    <a href="@Url.Action("ShowMiniWishlist", "Shared")" 
+                       class="btn btn-primary btn-lg btn-block pull-right fancybox">
+                        My Wishlist
+                    </a>
+                    <!--Html.ActionLink("My Wishlist", "ShowMiniWishlist", "Shared", null, new { class = "btn btn-primary btn-lg btn-block pull-right fancybox" })-->
                 </div>
+
             </div>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
@@ -42,5 +47,21 @@
             </div>
         </div>
     </div>
-
 </header>
+
+<script>
+    $(document).ready(function () {
+        $(".fancybox").click(function () {
+            $.fancybox.open({
+                content: $('<div>').load($(this).attr('href')),
+                type: 'ajax',
+                maxWidth: 800,
+                fitToView: false,
+                autoSize: true,
+                openEffect: 'fade',
+                closeEffect: 'fade'
+            });
+            return false;
+        })
+    });
+</script>

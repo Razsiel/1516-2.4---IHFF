@@ -6,9 +6,15 @@
     {
         <td></td>
         <td>
-            <img src="data:image/jpg;base64, @Model.Event.GetImage()" />
-            @Model.Event.GetName()
-            <div class="btn btn-info btn-block">Gereserveerd</div>
+            <div class="row">
+                <div class="col-sm-3" style="padding-left: 0px;">
+                    <img src="data:image/jpg;base64, @Model.Event.GetImage()" class="img-responsive"/>
+                </div>
+                <div class="col-sm-8" style="padding-left: 0px;">
+                    <h5>@Model.Event.GetName()</h5>
+                    <div class="btn no-btn-info pull-down">Gereserveerd</div>
+                </div>
+            </div>
         </td>
         <td>
             @Model.Event.LocationString
@@ -17,42 +23,59 @@
         </td>
         <td></td>
         <td>@Model.Amount</td>
-        <td>@((7.50 * Model.Amount).ToString("C"))</td>
+        <td>@((7.50 * Model.Amount).ToString("C", Globals.CurrentCulture))</td>
         <td></td>
     }
     else
     {
-        using (Html.BeginForm())
-        {
-            <td>
-                @Html.CheckBoxFor(x => x.Selected, new { @id = "selectedItem" })
-            </td>
-            <td>
-                <img src="data:image/jpg;base64, @Model.Event.GetImage()" />
-                @Model.Event.GetName()
-            </td>
-            <td>
-                @Model.Event.LocationString
-                <br />
-                @Model.Date.TimeOfDay.ToString()
-            </td>
-            <td></td>
-            <td>
-                <select name="Amount" id="dropAmount">
-                @for (int i = 1; i <= 10; i++)
-                {
-                    if (Model.Amount == i)
+        <td>
+            @using (Html.BeginForm("SelectedChange", null, FormMethod.Post, new { @id = "formSelect" }))
+            {
+                @Html.CheckBoxFor(x => x.Selected, new { @id = "targetSelection" })
+                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
+                <input type="hidden" name="WishlistItemId" value="@Model.WishlistItemId" />
+            }
+        </td>
+        <td>
+            <div class="row">
+                <div class="col-sm-3" style="padding-left: 0px;">
+                    <img src="data:image/jpg;base64, @Model.Event.GetImage()" class="img-responsive" />
+                </div>
+                <div class="col-sm-8" style="padding-left: 0px;">
+                    <h5>@Model.Event.GetName()</h5>
+                </div>
+            </div>
+        </td>
+        <td>
+            @Model.Event.LocationString
+            <br />
+            @Model.Date.TimeOfDay.ToString()
+        </td>
+        <td></td>
+        <td>
+            @using (Html.BeginForm("AmountChange", null, FormMethod.Post, new { @id = "formAmount" }))
+            {
+                <select name="Amount" id="targetAmount">
+                    @for (int i = 1; i <= 10; i++)
                     {
-                        <option value="@i" selected>@i</option>
+                        if (Model.Amount == i)
+                        {
+                            <option value="@i" selected>@i</option>
+                        }
+                        else
+                        {
+                            <option value="@i">@i</option>
+                        }
                     }
-                    else
-                    {
-                        <option value="@i">@i</option>
-                    }
-                }
                 </select>
-            </td>
-            <td>@((7.50 * Model.Amount).ToString("C"))</td>
+                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
+                <input type="hidden" name="WishlistItemId" value="@Model.WishlistItemId" />
+            }
+        </td>
+        <td>@((7.50 * Model.Amount).ToString("C", Globals.CurrentCulture))</td>
+        
+        using (Html.BeginForm("RemoveItem", "Wishlist", FormMethod.Post))
+        {
             <td>
                 <input type="hidden" name="WishlistItemId" value="@Model.WishlistItemId" />
                 <input value="Verwijder" type="submit" class="btn btn-primary" />
@@ -62,15 +85,14 @@
 </tr>
 
 <script>
-    $('#dropAmount').on('change', function ()
+    $("#targetSelection").change(function ()
     {
-        alert("amount changed!");
-        var form = $(this).parents('form').submit();
+        //alert((this).name + " changed!");
+        $('#formSelect').submit();
     });
 
-    $('#selectedItem').on('change', function ()
-    {
-        alert("selection changed!");
-        var form = $(this).parents('form').submit();
+    $("#targetAmount").change(function () {
+        //alert((this).name + " changed!");
+        $('#formAmount').submit();
     });
 </script>

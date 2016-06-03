@@ -1,0 +1,38 @@
+﻿@using IHFF.Models
+@model Wishlist
+<div class="row row-inverse">
+    <h3>Wishlist</h3>
+    <p>
+        Kijk hier voor het filmoverzicht, 
+        bekijk het restaurantaanbod 
+        of koop een combi-ticket!
+    </p>
+</div>
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <td>Activiteit</td>
+                <td>Dag, tijd en locatie</td>
+                <td>Aantal</td>
+                <td>Prijs</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (WishlistItem item in Model.WishlistItems)
+                {
+                    <td>@item.Event.GetName()</td>
+                    <td>@item.Event.LocationString</td>
+                    <td>@item.Amount</td>
+                    <td>@item.Event.GetPrice()</td>
+                }
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+            @Html.ActionLink("Naar wishlist/betalen", "Index", "Wishlist", null, new { @class = "btn btn-primary btn-block pull-down" })
+        </div>
+    </div>
+</div>

@@ -225,6 +225,18 @@ input {
     text-decoration: none;
 }
 
+.no-btn-info,
+.no-btn-info:hover,
+.no-btn-info:active {
+    cursor: initial;
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    display: block;
+    box-shadow: none;
+    padding: 0px;
+}
+
 hr.dashed {
     border: 8px;
     border-top: 0px;
@@ -569,4 +581,36 @@ td > input[type=checkbox] {
 .fancybox-inner > div > .row {
     margin-left: 0px;
     margin-right: 0px;
+}
+
+ul.dash {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1em;
+}
+ul.dash > li:before {
+    display: inline-block;
+    content: "-";
+    width: 1em;
+    margin-left: -1em;
+}
+
+.payment {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.short-row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.small-text > * {
+    font-size: 12px;
+}
+
+.fancybox-absolute {
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }

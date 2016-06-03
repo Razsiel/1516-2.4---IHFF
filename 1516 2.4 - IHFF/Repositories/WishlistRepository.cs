@@ -19,7 +19,23 @@ namespace IHFF.Repositories
 
         public void Checkout(Wishlist wishlist)
         {
-            
+            // Iterate through every (unpayed) selected wishlistitem
+            // Check whether they're new items and if so add them to the db
+            foreach (WishlistItem item in wishlist.WishlistItems)
+            {
+                if (item.Selected && item.PayedFor == false)
+                {
+                    item.PayedFor = true;
+                    if (ctx.WishlistItems.Where(x => x.WishlistItemId == item.WishlistItemId) == null)
+                    {
+                        ctx.WishlistItems.Add(item);
+                    }
+                }
+            }
+
+            // Save entire wishlist
+            ctx.SaveChanges();
+            Wishlist.Instance = GetWishlist(wishlist.UID);
         }
 
         public Wishlist GetOrCreateWishlist(string code)
@@ -52,7 +68,13 @@ namespace IHFF.Repositories
 
         public void Remove(Wishlist wishlist, WishlistItem wishlistItem)
         {
-            
+            Wishlist w = GetWishlist(wishlist.UID);
+            wishlist.WishlistItems.Remove(wishlistItem);
+            if (w.WishlistItems.Where(x => x.WishlistItemId == wishlistItem.WishlistItemId) != null)
+            {
+                w.WishlistItems.Remove(wishlistItem);
+            }
+            ctx.SaveChanges();
         }
 
         public void SaveWishlist(Wishlist wishlist)

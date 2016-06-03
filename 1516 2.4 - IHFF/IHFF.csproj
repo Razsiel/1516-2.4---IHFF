@@ -14,7 +14,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IHFF</RootNamespace>
-    <AssemblyName>1516 2.4 - IHFF</AssemblyName>
+    <AssemblyName>IHFF</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -139,8 +139,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\SpecialsController.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="Helpers\Globals.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Interfaces\IRestaurantRepository.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
@@ -200,11 +202,14 @@
     <None Include="Resources\star.png" />
     <None Include="Resources\special tickets.png" />
     <Content Include="Resources\discussion_forum.jpg" />
+    <Content Include="Resources\Icons\cash_icon.png" />
     <Content Include="Resources\Icons\circle.png" />
     <Content Include="Resources\Icons\facebook.png" />
     <Content Include="Resources\Icons\google-plus.png" />
+    <Content Include="Resources\Icons\iDeal.png" />
     <Content Include="Resources\Icons\note.png" />
     <Content Include="Resources\Icons\favorited.png" />
+    <Content Include="Resources\Icons\paypal.png" />
     <Content Include="Resources\Icons\ticket.png" />
     <Content Include="Resources\Icons\twitter.png" />
     <Content Include="Resources\lecture.jpg" />
@@ -261,6 +266,8 @@
     <Content Include="Views\Movies\_MovieInfo.cshtml" />
     <Content Include="Views\Specials\Index.cshtml" />
     <Content Include="Views\Specials\_SpecialView.cshtml" />
+    <Content Include="Views\Shared\_WishlistMini.cshtml" />
+    <Content Include="Views\Wishlist\_PopupOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -21,10 +21,11 @@
                     </div>
                 </fieldset>
                 <div class="row myrow">
-                    <div class="col-sm-8">
-                        <small>
-                            Om uw wishlist op te slaan of om deze af te rekenen hebben wij uw naam en e-mail adres nodig om de benodigde informatie door te sturen
-                        </small>
+                    <div class="col-sm-8 small-text">
+                        <p>
+                            Om uw wishlist op te slaan of om deze af te rekenen hebben wij
+                            uw naam en e-mail adres nodig om de benodigde informatie door te sturen
+                        </p>
                     </div>
                     <div class="col-sm-4 pull-down">
                         <a class="btn btn-primary btn-lg pull-right fancybox"
@@ -38,14 +39,38 @@
 
         </div>
         <div class="col-sm-4 col-sm-offset-3 right">
-            <h5 class="text-center">Kies uw betaalmethode</h5>
-            <div class="row">
-                <!-- Payment methods HERE -->
+            <h5 class="text-right">Kies uw betaalmethode</h5>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-offset-3 payment">
+                        <img src="~/Resources/Icons/paypal.png" class="img-responsive" alt="Online betalen met PayPal" />
+                    </div>
+                    <div class="col-xs-3 payment">
+                        <img src="~/Resources/Icons/iDeal.png" class="img-responsive" alt="Online betalen met iDeal" />
+                    </div>
+                    <div class="col-xs-3 payment">
+                        <img src="~/Resources/Icons/cash_icon.png" class="img-responsive" alt="Contant betalen bij kassa" />
+                    </div>
+                </div>
             </div>
+            <br />
+            <br />
             <p class="text-right">
-                Totaal: @Model.GetTotalPrice().ToString("C")
+                Totaal: @Model.GetTotalPrice().ToString("C", Globals.CurrentCulture)
             </p>
-            @Html.ActionLink("Afrekenen", "Checkout", Wishlist.Instance, new { @class = "btn btn-primary btn-lg btn-block" })
+            <a class="btn btn-primary btn-lg pull-right fancybox"
+               href="@Url.Action("Checkout")">
+                Afrekenen
+            </a>
+            <div class="small-text">
+                <br />
+                <strong>Belangrijke informatie:</strong>
+                <ul class="dash small-text">
+                    <li>Alle sales zijn definitief</li>
+                    <li>Reserveringen worden automatisch gemaakt na betaling</li>
+                    <li>Tickets moeten worden opgehaald bij de balie van het iHff</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
