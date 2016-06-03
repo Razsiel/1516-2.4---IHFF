@@ -51,7 +51,7 @@ namespace IHFF.Controllers
             {
                 Wishlist.Instance.Name = Name;
                 Wishlist.Instance.Email = Email;
-                //wishlistRepository.SaveWishlist(Wishlist.Instance);  //Uncomment when RestaurantReservation work
+                wishlistRepository.SaveWishlist(Wishlist.Instance);  //Uncomment when RestaurantReservation work
                 //SendEmail(Wishlist.Instance);
                 return PartialView("_PopupSave", Wishlist.Instance);
             }

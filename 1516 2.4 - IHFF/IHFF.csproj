@@ -170,10 +170,6 @@
     <Compile Include="Repositories\WishlistRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\4 en half ster.png" />
-    <Content Include="Resources\4 ster.png" />
-    <Content Include="Resources\5 ster.png" />
-    <Content Include="Resources\ajax-loader.gif" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fancybox\blank.gif" />
@@ -198,25 +194,29 @@
     <Content Include="Content\Fonts\Rambla-BoldItalic.ttf" />
     <Content Include="Content\Fonts\Rambla-Regular.ttf" />
     <None Include="Properties\PublishProfiles\Deployment.pubxml" />
-    <None Include="Resources\Brand.png" />
-    <None Include="Resources\Placeholder.png" />
-    <None Include="Resources\star.png" />
-    <None Include="Resources\special tickets.png" />
+    <Content Include="Resources\4 en half ster.png" />
+    <Content Include="Resources\4 ster.png" />
+    <Content Include="Resources\5 ster.png" />
+    <Content Include="Resources\ajax-loader.gif" />
+    <Content Include="Resources\Brand.png" />
     <Content Include="Resources\discussion_forum.jpg" />
     <Content Include="Resources\Icons\cash_icon.png" />
     <Content Include="Resources\Icons\circle.png" />
     <Content Include="Resources\Icons\facebook.png" />
+    <Content Include="Resources\Icons\favorited.png" />
     <Content Include="Resources\Icons\google-plus.png" />
     <Content Include="Resources\Icons\iDeal.png" />
     <Content Include="Resources\Icons\note.png" />
-    <Content Include="Resources\Icons\favorited.png" />
     <Content Include="Resources\Icons\paypal.png" />
     <Content Include="Resources\Icons\ticket.png" />
     <Content Include="Resources\Icons\twitter.png" />
     <Content Include="Resources\lecture.jpg" />
+    <Content Include="Resources\Placeholder.png" />
     <Content Include="Resources\Reserveren Image.png" />
     <Content Include="Resources\ReserverenLogo.png" />
-    <Content Include="Resources\technology %281%29.png" />
+    <Content Include="Resources\special tickets.png" />
+    <Content Include="Resources\star.png" />
+    <Content Include="Resources\technology.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -274,7 +274,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Resources\Images\" />
+    <Folder Include="Content\Resources\Icons\" />
+    <Folder Include="Content\Resources\Images\" />
     <Folder Include="Views\RestaurantReservation\" />
   </ItemGroup>
   <ItemGroup>

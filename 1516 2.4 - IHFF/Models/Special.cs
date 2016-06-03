@@ -33,8 +33,7 @@ namespace IHFF.Models
 
         public string GetLocationString()
         {
-            System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("nl-NL");
-            return string.Format("{0}, {1}-{2}, {3}", culture.DateTimeFormat.GetDayName(Date.DayOfWeek),
+            return string.Format("{0}, {1}-{2}, {3}", Globals.CurrentCulture.DateTimeFormat.GetDayName(Date.DayOfWeek),
             DateTimeHelper.Round(Date).ToString("HH:mm"),
             DateTimeHelper.Round((Date.Add(Duration))).ToString("HH:mm"), LocationString);
         }

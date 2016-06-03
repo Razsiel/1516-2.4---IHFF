@@ -3,23 +3,23 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-5">
-            <h4 class="default">Uw contact info</h4>
-            @using (Html.BeginForm("SaveWishlist", "Wishlist", FormMethod.Post))
-            {
+        @using (Html.BeginForm("SaveWishlist", "Wishlist", FormMethod.Post))
+        {
+            <div class="col-sm-5">
+                <h4 class="default">Uw contact info</h4>
+
                 @Html.ValidationSummary()
-                <fieldset>
-                    <div class="form-group">
-                        @Html.ValidationMessageFor(m => Model.Name)
-                        @Html.LabelFor(m => Model.Name)
-                        @Html.TextBoxFor(m => Model.Name, new { @class = "form-control" })
-                    </div>
-                    <div class="form-group">
-                        @Html.ValidationMessageFor(m => Model.Email)
-                        @Html.LabelFor(m => Model.Email)
-                        @Html.TextBoxFor(m => Model.Email, new { @class = "form-control", @placeholder = "voorbeeld@domein.nl" })
-                    </div>
-                </fieldset>
+
+                <div class="form-group">
+                    @Html.ValidationMessageFor(m => Model.Name)
+                    @Html.LabelFor(m => Model.Name)
+                    @Html.TextBoxFor(m => Model.Name, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.ValidationMessageFor(m => Model.Email)
+                    @Html.LabelFor(m => Model.Email)
+                    @Html.TextBoxFor(m => Model.Email, new { @class = "form-control", @placeholder = "voorbeeld@domein.nl" })
+                </div>
                 <div class="row myrow">
                     <div class="col-sm-8 small-text">
                         <p>
@@ -29,49 +29,53 @@
                     </div>
                     <div class="col-sm-4 pull-down">
                         <a class="btn btn-primary btn-lg pull-right fancybox"
-                           href="@Url.Action("SaveWishlist", new { Name = Model.Name, Email = Model.Email })">
+                            href="@Url.Action("SaveWishlist", new { Name = Model.Name, Email = Model.Email })">
                             Opslaan
                         </a>
                         <!--<input type="submit" class="btn btn-primary btn-lg pull-right fancybox" value="Opslaan" />-->
                     </div>
                 </div>
-            }
-
-        </div>
-        <div class="col-sm-4 col-sm-offset-3 right">
-            <h5 class="text-right">Kies uw betaalmethode</h5>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-3 col-sm-offset-3 payment">
-                        <img src="~/Resources/Icons/paypal.png" class="img-responsive" alt="Online betalen met PayPal" />
+            </div>
+            <div class="col-sm-4 col-sm-offset-3 right">
+                <h5 class="text-right">Kies uw betaalmethode</h5>
+                <div class="row payment2">
+                    <div class="col-md-4">
+                        <input checked="checked" type="radio" id="paypal" name="payment" value="paypal" />
+                        <label class="payment-selection" for="paypal">
+                            <img src="~/Resources/Icons/paypal.png" class="img-responsive" alt="Online betalen met PayPal" />
+                        </label>
                     </div>
-                    <div class="col-xs-3 payment">
-                        <img src="~/Resources/Icons/iDeal.png" class="img-responsive" alt="Online betalen met iDeal" />
+                    <div class="col-md-4">
+                        <input type="radio" id="iDeal" name="payment" value="iDeal" />
+                        <label class="payment-selection" for="iDeal">
+                            <img src="~/Resources/Icons/iDeal.png" class="img-responsive" alt="Online betalen met iDeal" />
+                        </label>
                     </div>
-                    <div class="col-xs-3 payment">
-                        <img src="~/Resources/Icons/cash_icon.png" class="img-responsive" alt="Contant betalen bij kassa" />
+                    <div class="col-md-4">
+                        <input type="radio" id="cash" name="payment" value="cash" />
+                        <label class="payment-selection" for="cash">
+                            <img src="~/Resources/Icons/cash_icon.png" class="img-responsive" alt="Contant betalen bij kassa" />
+                        </label>
                     </div>
                 </div>
+                <p class="text-right">
+                    Totaal: @Model.GetTotalPrice().ToString("C", Globals.CurrentCulture)
+                </p>
+                <a class="btn btn-primary btn-lg btn-block fancybox"
+                    href="@Url.Action("Checkout", new { Name = Model.Name, Email = Model.Email })">
+                    Afrekenen
+                </a>
+                <div class="small-text">
+                    <br />
+                    <strong>Belangrijke informatie:</strong>
+                    <ul class="dash small-text">
+                        <li>Alle sales zijn definitief</li>
+                        <li>Reserveringen worden automatisch gemaakt na betaling</li>
+                        <li>Tickets moeten worden opgehaald bij de balie van het iHff</li>
+                    </ul>
+                </div>
             </div>
-            <br />
-            <br />
-            <p class="text-right">
-                Totaal: @Model.GetTotalPrice().ToString("C", Globals.CurrentCulture)
-            </p>
-            <a class="btn btn-primary btn-lg pull-right fancybox"
-               href="@Url.Action("Checkout")">
-                Afrekenen
-            </a>
-            <div class="small-text">
-                <br />
-                <strong>Belangrijke informatie:</strong>
-                <ul class="dash small-text">
-                    <li>Alle sales zijn definitief</li>
-                    <li>Reserveringen worden automatisch gemaakt na betaling</li>
-                    <li>Tickets moeten worden opgehaald bij de balie van het iHff</li>
-                </ul>
-            </div>
-        </div>
+        }
     </div>
 </div>
 
@@ -85,7 +89,10 @@
                 fitToView: true,
                 autoSize: true,
                 openEffect: 'fade',
-                closeEffect: 'fade'
+                closeEffect: 'fade',
+                afterClose: function () {
+                    parent.location.reload(true);
+                }
             });
             return false;
         })

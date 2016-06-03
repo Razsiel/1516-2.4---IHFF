@@ -14,17 +14,16 @@ namespace IHFF.Interfaces
         /// </summary>
         /// <param name="code">Unique identifier to find the wishlist with (format: IHFF####)</param>
         /// <returns>Wishlist object</returns>
-        Wishlist GetOrCreateWishlist(string code);  //READ
-        Wishlist GetWishlist(string UID);
+        Wishlist GetOrCreateWishlist(string code);                      //CREATE
+        Wishlist GetWishlist(string UID);                               //READ
 
         /// <summary>
         /// Adds wishlist item to current wishlist
         /// </summary>
         /// <param name="item">The to-add wishlist item</param>
-        void AddItem(WishlistItem item);        //CREATE
-        void Checkout(Wishlist wishlist);
-        void Update(Wishlist wishlist, WishlistItem wishlistItem);     //UPDATE
-        void Remove(Wishlist wishlist, WishlistItem wishlistItem);     //DELETE
-        void SaveWishlist(Wishlist wishlist);
+        void AddItem(WishlistItem item);                                //CREATE
+        Wishlist Checkout(Wishlist wishlist);                           //UPDATE
+        void Remove(Wishlist wishlist, WishlistItem wishlistItem);      //DELETE
+        Wishlist SaveWishlist(Wishlist wishlist);
     }
 }

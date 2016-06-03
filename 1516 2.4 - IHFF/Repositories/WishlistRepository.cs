@@ -17,7 +17,7 @@ namespace IHFF.Repositories
             ctx.SaveChanges();
         }
 
-        public void Checkout(Wishlist wishlist)
+        public Wishlist Checkout(Wishlist wishlist)
         {
             // Iterate through every (unpayed) selected wishlistitem
             // Check whether they're new items and if so add them to the db
@@ -36,6 +36,7 @@ namespace IHFF.Repositories
             // Save entire wishlist
             ctx.SaveChanges();
             Wishlist.Instance = GetWishlist(wishlist.UID);
+            return Wishlist.Instance;
         }
 
         public Wishlist GetOrCreateWishlist(string code)
@@ -77,7 +78,7 @@ namespace IHFF.Repositories
             ctx.SaveChanges();
         }
 
-        public void SaveWishlist(Wishlist wishlist)
+        public Wishlist SaveWishlist(Wishlist wishlist)
         {
             //Check whether the wishlist already exists in the db
             Wishlist w = ctx.Wishlists.Where(x => x.UID == wishlist.UID).FirstOrDefault();
@@ -101,11 +102,8 @@ namespace IHFF.Repositories
 
             // Save wishlist changes
             ctx.SaveChanges();
-        }
-
-        public void Update(Wishlist wishlist, WishlistItem wishlistItem)
-        {
-            throw new NotImplementedException();
+            Wishlist.Instance = GetWishlist(wishlist.UID);
+            return Wishlist.Instance;
         }
     }
 }

@@ -41,8 +41,7 @@ namespace IHFF.Models
             {
                 if (Location != null)
                 {
-                    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("nl-NL");
-                    return string.Format("{0}, {1}-{2}, {3}", culture.DateTimeFormat.GetDayName(Date.DayOfWeek), 
+                    return string.Format("{0}, {1}-{2}, {3}", Globals.CurrentCulture.DateTimeFormat.GetDayName(Date.DayOfWeek), 
                         DateTimeHelper.Round(Date).ToString("HH:mm"),
                         DateTimeHelper.Round((Date.Add((this as Movie).Duration))).ToString("HH:mm"), LocationString);
                 }
@@ -67,8 +66,7 @@ namespace IHFF.Models
             get
             {
                 if (Location != null){
-                    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("nl-NL");
-                    return culture.DateTimeFormat.GetDayName(Date.DayOfWeek);
+                    return Globals.CurrentCulture.DateTimeFormat.GetDayName(Date.DayOfWeek);
                 }
                 return null;
             }
