@@ -16,14 +16,15 @@ namespace IHFF.Controllers
 
         public ActionResult Index()
         {
-            return View(moviesRepository.GetAllMovies());
+            return View(moviesRepository.GetAllUniqueMovies());
         }
 
         [HttpPost]
-        public ActionResult Index(int EventId, int ticketAmount)
-        {
+        public ActionResult Index(int EventId, int ticketAmount, int locationId, DateTime eventDate)
+        {   
             Wishlist wishlist = wishlistRepository.GetWishlist(Wishlist.Instance.UID);
-            Event e = moviesRepository.GetAllMovies().First(x => x.EventId == EventId) as Event;
+            //Event e = moviesRepository.GetAllMovies() as Event;
+            Event e = moviesRepository.GetMovieEvent(eventDate, EventId, locationId) as Event;
 
             WishlistItem item = new WishlistItem(e, ticketAmount, wishlist);
 
@@ -42,7 +43,7 @@ namespace IHFF.Controllers
         {
             if(Id < 0)
             {
-                return PartialView("_MovieView", moviesRepository.GetAllMovies());
+                return PartialView("_MovieView", moviesRepository.GetAllUniqueMovies());
             }
             return PartialView("_MovieView", moviesRepository.GetMovies(Id));
         }
