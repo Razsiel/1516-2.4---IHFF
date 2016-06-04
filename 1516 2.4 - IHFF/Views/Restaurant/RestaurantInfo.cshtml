@@ -60,7 +60,7 @@
             <h4> Maak een reservering </h4>
         </div>
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Index", "Restaurant", FormMethod.Post))
         {
             <div class="overlay-overlayable" style="bottom: 210px; margin-left:235px">
                 Datum :

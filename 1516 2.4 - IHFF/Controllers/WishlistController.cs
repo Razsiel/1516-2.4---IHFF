@@ -44,21 +44,21 @@ namespace IHFF.Controllers
             Wishlist.Instance = wishlistRepository.GetWishlist(UID);
             return RedirectToAction(nameof(Index));
         }
-        
+
         public ActionResult SaveWishlist(string Name, string Email)
         {
             if (ModelState.IsValid)
             {
                 Wishlist.Instance.Name = Name;
                 Wishlist.Instance.Email = Email;
-                wishlistRepository.SaveWishlist(Wishlist.Instance);  //Uncomment when RestaurantReservation work
+                wishlistRepository.SaveWishlist(Wishlist.Instance);
                 //SendEmail(Wishlist.Instance);
                 return PartialView("_PopupSave", Wishlist.Instance);
             }
             return View(Wishlist.Instance);
         }
 
-        public ActionResult Checkout(string Name, string Email)
+        public ActionResult Checkout(string Name, string Email, string Payment)
         {
             if (ModelState.IsValid)
             {

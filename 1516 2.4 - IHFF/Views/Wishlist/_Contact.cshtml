@@ -8,17 +8,13 @@
             <div class="col-sm-5">
                 <h4 class="default">Uw contact info</h4>
 
-                @Html.ValidationSummary()
-
                 <div class="form-group">
-                    @Html.ValidationMessageFor(m => Model.Name)
-                    @Html.LabelFor(m => Model.Name)
-                    @Html.TextBoxFor(m => Model.Name, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
-                    @Html.ValidationMessageFor(m => Model.Email)
-                    @Html.LabelFor(m => Model.Email)
-                    @Html.TextBoxFor(m => Model.Email, new { @class = "form-control", @placeholder = "voorbeeld@domein.nl" })
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "voorbeeld@domein.nl" })
                 </div>
                 <div class="row myrow">
                     <div class="col-sm-8 small-text">
@@ -28,11 +24,10 @@
                         </p>
                     </div>
                     <div class="col-sm-4 pull-down">
-                        <a class="btn btn-primary btn-lg pull-right fancybox"
-                            href="@Url.Action("SaveWishlist", new { Name = Model.Name, Email = Model.Email })">
+                        <a class="btn btn-primary btn-lg btn-block fancybox"
+                           href="@Url.Action("SaveWishlist")" id="save" name="SaveWishlist">
                             Opslaan
                         </a>
-                        <input type="submit" class="btn btn-primary btn-lg pull-right fancybox" value="Opslaan" />
                     </div>
                 </div>
             </div>
@@ -62,7 +57,7 @@
                     Totaal: @Model.GetTotalPrice().ToString("C", Globals.CurrentCulture)
                 </p>
                 <a class="btn btn-primary btn-lg btn-block fancybox"
-                    href="@Url.Action("Checkout", new { Name = Model.Name, Email = Model.Email })">
+                    href="@Url.Action("Checkout", new { Name = Model.Name, Email = Model.Email })" id="checkout" name="Checkout">
                     Afrekenen
                 </a>
                 <div class="small-text">
@@ -96,5 +91,26 @@
             });
             return false;
         })
+    })
+
+    $("#save").click(function () {
+        var oldUrl = $(this).attr("name");
+        var nameVal = $("#Name").val();
+        var emailVal = $("#Email").val()
+        alert(oldUrl);
+        var url = "/Wishlist/" + oldUrl + "?" + "Name=" + nameVal + "&Email=" + emailVal;
+        alert(url);
+        $(this).attr("href", url);
+    })
+
+    $("#checkout").click(function () {
+        var oldUrl = $(this).attr("name");
+        var nameVal = $("#Name").val();
+        var emailVal = $("#Email").val()
+        var paymentValue = $("input[name=Payment]:checked").val()
+        alert(oldUrl);
+        var url = "/Wishlist/" + oldUrl + "?" + "Name=" + nameVal + "&Email=" + emailVal + "&Payment=" + paymentValue;
+        alert(url);
+        $(this).attr("href", url);
     })
 </script>
