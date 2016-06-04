@@ -2,8 +2,12 @@
 @using IHFF.Helpers
 @model IEnumerable<Movie>
 
+@{ int movieNumber = 0;}
+
 @foreach (Movie item in Model)
 {
+    movieNumber++;
+
     using (Html.BeginForm("Index", "Movies"))
     {
         <div class="row movieRow justify-height-container">
@@ -41,21 +45,19 @@
                     </div>
                     <br />
                     <div class="col-md-7">
-                        <select name="EventId" class="movieDropDown">
-
+                        <select name="EventId" id="@movieNumber" class="movieDropDown EventId">
                             @{ if (item.Airings == null)
                                 {
-                                    <option value="@item.EventId">@item.AiringString</option>
+                                    <option value="@item.EventId" locationId="@item.LocationId" eventDate="@item.Date">@item.AiringString</option>
                                 }
                                 else
                                 {
                                     foreach (Event e in item.Airings)
                                     {
-                                        <option value="@e.EventId">@e.AiringString</option>
+                                        <option value="@e.EventId" locationId="@e.LocationId" eventDate="@e.Date">@e.AiringString</option>
                                     }
                                 }
                             }
-                            
                         </select>
 
                     </div>
@@ -76,7 +78,9 @@
                     </div>
                     <div class="col-md-2 pull-right">
                         <!--<a class="btn btn-primary btn-block movieBtn" href="#">Toevoegen</a>-->
-                        <input type="submit" class="btn btn-primary btn-block movieBtn" value="Toevoegen" />
+                        <input type="hidden" name="locationId" numberLoc="@movieNumber" value="" />
+                        <input type="hidden" name="eventDate" numberDate="@movieNumber" value="" />
+                        <input type="submit" class="btn btn-primary btn-block movieBtn" number="@movieNumber" value="Toevoegen" />
                     </div>
                 </div>
             </div>
@@ -99,5 +103,19 @@
             });
             return false;
         })
+
+        $(".EventId").change(function () {
+            $("input[name=locationId").val($(this).find(':selected').attr("locationId"))
+            $("input[name=eventDate]").val($(this).find(':selected').attr("eventDate"))
+        })
+
+        $(".movieBtn").click(function (e) {
+            var number = $(this).attr('number');
+            if ($("input[numberLoc=" + number + ']').val() == '' || $("input[numberDate=" + number + ']').val() == '') {
+                $("input[numberLoc=" + number + ']').val($('#' + number).find(':selected').attr("locationId"))
+                $("input[numberDate=" + number + ']').val($('#' + number).find(':selected').attr("eventDate"))
+            }
+        })
+
     });
 </script>
