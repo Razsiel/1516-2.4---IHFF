@@ -108,9 +108,9 @@
         var nameVal = $("#Name").val();
         var emailVal = $("#Email").val()
         var paymentValue = $("input[name=Payment]:checked").val()
-        alert(oldUrl);
+        //alert(oldUrl);
         var url = "/Wishlist/" + oldUrl + "?" + "Name=" + nameVal + "&Email=" + emailVal + "&Payment=" + paymentValue;
-        alert(url);
+        //alert(url);
         $(this).attr("href", url);
     })
 </script>

@@ -665,3 +665,14 @@ ul.dash > li:before {
 .paypal{
     background-image:url(../../Resources/Icons/paypal.png);
 }
+
+/* Mini wishlist */
+div.container table.wishlistMini td {
+    padding: 0;
+    border-bottom:1pt solid #da2738;
+}
+
+.miniWishlistTitle {
+    padding-left: 10px;
+    padding-right: 10px;
+}

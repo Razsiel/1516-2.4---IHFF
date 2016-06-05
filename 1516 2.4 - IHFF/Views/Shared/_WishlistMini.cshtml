@@ -1,35 +1,57 @@
 ﻿@using IHFF.Models
+@using IHFF.Helpers
 @model Wishlist
-<div class="row row-inverse">
+<div class="row row-inverse miniWishlistTitle">
     <h3>Wishlist</h3>
     <p>
-        Kijk hier voor het filmoverzicht, 
-        bekijk het restaurantaanbod 
+        Kijk hier voor het filmoverzicht,
+        bekijk het restaurantaanbod
         of koop een combi-ticket!
     </p>
 </div>
 <div class="container">
-    <table>
-        <thead>
-            <tr>
-                <td>Activiteit</td>
-                <td>Dag, tijd en locatie</td>
-                <td>Aantal</td>
-                <td>Prijs</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                @foreach (WishlistItem item in Model.WishlistItems)
-                {
-                    <td>@item.GetName()</td>
-                    <td>@item.GetLocation()</td>
-                    <td>@item.Amount</td>
-                    <td>@item.GetPrice()</td>
-                }
-            </tr>
-        </tbody>
-    </table>
+
+    @{ if (Model.WishlistItems.Count == 0)
+        {
+            <p>
+                <b>
+                    <i>
+                        U heeft nog niets in uw wishlist staan. Kijk bij
+                        @Html.ActionLink("Movies", "Index", "Movies")
+                        of
+                        @Html.ActionLink("Specials", "Index", "Specials")
+                        om iets toe te voegen.
+                    </i>
+                </b>
+            </p>
+        }
+        else
+        {
+            <table class="wishlistMini">
+                <thead>
+                    <tr>
+                        <td class="col-md-3"><b>Activiteit</b></td>
+                        <td class="col-md-4"><b>Dag &amp; tijd</b></td>
+                        <td class="col-md-3"><b>Locatie</b></td>
+                        <td class="col-md-2"><b>Aantal</b></td>
+                        <td class="col-md-1"><b>Prijs</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (WishlistItem item in Model.WishlistItems)
+                    {
+                        <tr>
+                            <td>@item.GetName()</td>
+                            <td>@Globals.CurrentCulture.DateTimeFormat.GetDayName(item.Date.DayOfWeek).UppercaseFirst(), @item.Date.ToString("HH:mm") uur</td>
+                            <td>@item.GetLocation()</td>
+                            <td>@item.Amount</td>
+                            <td>&euro;@item.GetPrice()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
     <div class="row">
         <div class="col-md-4 col-md-offset-8">
             @Html.ActionLink("Naar wishlist/betalen", "Index", "Wishlist", null, new { @class = "btn btn-primary btn-block pull-down" })
