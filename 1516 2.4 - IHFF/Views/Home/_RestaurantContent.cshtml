@@ -1,4 +1,6 @@
-﻿
+﻿@using IHFF.Models
+@using IHFF.Helpers
+@model IEnumerable<Restaurant>
 <div class="row text-right justify-height-container">
     <div class="col-xs-12 col-sm-9">
         <a href="@Url.Action("Index", "Restaurant")">
@@ -18,73 +20,54 @@
         </h4>
         <div class="container row-inverse">
             <div class="row recommendation">
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Restaurant")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
-                </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Restaurant")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
-                </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Restaurant")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
-                </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Restaurant")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
-                </div>
+                @foreach (Restaurant item in Model)
+                {
+                    <div class="col-sm-3 thumbnail recommendation">
+                        <a href="@Url.Action("RestaurantInfo", "Restaurant", new { EventId = item.EventId })">
+                            <img src="@String.Format( "data:image/png;base64,{0}", item.Image )" class="img-responsive" />
+                        </a>
+                    </div>
+                }
             </div>
             <div class="row row-inverse">
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                    <ul class="list-inline rating text-center">
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                    </ul>
-                </div>
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                    <ul class="list-inline rating text-center">
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                    </ul>
-                </div>
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                    <ul class="list-inline rating text-center">
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                    </ul>
-                </div>
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                    <ul class="list-inline rating text-center">
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                        <li class="rating"><img src="~/Resources/star.png" /></li>
-                    </ul>
-                </div>
+                @foreach (Restaurant item in Model)
+                {
+                    <div class="col-xs-3">
+                        <p class="text-center">@item.Name.TrimStringIfLongerThan(20)</p>
+                        <ul class="list-inline rating text-center">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                //Iterate 5 times for all the star ratings
+                                //Check if iteration is lower than the rating, if so put full star
+                                if (i <= (int)item.Rating)
+                                {
+                                    <li class="rating"><img src="~/Resources/star.png" /></li>
+                                }
+                                //Check if iteration is between value and value + 1 and write half star
+                                else if (i > item.Rating && i < item.Rating + 1)
+                                {
+                                    int percentage = (int)((item.Rating % 1) * 100);
+                                    string gradiant = string.Format("white {0}%, rgba(255, 255, 255, 0.3) {1}%, rgba(255, 255, 255, 0.3) 100%", percentage, percentage+1);
+                                    <li class="rating" style="background: -webkit-linear-gradient(left, @gradiant ); 
+                                        background: -o-linear-gradient(left, @gradiant );
+                                        background: -moz-linear-gradient(left, @gradiant );
+                                        background: linear-gradient(to right, @gradiant );
+                                        "><img src="~/Resources/star.png" /></li>
+                                }
+                                //Otherwise write empty star
+                                else
+                                {
+                                    <li class="rating norating"><img src="~/Resources/star.png" /></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                }
             </div>
         </div>
     </div>
     <div class="col-xs-0 col-sm-3 justify-height justify-height-container overlayable">
-        <img src="~/Resources/Placeholder.png" class="justify-height img-responsive" />
+        <img src="~/Resources/Photos/Dineren.jpg" class="justify-height img-responsive" />
         <div class="overlay-overlayable label-default btn-block text-center"><h2>Restaurants</h2></div>
     </div>
 </div>
