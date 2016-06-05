@@ -1,7 +1,9 @@
-﻿@model IEnumerable<IHFF.Models.Movie>
+﻿@using IHFF.Models
+@using IHFF.Helpers
+@model IEnumerable<Movie>
 <div class="row justify-height-container">
     <div class="col-xs-0 col-sm-3 justify-height justify-height-container overlayable">
-        <img src="~/Resources/Placeholder.png" class="justify-height img-responsive" />
+        <img src="~/Resources/Photos/Cinema.jpg" class="justify-height img-responsive" />
         <div class="overlay-overlayable label-default btn-block text-center"><h2>Films</h2></div>
     </div>
     <div class="col-xs-12 col-sm-9">
@@ -21,41 +23,22 @@
         <div class="container row-inverse">
             <hr class="dashed" />
             <div class="row recommendation">
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Movies")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive"/>
-                    </a>
-                </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Movies")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
-                </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Movies")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
-                </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Movies")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
-                </div>
+                @foreach (Movie item in Model)
+                {
+                    <div class="col-sm-3 thumbnail recommendation">
+                        <a href="@Url.Action("Index", "Movies")">
+                            <img src="@String.Format( "data:image/png;base64,{0}", item.GetImage() )" class="img-responsive"/>
+                        </a>
+                    </div>
+                }
             </div>
             <div class="row row-inverse">
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                </div>
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                </div>
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                </div>
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                </div>
-                
+                @foreach (Movie item in Model)
+                {
+                    <div class="col-xs-3">
+                        <p class="text-center">@item.GetName().TrimStringIfLongerThan(18)</p>
+                    </div>
+                }                
             </div>
             <hr class="dashed" />
         </div>

@@ -155,6 +155,7 @@
     <Compile Include="Interfaces\ISpecialsRepository.cs" />
     <Compile Include="Interfaces\IWishlistRepository.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\RestaurantReservation.cs" />
     <Compile Include="Models\WishlistItem.cs" />
     <Compile Include="Models\Location.cs" />
@@ -213,11 +214,17 @@
     <Content Include="Resources\Icons\ticket.png" />
     <Content Include="Resources\Icons\twitter.png" />
     <Content Include="Resources\lecture.jpg" />
+    <Content Include="Resources\Photos\Cinema.jpg" />
+    <Content Include="Resources\Photos\Dineren.jpg" />
+    <Content Include="Resources\Photos\Evenementen.jpg" />
+    <Content Include="Resources\Photos\GroteMarkt.jpg" />
+    <Content Include="Resources\Photos\Haarlem.jpg" />
     <Content Include="Resources\Placeholder.png" />
     <Content Include="Resources\Reserveren Image.png" />
     <Content Include="Resources\ReserverenLogo.png" />
     <Content Include="Resources\special tickets.png" />
     <Content Include="Resources\star.png" />
+    <Content Include="Resources\star_invert.png" />
     <Content Include="Resources\technology.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

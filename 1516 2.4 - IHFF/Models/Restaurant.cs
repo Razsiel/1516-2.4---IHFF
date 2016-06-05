@@ -43,6 +43,7 @@ namespace IHFF.Models
         public string ResImage1 { get; set; }
         public string ResImage2 { get; set; }
         public string ResImage3 { get; set; }
+        public decimal Rating { get; set; }
 
         public virtual ICollection<RestaurantReservation> Reservations { get; set; }
     }

@@ -106,7 +106,7 @@ footer > .container > .row {
 }
 
 .banner {
-    background-image: url(../../../Resources/Placeholder.png);
+    background-image: url(../../../Resources/Photos/Haarlem.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50%;
@@ -165,7 +165,7 @@ input {
 }
 
 .thumbnail {
-    color: #000;
+    color: #2c2e2d;
     margin-top: 20px;
     margin-bottom: 10px;
 }
@@ -197,7 +197,7 @@ input {
 }
 
 .overlay {
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: rgba(0, 0, 0, 0.45);
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -255,6 +255,10 @@ li.rating {
     border: 1px solid #fff;
     background: #fff;
     padding: 2px;
+}
+
+li.norating {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 li.rating > img {

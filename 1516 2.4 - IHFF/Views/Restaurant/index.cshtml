@@ -13,10 +13,38 @@
 
     <div class="col-sm-4">
             <div class="overlayable">
-                        <a><img src="data: image/jpg;base64, @item.Image" class="img-responsive" style="width:100%;"/></a>
-                <div class="overlay-overlayable" style="bottom: 20px" >
-                        <img src="~/Resources/4 en half ster.png" style="width:50%; float:right; margin-right: 10px;"/>
-                </div>
+                <a>
+                    <img src="data: image/jpg;base64, @item.Image" class="img-responsive" style="width:100%;"/>
+                </a>
+                    <div class="overlay-overlayable" style="bottom: 5px; width: 100%;">
+                        <ul class="list-inline rating text-center" style="float: right; margin-right: 15px;">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                //Iterate 5 times for all the star ratings
+                                //Check if iteration is lower than the rating, if so put full star
+                                if (i <= (int)item.Rating)
+                                {
+                                    <li class="rating" style="background:#da2738;"><img src="~/Resources/star_invert.png" /></li>
+                                }
+                                //Check if iteration is between value and value + 1 and write half star
+                                else if (i > item.Rating && i < item.Rating + 1)
+                                {
+                                    int percentage = (int)((item.Rating % 1) * 100);
+                                    string gradiant = string.Format("#da2738 {0}%, rgba(255, 255, 255, 0.3) {1}%, rgba(255, 255, 255, 0.3) 100%", percentage, percentage + 1);
+                                    <li class="rating" style="background: -webkit-linear-gradient(left, @gradiant );
+                                    background: -o-linear-gradient(left, @gradiant );
+                                    background: -moz-linear-gradient(left, @gradiant );
+                                    background: linear-gradient(to right, @gradiant );
+                                    "><img src="~/Resources/star_invert.png" /></li>
+                                }
+                                //Otherwise write empty star
+                                else
+                                {
+                                    <li class="rating norating"><img src="~/Resources/star_invert.png" /></li>
+                                }
+                            }
+                        </ul>
+                    </div>
             </div>
 
             <div class="overlay-overlayable" style="bottom: 311px; left: -19px">

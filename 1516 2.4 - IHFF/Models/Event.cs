@@ -9,7 +9,7 @@ using IHFF.Helpers;
 namespace IHFF.Models
 {
     [Table("Event")]
-    public class Event
+    public abstract class Event
     {
         public Event(int eventId, DateTime date, int locationId, string discriminator)
         {
@@ -82,9 +82,9 @@ namespace IHFF.Models
                 return null;
             }
         }
-        
-        public virtual decimal GetPrice() { return 0; }
-        public virtual string GetName() { return null; }
-        public virtual string GetImage() { return null; }
+
+        public abstract decimal GetPrice();// { return 0; }
+        public abstract string GetName();// { return null; }
+        public abstract string GetImage();// { return null; }
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using IHFF.Repositories;
 using IHFF.Interfaces;
+using IHFF.Models;
 
 namespace IHFF.Controllers
 {
@@ -16,7 +17,41 @@ namespace IHFF.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            Random rand = new Random();
+
+            IEnumerable<Movie> m = moviesRepository.GetAllUniqueMovies();
+            List<Movie> movies = new List<Movie>();
+            while (movies.Count() < 4)
+            {
+                Movie randomMovie = m.ElementAt(rand.Next(0, m.Count() - 1));
+                while (movies.Exists(x => x.EventId == randomMovie.EventId))
+                {
+                    randomMovie = m.ElementAt(rand.Next(0, m.Count() - 1));
+                }
+                movies.Add(randomMovie);
+            }
+
+            //IEnumerable<Special> s = specialsRepository.GetAllSpecials();
+            List<Special> specials = new List<Special>();
+            //while (specials.Count() < 4)
+            //{
+            //    specials.Add(s.ElementAt(rand.Next(0, s.Count())));
+            //}
+
+            IEnumerable<Restaurant> r = restaurantRepository.GetAllRestaurants();
+            List<Restaurant> restaurants = new List<Restaurant>();
+            while (restaurants.Count() < 4)
+            {
+                Restaurant randomRestaurant = r.ElementAt(rand.Next(0, r.Count()));
+                while (restaurants.Exists(x => x.EventId == randomRestaurant.EventId))
+                {
+                    randomRestaurant = r.ElementAt(rand.Next(0, r.Count()));
+                }
+                restaurants.Add(randomRestaurant);
+            }
+
+            HomeViewModel hvm = new HomeViewModel(movies, specials, restaurants);
+            return View(hvm);
         }
     }
 }
