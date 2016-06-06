@@ -217,8 +217,10 @@
     <Content Include="Resources\Photos\Cinema.jpg" />
     <Content Include="Resources\Photos\Dineren.jpg" />
     <Content Include="Resources\Photos\Evenementen.jpg" />
+    <Content Include="Resources\Photos\filmoverzicht.png" />
     <Content Include="Resources\Photos\GroteMarkt.jpg" />
     <Content Include="Resources\Photos\Haarlem.jpg" />
+    <Content Include="Resources\Photos\specialetickets.png" />
     <Content Include="Resources\Placeholder.png" />
     <Content Include="Resources\Reserveren Image.png" />
     <Content Include="Resources\ReserverenLogo.png" />

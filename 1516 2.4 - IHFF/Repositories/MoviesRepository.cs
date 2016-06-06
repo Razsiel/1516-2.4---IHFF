@@ -241,6 +241,7 @@ namespace IHFF.Repositories
                 events.Add(m);
             }
 
+            //Get tracked event instead of new object Event... this gives an update error from EF when trying to save
             Movie e = events.Where(x => x.EventId == t.EventId && x.Date == t.Date && x.LocationId == t.LocationId).FirstOrDefault();
 
             return e;
