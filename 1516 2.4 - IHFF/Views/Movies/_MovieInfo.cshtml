@@ -26,12 +26,14 @@
         </p>
     </div>
     <div class="col-md-4 moviePoster">
-        <img src="@String.Format( "data:image/png;base64,{0}", Model.Image )" />
+        <img src="@String.Format("data:image/png;base64,{0}", Model.Image)" />
     </div>
 </div>
 
 <br />
 
+@using (Html.BeginForm("Index", "Movies"))
+{
 <div class="row">
     <table class="table table-bordered">
         <thead>
@@ -42,39 +44,43 @@
                 <th class="col-md-3">Prijs per ticket: &euro; @Model.Price.ToString("N2")</th>
             </tr>
         </thead>
-        <tbody>
             @foreach (Event airing in Model.Airings)
             {
-                <tr>
-                    <td>
-                        @airing.DayName.UppercaseFirst(), @airing.Date.ToString("HH:mm") - @airing.EndTime
-                    </td>
-                    <td>
-                        @airing.LocationString
-                    </td>
-                    <td>
-                        <select name="ticketAmount" class="movieDropDown">
-                            @for (int i = 1; i <= 10; i++)
-                            {
-                                if (i == 1)
-                                {
-                                    <option value="@i">@i ticket</option>
-                                }
-                                else
-                                {
-                                    <option value="@i">@i tickets</option>
-                                }
-                            }
-                        </select>
-                    </td>
-                    <td class="set-center">
-                        <input type="submit" class="btn btn-primary" value="Toevoegen" />
-                    </td>
-                </tr>
-            }
-        </tbody>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @airing.DayName.UppercaseFirst(), @airing.Date.ToString("HH:mm") - @airing.EndTime
+                            </td>
+                            <td>
+                                @airing.LocationString
+                            </td>
+                            <td>
+                                <select name="ticketAmount" class="movieDropDown">
+                                    @for (int i = 1; i <= 10; i++)
+                                    {
+                                        if (i == 1)
+                                        {
+                                            <option value="@i">@i ticket</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@i">@i tickets</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                            <td class="set-center">
+                                <input type="submit" class="btn btn-primary" value="Toevoegen" number="@airing.Date" />
+                                <input type="hidden" name="locationId" locId="@Model.Date" value="@airing.LocationId" />
+                                <input type="hidden" name="eventDate" eventDate="@Model.Date" value="@airing.Date" />
+                                <input type="hidden" name="EventId" value="@Model.EventId" />
+                            </td>
+                        </tr>
+                    </tbody>
+                }
     </table>
 </div>
+}
 
 <div class="food-and-film set-center">
     <h3>Combineer een film samen met een diner met onze <span>Film&amp;Food</span> tickets!</h3>
@@ -92,8 +98,18 @@
     </div>
 </div>
 
-
-
-
+<script>
+    $(document).ready(function () {
+        $(".btn").click(function (e) {
+            var date = $(this).attr('number');
+            $("input[name=locationId]").each(function () {
+                $(this).val($('input[locId=' + date + ']').val());
+            });
+            $("input[name=eventDate]").each(function () {
+                $(this).val($('input[eventDate=' + date + ']').val());
+            })
+        })
+    });
+</script>
 
 <!--<a href="javascript:jQuery.fancybox.close();">Close me</a>-->
