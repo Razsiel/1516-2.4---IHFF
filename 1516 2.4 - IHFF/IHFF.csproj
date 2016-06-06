@@ -285,7 +285,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Resources\Icons\" />
     <Folder Include="Content\Resources\Images\" />
-    <Folder Include="Views\RestaurantReservation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

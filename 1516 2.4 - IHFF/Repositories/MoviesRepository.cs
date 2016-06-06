@@ -68,9 +68,18 @@ namespace IHFF.Repositories
                 events.Add(m);
             }
 
-            foreach (Movie m in allMovies)
+            foreach (Movie movie in allMovies)
             {
-                m.Airings = events.Where(x => x.EventId == m.EventId);
+                List<Movie> airings = new List<Movie>();
+                IEnumerable<Movie> t = events.Where(x => x.EventId == movie.EventId);
+                foreach (Movie m in t)
+                {
+                    if (!airings.Exists(x => x.EventId == m.EventId && x.Date == m.Date && x.LocationId == m.LocationId))
+                    {
+                        airings.Add(m);
+                    }
+                }
+                movie.Airings = airings;
             }
 
             return allMovies;
@@ -91,6 +100,7 @@ namespace IHFF.Repositories
 
             List<Movie> allMovies = context.Movies.Where(s => s.Discriminator == "M").ToList().GroupBy(m => m.Title).Select(grp => grp.First()).ToList();
 
+            /*
             DateTime firstSunday = new DateTime(1753, 1, 7);
 
             var temp = from Movie in context.Movies
@@ -146,12 +156,30 @@ namespace IHFF.Repositories
                 events.Add(m);
             }
 
-            foreach (Movie m in allMovies)
+            //foreach (Movie m in allMovies)
+            //{
+            //    m.Airings = events.Where(x => x.EventId == m.EventId);
+            //}
+            */
+
+            //VIABLE replacement method instead of LINQ query 'temp'
+            List<Movie> dayEvents = new List<Movie>();
+            foreach (Movie movie in allMovies)
             {
-                m.Airings = events.Where(x => x.EventId == m.EventId);
+                foreach (Event e in movie.Airings)
+                {
+                    if ((int)e.Date.DayOfWeek == dayOfWeek)
+                    {
+                        if (!dayEvents.Exists(x => x.Date == e.Date && x.EventId == e.EventId && x.LocationId == e.LocationId))
+                        {
+                            dayEvents.Add(e as Movie);
+                        }
+                    }
+                }
             }
 
-            return events;
+
+            return dayEvents;
         }
 
         public Movie GetMovieEvent(DateTime date, int eventId, int locationId)
