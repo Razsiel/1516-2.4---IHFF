@@ -23,17 +23,17 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult AmountChange(int Amount, int WishlistItemId)
+        public ActionResult AmountChange(int Amount, int EventId)
         {
-            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.WishlistItemId == WishlistItemId);
+            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.EventId == EventId);
             item.Amount = Amount;
             return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
-        public ActionResult SelectedChange(bool Selected, int WishlistItemId)
+        public ActionResult SelectedChange(bool Selected, int EventId)
         {
-            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.WishlistItemId == WishlistItemId);
+            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.EventId == EventId);
             item.Selected = Selected;
             return RedirectToAction(nameof(Index));
         }

@@ -29,11 +29,11 @@
     else
     {
         <td>
-            @using (Html.BeginForm("SelectedChange", null, FormMethod.Post, new { @id = "formSelect" }))
+            @using (Html.BeginForm("SelectedChange", null, FormMethod.Post, new { @class = "formSelect", @unique = Model.EventId }))
             {
-                @Html.CheckBoxFor(x => x.Selected, new { @id = "targetSelection" })
+                @Html.CheckBoxFor(x => x.Selected, new { @class = "targetSelection" })
                 <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
-                <input type="hidden" name="WishlistItemId" value="@Model.WishlistItemId" />
+                <input type="hidden" name="EventId" value="@Model.EventId" />
             }
         </td>
         <td>
@@ -53,9 +53,9 @@
         </td>
         <td></td>
         <td>
-            @using (Html.BeginForm("AmountChange", null, FormMethod.Post, new { @id = "formAmount" }))
+            @using (Html.BeginForm("AmountChange", null, FormMethod.Post, new { @class = "formAmount", @uniqueTarget = Model.EventId }))
             {
-                <select name="Amount" id="targetAmount">
+                <select name="Amount" class="targetAmount">
                     @for (int i = 1; i <= 10; i++)
                     {
                         if (Model.Amount == i)
@@ -69,7 +69,7 @@
                     }
                 </select>
                 <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
-                <input type="hidden" name="WishlistItemId" value="@Model.WishlistItemId" />
+                <input type="hidden" name="EventId" value="@Model.EventId" />
             }
         </td>
         <td>
@@ -97,14 +97,17 @@
 </tr>
 
 <script>
-    $("#targetSelection").change(function ()
+    $(".targetSelection").change(function ()
     {
+        var id = $(this).parent().attr("unique");
         //alert((this).name + " changed!");
-        $('#formSelect').submit();
+        $('form[unique=' + id + ']').submit();
     });
 
-    $("#targetAmount").change(function () {
+    $(".targetAmount").change(function () {
         //alert((this).name + " changed!");
-        $('#formAmount').submit();
+
+        var id = $(this).parent().attr("uniqueTarget");
+        $('form[uniqueTarget=' + id + ']').submit();
     });
 </script>

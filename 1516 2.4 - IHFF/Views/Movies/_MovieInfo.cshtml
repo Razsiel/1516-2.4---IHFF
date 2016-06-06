@@ -32,8 +32,6 @@
 
 <br />
 
-@using (Html.BeginForm("Index", "Movies"))
-{
 <div class="row">
     <table class="table table-bordered">
         <thead>
@@ -55,7 +53,7 @@
                                 @airing.LocationString
                             </td>
                             <td>
-                                <select name="ticketAmount" class="movieDropDown">
+                                <select name="ticketAmount" class="movieDropDown" id="@airing.Date.ToShortDateString()">
                                     @for (int i = 1; i <= 10; i++)
                                     {
                                         if (i == 1)
@@ -70,17 +68,21 @@
                                 </select>
                             </td>
                             <td class="set-center">
-                                <input type="submit" class="btn btn-primary" value="Toevoegen" number="@airing.Date" />
-                                <input type="hidden" name="locationId" locId="@Model.Date" value="@airing.LocationId" />
-                                <input type="hidden" name="eventDate" eventDate="@Model.Date" value="@airing.Date" />
-                                <input type="hidden" name="EventId" value="@Model.EventId" />
+                                @using (Html.BeginForm("Index", "Movies"))
+                                {
+                                    <input type="submit" class="btn btn-primary movieInfo" date="@airing.Date.ToShortDateString()" value="Toevoegen" />
+                                    <input type="hidden" name="locationId" value="@airing.LocationId" />
+                                    <input type="hidden" name="eventDate" value="@airing.Date" />
+                                    <input type="hidden" name="EventId" value="@Model.EventId" />
+                                    <input type="hidden" name="ticketAmount" ticketId="@airing.Date.ToShortDateString()" />
+                                }
                             </td>
                         </tr>
                     </tbody>
                 }
     </table>
 </div>
-}
+
 
 <div class="food-and-film set-center">
     <h3>Combineer een film samen met een diner met onze <span>Film&amp;Food</span> tickets!</h3>
@@ -100,16 +102,13 @@
 
 <script>
     $(document).ready(function () {
-        $(".btn").click(function (e) {
-            var date = $(this).attr('number');
-            $("input[name=locationId]").each(function () {
-                $(this).val($('input[locId=' + date + ']').val());
-            });
-            $("input[name=eventDate]").each(function () {
-                $(this).val($('input[eventDate=' + date + ']').val());
-            })
-        })
+        $('.movieInfo').click(function (e) {
+            var id = $(this).attr('date');
+            var aantal = $('#' + id).val();
+            $('input[ticketId=' + id + ']').val(aantal);
+        });
     });
 </script>
+
 
 <!--<a href="javascript:jQuery.fancybox.close();">Close me</a>-->
