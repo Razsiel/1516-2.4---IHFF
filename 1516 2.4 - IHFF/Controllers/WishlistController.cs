@@ -72,7 +72,7 @@ namespace IHFF.Controllers
         
         public ActionResult RemoveItem(int WishlistItemId)
         {
-            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.WishlistItemId == WishlistItemId);
+            WishlistItem item = Wishlist.Instance.WishlistItems.Where(x => x.WishlistItemId == WishlistItemId).FirstOrDefault();
             wishlistRepository.Remove(Wishlist.Instance, item);
             return RedirectToAction(nameof(Index));
         }

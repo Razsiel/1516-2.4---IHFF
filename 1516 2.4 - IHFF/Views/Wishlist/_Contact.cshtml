@@ -56,10 +56,19 @@
                 <p class="text-right">
                     Totaal: @Model.GetTotalPrice().ToString("C", Globals.CurrentCulture)
                 </p>
-                <a class="btn btn-primary btn-lg btn-block fancybox"
-                    href="@Url.Action("Checkout", new { Name = Model.Name, Email = Model.Email })" id="checkout" name="Checkout">
-                    Afrekenen
-                </a>
+                @if (Model.WishlistItems.Any(x => x.Selected == true))
+                {
+                    <a class="btn btn-primary btn-lg btn-block fancybox"
+                       href="@Url.Action("Checkout", new { Name = Model.Name, Email = Model.Email })" id="checkout" name="Checkout">
+                        Afrekenen
+                    </a>
+                }
+                else
+                {
+                    <span class="btn btn-primary btn-lg btn-block disabled">
+                        Afrekenen
+                    </span>
+                }
                 <div class="small-text">
                     <br />
                     <strong>Belangrijke informatie:</strong>
