@@ -33,17 +33,17 @@ namespace IHFF.Repositories
             reservation.Restaurant = r;
 
             //Get reserving
-            RestaurantReservation dbRes = context.RestaurantReservations.Where(x => x.EventId == reservation.EventId && x.Date == reservation.Date && x.Amount == reservation.Amount).First();
+            IQueryable<RestaurantReservation> dbRes = context.RestaurantReservations.Where(x => x.EventId == reservation.EventId && x.Date == reservation.Date && x.Amount == reservation.Amount);
 
             //If it doesn't exist, add it to the database
-            if (dbRes == null)
+            if (dbRes.Count() == 0)
             {
                 context.RestaurantReservations.Add(reservation);
                 context.SaveChanges();
-                dbRes = reservation;
+                return reservation;
             }
 
-            return dbRes;
+            return dbRes.FirstOrDefault();
         }
     }
 }

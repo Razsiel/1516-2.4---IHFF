@@ -26,7 +26,7 @@
                 @foreach (Movie item in Model)
                 {
                     <div class="col-sm-3 thumbnail recommendation">
-                        <a href="@Url.Action("Index", "Movies")">
+                        <a href="@Url.Action("MovieInfo", "Movies", new { id = item.EventId })" class="fancybox">
                             <img src="@String.Format( "data:image/png;base64,{0}", item.GetImage() )" class="img-responsive"/>
                         </a>
                     </div>

@@ -95,9 +95,9 @@
 
     $("#save").click(function () {
         var oldUrl = $(this).attr("name");
-        var nameVal = $("#Name").val();
-        var emailVal = $("#Email").val()
-        alert(oldUrl);
+        var nameVal = $("#Name").val().replace(" ", "%20");
+        var emailVal = $("#Email").val();
+        //alert(oldUrl);
         var url = "/Wishlist/" + oldUrl + "?" + "Name=" + nameVal + "&Email=" + emailVal;
         alert(url);
         $(this).attr("href", url);
@@ -105,9 +105,9 @@
 
     $("#checkout").click(function () {
         var oldUrl = $(this).attr("name");
-        var nameVal = $("#Name").val();
-        var emailVal = $("#Email").val()
-        var paymentValue = $("input[name=Payment]:checked").val()
+        var nameVal = $("#Name").val().replace(" ", "%20");
+        var emailVal = $("#Email").val();
+        var paymentValue = $("input[name=Payment]:checked").val();
         //alert(oldUrl);
         var url = "/Wishlist/" + oldUrl + "?" + "Name=" + nameVal + "&Email=" + emailVal + "&Payment=" + paymentValue;
         //alert(url);

@@ -19,17 +19,31 @@ namespace IHFF.Repositories
 
         public Wishlist Checkout(Wishlist wishlist)
         {
-            // Iterate through every (unpayed) selected wishlistitem
-            // Check whether they're new items and if so add them to the db
-            foreach (WishlistItem item in wishlist.WishlistItems)
+            //Check whether the wishlist already exists in the db
+            Wishlist w = ctx.Wishlists.Where(x => x.UID == wishlist.UID).FirstOrDefault();
+
+            // Add the wishlist to the DB if it hasn't been found
+            if (w == null)
             {
-                if (item.Selected && item.PayedFor == false)
+                w = ctx.Wishlists.Add(wishlist);
+            }
+
+            // Iterate through all wishlistitems
+            // Check whether the item has already been saved in the DB before
+            // If not, then add it to the DB
+            foreach (WishlistItem item in w.WishlistItems)
+            {
+                if (item.Selected)
                 {
                     item.PayedFor = true;
-                    if (ctx.WishlistItems.Where(x => x.WishlistItemId == item.WishlistItemId) == null)
-                    {
-                        ctx.WishlistItems.Add(item);
-                    }
+                }
+                IQueryable<WishlistItem> itemsInDb = ctx.WishlistItems
+                   .Where(x => x.EventId == item.EventId
+                   && x.Date == item.Date
+                   && x.LocationId == item.LocationId);
+                if (itemsInDb.Count() == 0)
+                {
+                    ctx.WishlistItems.Add(item);
                 }
             }
 
@@ -98,7 +112,11 @@ namespace IHFF.Repositories
             // If not, then add it to the DB
             foreach (WishlistItem item in w.WishlistItems)
             {
-                if (ctx.WishlistItems.Find(item.EventId) == null)
+                IQueryable<WishlistItem> itemsInDb = ctx.WishlistItems
+                    .Where(x => x.EventId == item.EventId 
+                    && x.Date == item.Date 
+                    && x.LocationId == item.LocationId);
+                if (itemsInDb.Count() == 0)
                 {
                     ctx.WishlistItems.Add(item);
                 }

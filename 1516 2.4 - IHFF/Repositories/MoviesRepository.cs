@@ -185,29 +185,10 @@ namespace IHFF.Repositories
                            Discriminator = Event.Discriminator
                        };
 
-            Movie events = new Movie();
-            foreach (var item in temp)
-            {
-                events = new Movie(
-                    item.EventId,
-                    item.Date,
-                    item.LocationId,
-                    item.Discriminator,
-                    item.Title,
-                    item.Director,
-                    item.YearOfRelease,
-                    item.IMDBRating,
-                    item.Actors,
-                    item.Description,
-                    item.IMDBUrl,
-                    item.Image,
-                    item.ExtraInfo,
-                    item.Duration,
-                    item.Description_NL,
-                    item.Price,
-                    item.YoutubeLink);
-                events.Location = context.Locations.FirstOrDefault(x => x.LocationId == events.LocationId);
-            }
+            var t = temp.FirstOrDefault();
+            Movie events = context.Movies.
+                Where(x => x.EventId == t.EventId && x.Date == t.Date && x.LocationId == t.LocationId).
+                FirstOrDefault();
 
             return events;
         }
