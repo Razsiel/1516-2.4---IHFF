@@ -65,11 +65,11 @@
             <div class="overlay-overlayable" style="bottom: 210px; margin-left:235px">
                 Datum :
                 <select name="Date" class="c-select ">
-                    @for (int i = (int)DayOfWeek.Wednesday; i <= (int)DayOfWeek.Sunday; i++)
-                    {
-                        //+5 is to shift the enum integer to the correct day of the month May (e.g DayOfWeek.Wednesday = 3, May 8th = Wednesday)
-                        <option value="@i+5">@Enum.GetName(typeof(DayOfWeek), i)</option>
-                    }
+                    <option value="8" selected="selected">Woensdag</option>
+                    <option value="9">Donderdag</option>
+                    <option value="10">Vrijdag</option>
+                    <option value="11">Zaterdag</option>
+                    <option value="12">Zondag</option>
                 </select>
             </div>
             <div class="overlay-overlayable" style="bottom: 175px; margin-left:235px">
