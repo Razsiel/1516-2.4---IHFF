@@ -106,7 +106,7 @@ footer > .container > .row {
 }
 
 .banner {
-    background-image: url(../../../Resources/Placeholder.png);
+    background-image: url(../../../Resources/Photos/Haarlem.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50%;
@@ -165,7 +165,7 @@ input {
 }
 
 .thumbnail {
-    color: #000;
+    color: #2c2e2d;
     margin-top: 20px;
     margin-bottom: 10px;
 }
@@ -197,7 +197,7 @@ input {
 }
 
 .overlay {
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: rgba(0, 0, 0, 0.45);
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -225,6 +225,18 @@ input {
     text-decoration: none;
 }
 
+.no-btn-info,
+.no-btn-info:hover,
+.no-btn-info:active {
+    cursor: initial;
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    display: block;
+    box-shadow: none;
+    padding: 0px;
+}
+
 hr.dashed {
     border: 8px;
     border-top: 0px;
@@ -243,6 +255,10 @@ li.rating {
     border: 1px solid #fff;
     background: #fff;
     padding: 2px;
+}
+
+li.norating {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 li.rating > img {
@@ -373,6 +389,14 @@ h6 {
   border-color: #9f1f2c;
 }
 
+.fancybox-skin {
+    margin-bottom: 20px!important;
+}
+
+.set-center{
+    text-align: center;
+}
+
 /* Breadcrumbs */
 .breadcrumb{
     background-color: transparent;
@@ -449,10 +473,84 @@ a.movieTitle:hover{
 
 .movieBtn {
     width: 150%!important;
+    margin-top: -5px;
 }
 
 .movieDropDown{
     max-width: 110%;
+}
+
+.movies {
+    margin-bottom: 20px;
+}
+
+
+.fancybox-inner > div > .row > .moviePoster > img {
+    float: right;
+}
+
+/* SpecialsPage */
+.specialImage {
+    width: 90%;
+    height: 90%;
+    float: right;
+}
+
+/* Special && Movie */
+.nav-pills > li {
+    display: inline-block;
+    float: left;
+    text-align: center;
+    width: 16.4%;
+    color: #0b66ba;
+}
+
+ul.nav-pills {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.filter{
+    width: 100%;
+    margin-top: 15px;
+}
+
+.filterContainter {
+    
+    border-bottom: 1px solid #0b66ba;
+}
+
+.nav-pills > li > a.active {
+    background-color: #0b66ba;
+    color: #fff;
+}
+
+.nav-pills > li > a {
+    color: #0b66ba;
+    text-decoration: none;
+}
+
+#spinner {
+    display: none;
+    position: absolute;
+    left: 50%;
+}
+
+/* Food&Film */
+div.food-and-film {
+    background-color: #CCC;
+}
+
+div.food-and-film > .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+div.food-and-film > h3 > span {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 20px;
+
 }
 
 /* Wishlist */
@@ -487,4 +585,98 @@ td > input[type=checkbox] {
 .fancybox-inner > div > .row {
     margin-left: 0px;
     margin-right: 0px;
+}
+
+ul.dash {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1em;
+}
+ul.dash > li:before {
+    display: inline-block;
+    content: "-";
+    width: 1em;
+    margin-left: -1em;
+}
+
+.payment {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.short-row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.small-text > * {
+    font-size: 12px;
+}
+
+.fancybox-absolute {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+
+/* FOR PAYMENT SELECTION */
+.payment input {
+    -webkit-appearance:none;
+       -moz-appearance:none;
+}
+
+.payment2 input{
+    position:absolute;
+    z-index:999;
+    margin-left: 4px;
+}
+
+.payment input:active +.payment-selection{opacity: .9;}
+.payment input:checked +.payment-selection{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+
+.payment2 input:active +.payment-selection{opacity: .9;}
+.payment2 input:checked +.payment-selection{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+
+.payment-selection{
+    cursor: pointer;
+    background-size: contain;
+    background-repeat:no-repeat;
+    display: inline-block;
+    width: 100%;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+
+.payment-selection:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+.paypal{
+    background-image:url(../../Resources/Icons/paypal.png);
+}
+
+/* Mini wishlist */
+div.container table.wishlistMini td {
+    padding: 0;
+    border-bottom:1pt solid #da2738;
+}
+
+.miniWishlistTitle {
+    padding-left: 10px;
+    padding-right: 10px;
 }

@@ -1,39 +1,85 @@
 ﻿@using IHFF.Models
 @model Wishlist
 
-<div class="row">
-    <div class="col-sm-5">
-        <h4 class="default">Uw contact info</h4>
-        @using (Html.BeginForm())
-            {
-            <fieldset>
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm("SaveWishlist", "Wishlist", FormMethod.Post))
+        {
+            <div class="col-sm-5">
+                <h4 class="default">Uw contact info</h4>
+
                 <div class="form-group">
-                    @Html.ValidationMessageFor(m => Model.Name)
-                    @Html.LabelFor(m => Model.Name)
-                    @Html.TextBoxFor(m => Model.Name, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
-                    @Html.ValidationMessageFor(m => Model.EmailAddress)
-                    @Html.LabelFor(m => Model.EmailAddress)
-                    @Html.TextBoxFor(m => Model.EmailAddress, new { @class = "form-control", @placeholder = "voorbeeld@domein.nl" })
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "voorbeeld@domein.nl" })
                 </div>
-            </fieldset>
                 <div class="row myrow">
-                    <div class="col-sm-8">
-                        <small>
-                            Om uw wishlist op te slaan of om deze af te rekenen hebben wij uw naam en e-mail adres nodig om de benodigde informatie door te sturen
-                        </small>
+                    <div class="col-sm-8 small-text">
+                        <p>
+                            Om uw wishlist op te slaan of om deze af te rekenen hebben wij
+                            uw naam en e-mail adres nodig om de benodigde informatie door te sturen
+                        </p>
                     </div>
                     <div class="col-sm-4 pull-down">
-                        <div class="btn btn-primary btn-lg pull-right fancybox" href='Url.Action("SaveWishlist", Model)'>Opslaan</div>
+                        <a class="btn btn-primary btn-lg btn-block fancybox"
+                           href="@Url.Action("SaveWishlist")" id="save" name="SaveWishlist">
+                            Opslaan
+                        </a>
                     </div>
                 </div>
+            </div>
+            <div class="col-sm-4 col-sm-offset-3 right">
+                <h5 class="text-right">Kies uw betaalmethode</h5>
+                <div class="row payment2">
+                    <div class="col-md-4">
+                        <input checked="checked" type="radio" id="paypal" name="Payment" value="paypal" />
+                        <label class="payment-selection" for="paypal">
+                            <img src="~/Resources/Icons/paypal.png" class="img-responsive" alt="Online betalen met PayPal" />
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="radio" id="iDeal" name="Payment" value="iDeal" />
+                        <label class="payment-selection" for="iDeal">
+                            <img src="~/Resources/Icons/iDeal.png" class="img-responsive" alt="Online betalen met iDeal" />
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="radio" id="cash" name="Payment" value="cash" />
+                        <label class="payment-selection" for="cash">
+                            <img src="~/Resources/Icons/cash_icon.png" class="img-responsive" alt="Contant betalen bij kassa" />
+                        </label>
+                    </div>
+                </div>
+                <p class="text-right">
+                    Totaal: @Model.GetTotalPrice().ToString("C", Globals.CurrentCulture)
+                </p>
+                @if (Model.WishlistItems.Any(x => x.Selected == true))
+                {
+                    <a class="btn btn-primary btn-lg btn-block fancybox"
+                       href="@Url.Action("Checkout", new { Name = Model.Name, Email = Model.Email })" id="checkout" name="Checkout">
+                        Afrekenen
+                    </a>
+                }
+                else
+                {
+                    <span class="btn btn-primary btn-lg btn-block disabled">
+                        Afrekenen
+                    </span>
+                }
+                <div class="small-text">
+                    <br />
+                    <strong>Belangrijke informatie:</strong>
+                    <ul class="dash small-text">
+                        <li>Alle sales zijn definitief</li>
+                        <li>Reserveringen worden automatisch gemaakt na betaling</li>
+                        <li>Tickets moeten worden opgehaald bij de balie van het iHff</li>
+                    </ul>
+                </div>
+            </div>
         }
-
-    </div>
-    <div class="col-sm-4 col-sm-offset-3 right">
-        <h5>Kies uw betaalmethode</h5>
-        @Html.ActionLink("Afrekenen", "Checkout", Wishlist.Instance, new { @class = "btn btn-primary btn-lg btn-block" })
     </div>
 </div>
 
@@ -47,9 +93,33 @@
                 fitToView: true,
                 autoSize: true,
                 openEffect: 'fade',
-                closeEffect: 'fade'
+                closeEffect: 'fade',
+                afterClose: function () {
+                    parent.location.reload(true);
+                }
             });
             return false;
         })
+    })
+
+    $("#save").click(function () {
+        var oldUrl = $(this).attr("name");
+        var nameVal = $("#Name").val().replace(" ", "%20");
+        var emailVal = $("#Email").val();
+        //alert(oldUrl);
+        var url = "/Wishlist/" + oldUrl + "?" + "Name=" + nameVal + "&Email=" + emailVal;
+        //alert(url);
+        $(this).attr("href", url);
+    })
+
+    $("#checkout").click(function () {
+        var oldUrl = $(this).attr("name");
+        var nameVal = $("#Name").val().replace(" ", "%20");
+        var emailVal = $("#Email").val();
+        var paymentValue = $("input[name=Payment]:checked").val();
+        //alert(oldUrl);
+        var url = "/Wishlist/" + oldUrl + "?" + "Name=" + nameVal + "&Email=" + emailVal + "&Payment=" + paymentValue;
+        //alert(url);
+        $(this).attr("href", url);
     })
 </script>

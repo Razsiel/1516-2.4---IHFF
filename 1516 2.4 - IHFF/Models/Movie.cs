@@ -11,6 +11,24 @@ namespace IHFF.Models
     public class Movie : Event
     {
         public Movie() { }
+
+        public Movie(int eventId, DateTime date, int locationId, string discriminator, string title, string director, Int16 yearOfRelease, byte rating, string actors, string description, string url,
+            string image, string extra, TimeSpan duration, string description_NL, decimal price, string youtubeLink) : base(eventId, date, locationId, discriminator)
+        {
+            this.Title = title;
+            this.Director = director;
+            this.YearOfRelease = yearOfRelease;
+            this.IMDBRating = rating;
+            this.Actors = actors;
+            this.Description = description;
+            this.IMDBUrl = url;
+            this.Image = image;
+            this.ExtraInfo = extra;
+            this.Duration = duration;
+            this.Description_NL = description_NL;
+            this.Price = price;
+            this.YoutubeLink = youtubeLink;
+        }
         
         public string Title { get; set; }
         public string Director { get; set; }
@@ -20,13 +38,11 @@ namespace IHFF.Models
         public string Description { get; set; }
         public string IMDBUrl { get; set; }
         public string Image { get; set; }
-
-        [NotMapped]
-        public override TimeSpan Duration { get; set; }
-        [NotMapped]
+        public string ExtraInfo { get; set; }
+        public TimeSpan Duration { get; set; }
         public string Description_NL { get; set; }
-        [NotMapped]
         public decimal Price { get; set; }
+        public string YoutubeLink { get; set; }
 
         [NotMapped]
         public IEnumerable<Event> Airings { get; set; }
@@ -39,6 +55,11 @@ namespace IHFF.Models
         public override string GetImage()
         {
             return this.Image;
+        }
+
+        public override decimal GetPrice()
+        {
+            return this.Price;
         }
     }
 }

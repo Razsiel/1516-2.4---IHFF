@@ -18,17 +18,6 @@ namespace IHFF.Helpers
             return new MvcHtmlString(htmlString);
         }
 
-        // Create a substring for movie descriptions
-        public static string TrimStringIfLongerThan(this string value, int maxLenght)
-        {
-            if (value.Length > maxLenght)
-            {
-                return (value.Substring(0, maxLenght));
-            }
-            
-            return value;
-        }
-
         // Creates an ActionLink with an image
         public static MvcHtmlString ActionImage(this HtmlHelper html, string action, string imagePath, string controllerName = null,
             string anchorClass = null, string imgClass = null, object routeValues = null, string alt = null)

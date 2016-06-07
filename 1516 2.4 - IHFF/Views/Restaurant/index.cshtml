@@ -6,21 +6,59 @@
 }
 
 <h2>RestaurantOverzicht</h2>
+<br />
 <div class="container">
     @foreach (Restaurant item in Model)
     {
-        <div class="col-sm-4">
+
+    <div class="col-sm-4">
             <div class="overlayable">
-                <a><img src="~/Resources/Placeholder.png" class="img-responsive" /></a>
-                <div class="overlay-overlayable" style="bottom: 20px">STERREN</div>
+                <a>
+                    <img src="data: image/jpg;base64, @item.Image" class="img-responsive" style="width:100%;"/>
+                </a>
+                    <div class="overlay-overlayable" style="bottom: 5px; width: 100%;">
+                        <ul class="list-inline rating text-center" style="float: right; margin-right: 15px;">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                //Iterate 5 times for all the star ratings
+                                //Check if iteration is lower than the rating, if so put full star
+                                if (i <= (int)item.Rating)
+                                {
+                                    <li class="rating" style="background:#da2738;"><img src="~/Resources/star_invert.png" /></li>
+                                }
+                                //Check if iteration is between value and value + 1 and write half star
+                                else if (i > item.Rating && i < item.Rating + 1)
+                                {
+                                    int percentage = (int)((item.Rating % 1) * 100);
+                                    string gradiant = string.Format("#da2738 {0}%, rgba(255, 255, 255, 0.3) {1}%, rgba(255, 255, 255, 0.3) 100%", percentage, percentage + 1);
+                                    <li class="rating" style="background: -webkit-linear-gradient(left, @gradiant );
+                                    background: -o-linear-gradient(left, @gradiant );
+                                    background: -moz-linear-gradient(left, @gradiant );
+                                    background: linear-gradient(to right, @gradiant );
+                                    "><img src="~/Resources/star_invert.png" /></li>
+                                }
+                                //Otherwise write empty star
+                                else
+                                {
+                                    <li class="rating norating"><img src="~/Resources/star_invert.png" /></li>
+                                }
+                            }
+                        </ul>
+                    </div>
             </div>
 
+            <div class="overlay-overlayable" style="top: -15px;">
+                <a><img src="data: image/png;base64, @item.ResImage3" class="img-responsive" style="width:30%;" /></a>
+            </div>
 
-            <h4 class="text-center primary-color">@item.Name</h4>
-            <p> @item.Info <p/>
-
-            @Html.ActionLink("Reserveer nu", "Dijkers", "Restaurant", null, new { @class = "btn btn-primary btn-block" })
+            <a href="@Url.Action("RestaurantInfo", "Restaurant", new { item.EventId })">
+                <h3 class="text-center">@item.Name</h3>
+            </a>
+            <br />
+            <p> @item.Info @Html.ActionLink("Lees verder", "RestaurantInfo", "Restaurant", new { item.EventId }, new { @class = "" }) <p/>
+            
+            @Html.ActionLink("Reserveer nu", "RestaurantInfo", "Restaurant", new { item.EventId }, new { @class = "btn btn-primary btn-block" })
             <br />
         </div>
-    }
-</div>
+      }
+  </div>

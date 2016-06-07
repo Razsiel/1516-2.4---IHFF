@@ -17,9 +17,40 @@ namespace IHFF.Repositories
             ctx.SaveChanges();
         }
 
-        public void Checkout(Wishlist wishlist)
+        public Wishlist Checkout(Wishlist wishlist)
         {
-            
+            //Check whether the wishlist already exists in the db
+            Wishlist w = ctx.Wishlists.Where(x => x.UID == wishlist.UID).FirstOrDefault();
+
+            // Add the wishlist to the DB if it hasn't been found
+            if (w == null)
+            {
+                w = ctx.Wishlists.Add(wishlist);
+            }
+
+            // Iterate through all wishlistitems
+            // Check whether the item has already been saved in the DB before
+            // If not, then add it to the DB
+            foreach (WishlistItem item in w.WishlistItems)
+            {
+                if (item.Selected)
+                {
+                    item.PayedFor = true;
+                }
+                IQueryable<WishlistItem> itemsInDb = ctx.WishlistItems
+                   .Where(x => x.EventId == item.EventId
+                   && x.Date == item.Date
+                   && x.LocationId == item.LocationId);
+                if (itemsInDb.Count() == 0)
+                {
+                    ctx.WishlistItems.Add(item);
+                }
+            }
+
+            // Save entire wishlist
+            ctx.SaveChanges();
+            Wishlist.Instance = GetWishlist(wishlist.UID);
+            return Wishlist.Instance;
         }
 
         public Wishlist GetOrCreateWishlist(string code)
@@ -43,20 +74,58 @@ namespace IHFF.Repositories
             return wishlist;
         }
 
-        public void Remove(Wishlist wishlist, WishlistItem wishlistItem)
+        public Wishlist GetWishlist(string UID)
         {
-            
+            Wishlist wishlist = ctx.Wishlists.FirstOrDefault(x => x.UID == UID);
+            if (wishlist != null)
+            {
+                wishlist.WishlistItems = ctx.WishlistItems.Where(x => x.WishlistUID == UID).ToList();
+                Wishlist.Instance = wishlist;
+            }
+            return Wishlist.Instance;
         }
 
-        public void SaveWishlist(Wishlist wishlist)
+        public void Remove(Wishlist wishlist, WishlistItem wishlistItem)
         {
-            Wishlist w = ctx.Wishlists.Where(x => x.UID == wishlist.UID).FirstOrDefault();
+            Wishlist w = GetWishlist(wishlist.UID);
+            wishlist.WishlistItems.Remove(wishlistItem);
+            if (w.WishlistItems.Where(x => x.WishlistItemId == wishlistItem.WishlistItemId) != null)
+            {
+                w.WishlistItems.Remove(wishlistItem);
+            }
             ctx.SaveChanges();
         }
 
-        public void Update(Wishlist wishlist, WishlistItem wishlistItem)
+        public Wishlist SaveWishlist(Wishlist wishlist)
         {
-            throw new NotImplementedException();
+            //Check whether the wishlist already exists in the db
+            Wishlist w = ctx.Wishlists.Where(x => x.UID == wishlist.UID).FirstOrDefault();
+
+            // Add the wishlist to the DB if it hasn't been found
+            if (w == null)
+            {
+                w = ctx.Wishlists.Add(wishlist);
+            }
+
+            // Iterate through all wishlistitems
+            // Check whether the item has already been saved in the DB before
+            // If not, then add it to the DB
+            foreach (WishlistItem item in w.WishlistItems)
+            {
+                IQueryable<WishlistItem> itemsInDb = ctx.WishlistItems
+                    .Where(x => x.EventId == item.EventId 
+                    && x.Date == item.Date 
+                    && x.LocationId == item.LocationId);
+                if (itemsInDb.Count() == 0)
+                {
+                    ctx.WishlistItems.Add(item);
+                }
+            }
+
+            // Save wishlist changes
+            ctx.SaveChanges();
+            Wishlist.Instance = GetWishlist(wishlist.UID);
+            return Wishlist.Instance;
         }
     }
 }

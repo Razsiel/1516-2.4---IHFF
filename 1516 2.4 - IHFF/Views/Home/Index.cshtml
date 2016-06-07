@@ -1,12 +1,14 @@
-﻿@{
+﻿@using IHFF.Models
+@model HomeViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
 @Html.Partial("_Banner")
 <hr />
-@Html.Partial("_MovieContent")
+@Html.Partial("_MovieContent", Model.Movies)
 <hr />
-@Html.Partial("_RestaurantContent")
+@Html.Partial("_RestaurantContent", Model.Restaurants)
 <hr />
 @Html.Partial("_SpecialsContent")
 <hr />

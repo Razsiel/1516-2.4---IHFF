@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IHFF.Models
 {
-    [Table("Locations")]
+    [Table("Location")]
     public class Location
     {
         public Location() { }
@@ -18,6 +18,6 @@ namespace IHFF.Models
         public string Room { get; set; }
         public int Capacity { get; set; }
 
-        public ICollection<Event> Events { get; set; }
+        public virtual ICollection<Event> Events { get; set; }
     }
 }

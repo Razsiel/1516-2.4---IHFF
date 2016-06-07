@@ -33,16 +33,16 @@
             <h6>Tell your friends what you're up to!</h6>
             <div class="row sm-icons">
                 <div class="col-xs-3">
-                    <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    <img src="~/Resources/Icons/facebook.png" class="img-responsive" />
                 </div>
                 <div class="col-xs-3">
-                    <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    <img src="~/Resources/Icons/twitter.png" class="img-responsive" />
                 </div>
                 <div class="col-xs-3">
-                    <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    <img src="~/Resources/Icons/google-plus.png" class="img-responsive" />
                 </div>
                 <div class="col-xs-3">
-                    <img src="~/Resources/Placeholder.png" class="img-responsive" />
+                    <img src="~/Resources/Icons/note.png" class="img-responsive" style="background-color:#0B66AD; padding:5px;"/>
                 </div>
             </div>
         </div>
@@ -56,8 +56,12 @@
     {
         @Html.Partial("_WishlistEmpty", Model)
     }
+    else
+    {
+        @Html.Partial("_Cart", Model)
+        @Html.Partial("_Contact", Model)
+    }
 }
-@Html.Partial("_Cart", Model)
-@Html.Partial("_Contact", Model)
+
 <br />
 

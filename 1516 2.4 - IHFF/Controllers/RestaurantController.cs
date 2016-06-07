@@ -12,15 +12,32 @@ namespace IHFF.Controllers
     public class RestaurantController : Controller
     {
         private IRestaurantRepository restaurantsRepository = new RestaurantsRepository();
-        
+        private IWishlistRepository wishlistRepository = new WishlistRepository();
+
         public ActionResult Index()
         {
            return View(restaurantsRepository.GetAllRestaurants());
         }
 
-        public ActionResult Dijkers()
+        [HttpPost]
+        public ActionResult Index(int Date, TimeSpan Time, int Amount, int RestaurantId)
         {
-            return View();
+            Wishlist wishlist = wishlistRepository.GetWishlist(Wishlist.Instance.UID);
+
+            Restaurant restaurant = restaurantsRepository.GetRestaurant(RestaurantId);
+            RestaurantReservation r = restaurantsRepository.CreateReservation(restaurant, Amount, Time, Date);
+
+            WishlistItem item = new WishlistItem(r, wishlist);
+
+            wishlist.WishlistItems.Add(item);
+
+            Wishlist.Instance = wishlist;
+            return RedirectToAction("Index", "Wishlist");
+        }
+
+        public ActionResult RestaurantInfo(int EventId)
+        {
+            return View(restaurantsRepository.GetRestaurant(EventId));
         }
     }
 }

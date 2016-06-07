@@ -11,7 +11,7 @@
             <br />
             <div>
                 <h5>Vul hier uw wishlist code in</h5>
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("GetWishlist", "Wishlist", FormMethod.Post))
                 {
                     <div class="row">
                         <div class="col-sm-6">
@@ -22,9 +22,11 @@
                         </div>
                     </div>
                 }
-                <small>
-                    Deze wishlist code vind u in uw email inbox na het invullen van uw gegevens, er een wishlist is opgesteld en u op 'Opslaan' klikt. (Hieronder vind u een voorbeeld van de wishlist)
-                </small>
+                <div class="small-text">
+                    <p>
+                        Deze wishlist code vind u in uw email inbox na het invullen van uw gegevens, er een wishlist is opgesteld en u op 'Opslaan' klikt. (Hieronder vind u een voorbeeld van de wishlist)
+                    </p>
+                </div>
             </div>
         </div>
         <div class="col-md-6 col-md-offset-1">

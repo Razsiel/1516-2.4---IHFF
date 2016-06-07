@@ -1,0 +1,114 @@
+@using IHFF.Models
+@using IHFF.Helpers
+@model  Movie
+
+<p>
+    <iframe width='800' height='410'
+            src="https://www.youtube.com/embed/@Model.YoutubeLink"
+            frameborder="0" allowfullscreen></iframe>
+</p>
+
+<div class="row">
+    <div class="col-md-5 movieDescription">
+        <p>
+            <h3>@Model.Title</h3>
+        </p>
+        @MvcHtmlString.Create(Html.Encode(Model.Description_NL).Replace(Environment.NewLine, "<br />"))
+    </div>
+    <div class="col-md-3">
+        <p>
+            <b>Duur:</b> @Model.Duration.TotalMinutes minuten <br />
+            <b>Release:</b> @Model.YearOfRelease <br />
+            <b>Regisseur:</b> @Model.Director
+        </p>
+        <p>
+            Met o.a. @Model.Actors
+        </p>
+    </div>
+    <div class="col-md-4 moviePoster">
+        <img src="@String.Format("data:image/png;base64,{0}", Model.Image)" />
+    </div>
+</div>
+
+<br />
+
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="col-md-3">Datum &amp; Tijd</th>
+                <th class="col-md-4">Locatie</th>
+                <th class="col-md-2">Aantal tickets</th>
+                <th class="col-md-3">Prijs per ticket: &euro; @Model.Price.ToString("N2")</th>
+            </tr>
+        </thead>
+            @foreach (Event airing in Model.Airings)
+            {
+                    <tbody>
+                        <tr>
+                            <td>
+                                @airing.DayName.UppercaseFirst(), @airing.Date.ToString("HH:mm") - @airing.EndTime
+                            </td>
+                            <td>
+                                @airing.LocationString
+                            </td>
+                            <td>
+                                <select name="ticketAmount" class="movieDropDown" id="@airing.Date.ToShortDateString()">
+                                    @for (int i = 1; i <= 10; i++)
+                                    {
+                                        if (i == 1)
+                                        {
+                                            <option value="@i">@i ticket</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@i">@i tickets</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                            <td class="set-center">
+                                @using (Html.BeginForm("Index", "Movies"))
+                                {
+                                    <input type="submit" class="btn btn-primary movieInfo" date="@airing.Date.ToShortDateString()" value="Toevoegen" />
+                                    <input type="hidden" name="locationId" value="@airing.LocationId" />
+                                    <input type="hidden" name="eventDate" value="@airing.Date" />
+                                    <input type="hidden" name="EventId" value="@Model.EventId" />
+                                    <input type="hidden" name="ticketAmount" ticketId="@airing.Date.ToShortDateString()" />
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+    </table>
+</div>
+
+
+<div class="food-and-film set-center">
+    <h3>Combineer een film samen met een diner met onze <span>Film&amp;Food</span> tickets!</h3>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Ratatouille</h3>
+        </div>
+        <div class="col-md-4">
+            <h3>Restaurant Terra</h3>
+        </div>
+        <div class="col-md-4">
+            <h3>De Uitkijk</h3>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.movieInfo').click(function (e) {
+            var id = $(this).attr('date');
+            var aantal = $('#' + id).val();
+            $('input[ticketId=' + id + ']').val(aantal);
+        });
+    });
+</script>
+
+
+<!--<a href="javascript:jQuery.fancybox.close();">Close me</a>-->

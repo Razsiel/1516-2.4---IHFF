@@ -14,7 +14,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IHFF</RootNamespace>
-    <AssemblyName>1516 2.4 - IHFF</AssemblyName>
+    <AssemblyName>IHFF</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -139,6 +139,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\SpecialsController.cs" />
+    <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="Helpers\Globals.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Interfaces\IRestaurantRepository.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
@@ -147,8 +152,11 @@
     <Compile Include="Helpers\CollectionUtils.cs" />
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Interfaces\IMovieRepository.cs" />
+    <Compile Include="Interfaces\ISpecialsRepository.cs" />
     <Compile Include="Interfaces\IWishlistRepository.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\RestaurantReservation.cs" />
     <Compile Include="Models\WishlistItem.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -158,7 +166,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IHFFContext.cs" />
     <Compile Include="Repositories\MoviesRepository.cs" />
-    <Compile Include="Repositories\RestaurantsRepository.cs" />
+    <Compile Include="Repositories\RestaurantsRepository.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Repositories\SpecialsRepository.cs" />
     <Compile Include="Repositories\WishlistRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -186,10 +197,37 @@
     <Content Include="Content\Fonts\Rambla-BoldItalic.ttf" />
     <Content Include="Content\Fonts\Rambla-Regular.ttf" />
     <None Include="Properties\PublishProfiles\Deployment.pubxml" />
-    <None Include="Resources\Brand.png" />
-    <None Include="Resources\Placeholder.png" />
-    <None Include="Resources\star.png" />
-    <None Include="Resources\special tickets.png" />
+    <Content Include="Resources\4 en half ster.png" />
+    <Content Include="Resources\4 ster.png" />
+    <Content Include="Resources\5 ster.png" />
+    <Content Include="Resources\ajax-loader.gif" />
+    <Content Include="Resources\Brand.png" />
+    <Content Include="Resources\discussion_forum.jpg" />
+    <Content Include="Resources\Icons\cash_icon.png" />
+    <Content Include="Resources\Icons\circle.png" />
+    <Content Include="Resources\Icons\facebook.png" />
+    <Content Include="Resources\Icons\favorited.png" />
+    <Content Include="Resources\Icons\google-plus.png" />
+    <Content Include="Resources\Icons\iDeal.png" />
+    <Content Include="Resources\Icons\note.png" />
+    <Content Include="Resources\Icons\paypal.png" />
+    <Content Include="Resources\Icons\ticket.png" />
+    <Content Include="Resources\Icons\twitter.png" />
+    <Content Include="Resources\lecture.jpg" />
+    <Content Include="Resources\Photos\Cinema.jpg" />
+    <Content Include="Resources\Photos\Dineren.jpg" />
+    <Content Include="Resources\Photos\Evenementen.jpg" />
+    <Content Include="Resources\Photos\filmoverzicht.png" />
+    <Content Include="Resources\Photos\GroteMarkt.jpg" />
+    <Content Include="Resources\Photos\Haarlem.jpg" />
+    <Content Include="Resources\Photos\specialetickets.png" />
+    <Content Include="Resources\Placeholder.png" />
+    <Content Include="Resources\Reserveren Image.png" />
+    <Content Include="Resources\ReserverenLogo.png" />
+    <Content Include="Resources\special tickets.png" />
+    <Content Include="Resources\star.png" />
+    <Content Include="Resources\star_invert.png" />
+    <Content Include="Resources\technology.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -210,7 +248,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <None Include="Views\Movies\_MovieInfo.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -233,18 +270,23 @@
     <Content Include="Views\Home\_InfoContent.cshtml" />
     <Content Include="Views\Restaurant\Index.cshtml" />
     <Content Include="Views\Wishlist\Index.cshtml" />
-    <Content Include="Views\Restaurant\Dijkers.cshtml" />
     <Content Include="Views\Wishlist\_WishlistEmpty.cshtml" />
     <Content Include="Views\Wishlist\_Cart.cshtml" />
     <Content Include="Views\Wishlist\_Contact.cshtml" />
     <Content Include="Views\Wishlist\_CartItem.cshtml" />
     <Content Include="Views\Wishlist\_PopupSave.cshtml" />
+    <Content Include="Views\Restaurant\RestaurantInfo.cshtml" />
+    <Content Include="Views\Movies\_MovieView.cshtml" />
+    <Content Include="Views\Movies\_MovieInfo.cshtml" />
+    <Content Include="Views\Specials\Index.cshtml" />
+    <Content Include="Views\Specials\_SpecialView.cshtml" />
+    <Content Include="Views\Shared\_WishlistMini.cshtml" />
+    <Content Include="Views\Wishlist\_PopupOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\IRestaurantRepository\" />
-    <Folder Include="Views\RestaurantInfo\" />
-    <Folder Include="Views\RestaurantsRepository\" />
+    <Folder Include="Content\Resources\Icons\" />
+    <Folder Include="Content\Resources\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

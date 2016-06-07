@@ -1,0 +1,87 @@
+﻿@using IHFF.Models
+@using IHFF.Helpers
+@model IEnumerable<Special>
+
+@foreach (Special item in Model)
+{
+    using (Html.BeginForm("Index", "Specials"))
+    {
+        <div class="row movieRow justify-height-container">
+
+            <div class="col-md-7 justify-height">
+                <h3 class="movieTitle">
+                    @item.Name
+                </h3>
+
+                @{if (!item.ExtraInfo.IsEmpty())
+                    {
+                        <p>
+                            Extra informatie: @item.ExtraInfo
+                        </p>
+                    }
+                }
+
+                <b>Duur:</b> @item.Duration.ToString("hh\\:mm") uur
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <b>Prijs:</b> Gratis
+                    </div>
+                    <br />
+                    <div class="col-md-7">
+                        @item.GetLocationString().UppercaseFirst()
+                        <input type="hidden" name="EventId" value="@item.EventId" />
+                    </div>
+                    <div class="col-md-3">
+                        <select name="ticketAmount" class="movieDropDown">
+                            @for (int i = 1; i <= 10; i++)
+                            {
+                                if (i == 1)
+                                {
+                                    <option value="@i">@i ticket</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">@i tickets</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <input type="submit" class="btn btn-primary btn-block movieBtn" value="Toevoegen" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                @{ if (item.Name.Contains("lezing") || item.Name.Contains("Lezing"))
+                    {
+                        <img src="~/Resources/lecture.jpg" class="specialImage" />
+                    }
+                    else
+                    {
+                        <img src="~/Resources/discussion_forum.jpg" class="specialImage" />
+                    }
+                }
+            </div>
+        </div>
+                        }
+                    }
+
+<script>
+    $(document).ready(function () {
+
+        $(".fancybox").click(function () {
+            $.fancybox.open({
+                content: $('<div>').load($(this).attr('href')),
+                type: 'ajax',
+                maxWidth: 800,
+                fitToView: false,
+                autoSize: true,
+                openEffect: 'fade',
+                closeEffect: 'fade'
+            });
+            return false;
+        })
+    });
+</script>

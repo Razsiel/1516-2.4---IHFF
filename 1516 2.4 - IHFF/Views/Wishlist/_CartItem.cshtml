@@ -6,42 +6,108 @@
     {
         <td></td>
         <td>
-            <img src="data:image/jpg;base64, @Model.Event.GetImage()" />
-            @Model.Event.GetName()
-            <div class="btn btn-info btn-block">Gereserveerd</div>
+            <div class="row">
+                <div class="col-sm-3" style="padding-left: 0px;">
+                    <img src="data:image/jpg;base64, @Model.GetImage()" class="img-responsive" style="max-height:60px;"/>
+                </div>
+                <div class="col-sm-8" style="padding-left: 0px;">
+                    @Model.GetName()
+                    <div class="btn no-btn-info pull-down">Gereserveerd</div>
+                </div>
+            </div>
         </td>
         <td>
-            <!--Model.Event.LocationString-->
+            @Model.GetLocation()
             <br />
-            @Model.Event.Date.TimeOfDay.ToString()
+            @Model.Date.TimeOfDay.ToString()
         </td>
         <td></td>
         <td>@Model.Amount</td>
-        <td>@((7.50 * Model.Amount).ToString("C"))</td>
+        <td>@((7.50 * Model.Amount).ToString("C", Globals.CurrentCulture))</td>
         <td></td>
     }
     else
     {
-        using (Html.BeginForm())
+        <td>
+            @using (Html.BeginForm("SelectedChange", null, FormMethod.Post, new { @class = "formSelect", @unique = Model.EventId }))
+            {
+                @Html.CheckBoxFor(x => x.Selected, new { @class = "targetSelection" })
+                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
+                <input type="hidden" name="EventId" value="@Model.EventId" />
+            }
+        </td>
+        <td>
+            <div class="row">
+                <div class="col-sm-3" style="padding-left: 0px;">
+                    <img src="data:image/jpg;base64, @Model.GetImage()" class="img-responsive" style="max-height:60px;" />
+                </div>
+                <div class="col-sm-8" style="padding-left: 0px;">
+                    <h5>@Model.GetName()</h5>
+                </div>
+            </div>
+        </td>
+        <td>
+            @Model.GetLocation()
+            <br />
+            @Model.Date.TimeOfDay.ToString()
+        </td>
+        <td></td>
+        <td>
+            @using (Html.BeginForm("AmountChange", null, FormMethod.Post, new { @class = "formAmount", @uniqueTarget = Model.EventId }))
+            {
+                <select name="Amount" class="targetAmount">
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        if (Model.Amount == i)
+                        {
+                            <option value="@i" selected>@i</option>
+                        }
+                        else
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    }
+                </select>
+                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
+                <input type="hidden" name="EventId" value="@Model.EventId" />
+            }
+        </td>
+        <td>
+            @switch (Model.GetItemType())
+            {
+                case ItemType.Event:
+                    @((Model.GetPrice() * Model.Amount).ToString("C", Globals.CurrentCulture))
+                    break;
+                case ItemType.Reservation:
+                    @Model.GetPrice().ToString("C", Globals.CurrentCulture)
+                    break;
+                default:
+                    break;
+            }
+        </td>
+        
+        using (Html.BeginForm("RemoveItem", "Wishlist", FormMethod.Post))
         {
             <td>
-                @Html.CheckBoxFor(x => Model.PayedFor)
-            </td>
-            <td>
-                <img src="data:image/jpg;base64, @Model.Event.GetImage()" />
-                @Model.Event.GetName()
-            </td>
-            <td>
-                <!--Model.Event.LocationString-->
-                <br />
-                @Model.Event.Date.TimeOfDay.ToString()
-            </td>
-            <td></td>
-            <td>@Model.Amount</td>
-            <td>@((7.50 * Model.Amount).ToString("C"))</td>
-            <td>
+                <input type="hidden" name="WishlistItemId" value="@Model.WishlistItemId" />
                 <input value="Verwijder" type="submit" class="btn btn-primary" />
             </td>
         }
     }
 </tr>
+
+<script>
+    $(".targetSelection").change(function ()
+    {
+        var id = $(this).parent().attr("unique");
+        //alert((this).name + " changed!");
+        $('form[unique=' + id + ']').submit();
+    });
+
+    $(".targetAmount").change(function () {
+        //alert((this).name + " changed!");
+
+        var id = $(this).parent().attr("uniqueTarget");
+        $('form[uniqueTarget=' + id + ']').submit();
+    });
+</script>

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace _1516_2._4___IHFF
+namespace IHFF
 {
     public class FilterConfig
     {
