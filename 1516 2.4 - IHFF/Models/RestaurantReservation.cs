@@ -15,19 +15,18 @@ namespace IHFF.Models
 
         public RestaurantReservation(int EventId, string name, int amount, int tijd, int datum)
         {
-            this.EventId = EventId;
+            this.ReservationId = EventId;
             this.Amount = amount;
         }
 
-        [Key, Column(Order = 0)]
-        public int EventId { get; set; }
-
-        [Key, Column(Order = 1)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ReservationId { get; set; }
         public DateTime Date { get; set; }
-
-        [Key, Column(Order = 2)]
         public int Amount { get; set; }
 
+        public int RestaurantId { get; internal set; }
         public virtual Restaurant Restaurant { get; set; }
+        //public ICollection<WishlistItem> WishlistItems { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace IHFF.Models
 
         public Restaurant(int id, string name, int capacity, string address, string website, string info, string RestaurantInfo, string ContactInfo, string ReserveringInfo, string OpeningsTijdenInfo)
         {
-            this.EventId = id;
+            this.RestaurantId = id;
             this.Name = name;
             this.Capacity = capacity;
             this.Address = address;
@@ -28,7 +28,7 @@ namespace IHFF.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int EventId { get; set; }
+        public int RestaurantId { get; set; }
         public string Name { get; set; }
 
         public int Capacity { get; set; }

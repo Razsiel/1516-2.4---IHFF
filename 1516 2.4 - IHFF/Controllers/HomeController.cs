@@ -24,7 +24,7 @@ namespace IHFF.Controllers
             while (movies.Count() < 4)
             {
                 Movie randomMovie = m.ElementAt(rand.Next(0, m.Count() - 1));
-                while (movies.Exists(x => x.EventId == randomMovie.EventId))
+                while (movies.Exists(x => x.MovieId == randomMovie.MovieId))
                 {
                     randomMovie = m.ElementAt(rand.Next(0, m.Count() - 1));
                 }
@@ -43,7 +43,7 @@ namespace IHFF.Controllers
             while (restaurants.Count() < 4)
             {
                 Restaurant randomRestaurant = r.ElementAt(rand.Next(0, r.Count()));
-                while (restaurants.Exists(x => x.EventId == randomRestaurant.EventId))
+                while (restaurants.Exists(x => x.RestaurantId == randomRestaurant.RestaurantId))
                 {
                     randomRestaurant = r.ElementAt(rand.Next(0, r.Count()));
                 }

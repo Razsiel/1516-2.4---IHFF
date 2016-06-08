@@ -6,41 +6,23 @@ using System.Web;
 
 namespace IHFF.Models
 {
-    public class Special : Event
+    public class Special
     {
+        public Special() { }
+
+        public int SpecialId { get; set; }
         public string Name { get; set; }
         public TimeSpan Duration { get; set; }
         public string ExtraInfo { get; set; }
 
-        public Special(string name, TimeSpan duration, string extraInfo)
-        {
-            this.Name = name;
-            this.Duration = duration;
-            this.ExtraInfo = extraInfo;
-        }
-
-        public Special() { }
-
-        public override string GetName()
-        {
-            return this.Name;
-        }
-
-        public override string GetImage()
-        {
-            return "";
-        }
+        public virtual ICollection<Event> Airings { get; set; }
 
         public string GetLocationString()
         {
-            return string.Format("{0}, {1}-{2}, {3}", Globals.CurrentCulture.DateTimeFormat.GetDayName(Date.DayOfWeek),
-            DateTimeHelper.Round(Date).ToString("HH:mm"),
-            DateTimeHelper.Round((Date.Add(Duration))).ToString("HH:mm"), LocationString);
-        }
-
-        public override decimal GetPrice()
-        {
-            return 0;
+            Event e = Airings.Where(x => x.Discriminator == ItemType.Special.ToString()).FirstOrDefault();
+            return string.Format("{0}, {1}-{2}, {3}", Globals.CurrentCulture.DateTimeFormat.GetDayName(e.Date.DayOfWeek),
+            DateTimeHelper.Round(e.Date).ToString("HH:mm"),
+            DateTimeHelper.Round((e.Date.Add(Duration))).ToString("HH:mm"), e.LocationString);
         }
     }
 }

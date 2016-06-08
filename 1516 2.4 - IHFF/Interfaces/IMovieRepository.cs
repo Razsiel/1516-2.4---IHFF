@@ -12,6 +12,6 @@ namespace IHFF.Interfaces
         IEnumerable<Movie> GetAllUniqueMovies();
         Movie GetMovie(int id);
         IEnumerable<Movie> GetMovies(int id);
-        Movie GetMovieEvent(DateTime date, int eventId, int locationId);
+        Event GetMovieEvent(int eventId);
     }
 }

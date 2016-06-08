@@ -14,8 +14,7 @@ namespace IHFF.Interfaces
         /// </summary>
         /// <param name="code">Unique identifier to find the wishlist with (format: IHFF####)</param>
         /// <returns>Wishlist object</returns>
-        Wishlist GetOrCreateWishlist(string code);                      //CREATE
-        Wishlist GetWishlist(string UID);                               //READ
+        Wishlist GetWishlist(int UID);                               //READ
 
         /// <summary>
         /// Adds wishlist item to current wishlist

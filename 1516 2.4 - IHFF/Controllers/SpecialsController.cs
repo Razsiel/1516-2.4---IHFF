@@ -24,7 +24,7 @@ namespace IHFF.Controllers
         public ActionResult Index(int EventId, int ticketAmount)
         {
             Wishlist wishlist = wishlistRepository.GetWishlist(Wishlist.Instance.UID);
-            Event e = specialsRepository.GetAllSpecials().First(x => x.EventId == EventId) as Event;
+            Event e = specialsRepository.GetSpecialEvent(EventId);
 
             WishlistItem item = new WishlistItem(e, ticketAmount, wishlist);
 

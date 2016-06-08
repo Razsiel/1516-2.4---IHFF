@@ -42,7 +42,7 @@
                 <th class="col-md-3">Prijs per ticket: &euro; @Model.Price.ToString("N2")</th>
             </tr>
         </thead>
-            @foreach (Event airing in Model.Airings)
+            @foreach (Event airing in Model.Airings.Where(x => x.Discriminator == ItemType.Movie.ToString()))
             {
                     <tbody>
                         <tr>
@@ -73,7 +73,7 @@
                                     <input type="submit" class="btn btn-primary movieInfo" date="@airing.Date.ToShortDateString()" value="Toevoegen" />
                                     <input type="hidden" name="locationId" value="@airing.LocationId" />
                                     <input type="hidden" name="eventDate" value="@airing.Date" />
-                                    <input type="hidden" name="EventId" value="@Model.EventId" />
+                                    <input type="hidden" name="EventId" value="@Model.MovieId" />
                                     <input type="hidden" name="ticketAmount" ticketId="@airing.Date.ToShortDateString()" />
                                 }
                             </td>

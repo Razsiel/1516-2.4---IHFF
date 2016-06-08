@@ -9,32 +9,25 @@ using IHFF.Helpers;
 namespace IHFF.Models
 {
     [Table("Event")]
-    public abstract class Event
+    public class Event
     {
-        public Event(int eventId, DateTime date, int locationId, string discriminator)
-        {
-            this.EventId = eventId;
-            this.Date = date;
-            this.LocationId = locationId;
-            this.Discriminator = discriminator;
-        }
-
         public Event() { }
 
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EventId { get; set; }
+        public int ItemId { get; set; }
         public DateTime Date { get; set; }
         public int LocationId { get; set; }
-
-        //public virtual string ExtraInfo { get; set; }
         public string Discriminator { get; set; }
-
-
-
-
-        //public virtual TimeSpan Duration { get; set; }
+        
         public virtual Location Location { get; set; }
+        public virtual Movie Movie { get; set; }
+        public virtual Special Special { get; set; }
 
+        public ICollection<WishlistItem> WishlistItems { get; set; }
+
+        [NotMapped]
         public string AiringString
         {
             get
@@ -43,24 +36,26 @@ namespace IHFF.Models
                 {
                     return string.Format("{0}, {1}-{2}, {3}", Globals.CurrentCulture.DateTimeFormat.GetDayName(Date.DayOfWeek), 
                         DateTimeHelper.Round(Date).ToString("HH:mm"),
-                        DateTimeHelper.Round((Date.Add((this as Movie).Duration))).ToString("HH:mm"), LocationString);
+                        DateTimeHelper.Round((Date.Add((Movie).Duration))).ToString("HH:mm"), LocationString);
                 }
                 return null;
             }
         }
 
+        [NotMapped]
         public string EndTime
         {
             get
             {
                 if(Location != null)
                 {
-                    return DateTimeHelper.Round((Date.Add((this as Movie).Duration))).ToString("HH:mm");
+                    return DateTimeHelper.Round((Date.Add((Movie).Duration))).ToString("HH:mm");
                 }
                 return null;
             }
         }
 
+        [NotMapped]
         public string DayName
         {
             get
@@ -71,6 +66,8 @@ namespace IHFF.Models
                 return null;
             }
         }
+
+        [NotMapped]
         public string LocationString
         {
             get
@@ -83,8 +80,54 @@ namespace IHFF.Models
             }
         }
 
-        public abstract decimal GetPrice();// { return 0; }
-        public abstract string GetName();// { return null; }
-        public abstract string GetImage();// { return null; }
+        public ItemType GetItemType()
+        {
+            switch (this.Discriminator)
+            {
+                default:
+                case "Movie":
+                    return ItemType.Movie;
+                case "Special":
+                    return ItemType.Special;
+            }
+        }
+
+        public decimal GetPrice()
+        {
+            switch (GetItemType())
+            {
+                case ItemType.Movie:
+                    return Movie.Price;
+                case ItemType.Special:
+                    return 7.50m;
+                default:
+                    return 0;
+            }
+        }
+
+        public string GetName()
+        {
+            switch (GetItemType())
+            {
+                case ItemType.Movie:
+                    return Movie.Title;
+                case ItemType.Special:
+                    return Special.Name;
+                default:
+                    return "";
+            }
+        }
+
+        public string GetImage()
+        {
+            switch (GetItemType())
+            {
+                case ItemType.Movie:
+                    return Movie.Image;
+                default:
+                case ItemType.Special:
+                    return "";
+            }
+        }
     }
 }

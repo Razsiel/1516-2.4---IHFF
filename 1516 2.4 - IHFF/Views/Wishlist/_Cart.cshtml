@@ -30,32 +30,32 @@
                 continue;
             }
             <div class="panel-heading">@dayItems.Key</div>
-            <table class="table">
+            <table class="table cart">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>Film</th>
-                        <th>Locatie &amp; tijd</th>
-                        <th>Beschikbaar</th>
-                        <th>Aantal tickets</th>
-                        <th>Prijs</th>
-                        <th></th>
+                        <th class="col-md-1"></th>
+                        <th class="col-md-4">Evenement</th>
+                        <th class="col-md-3">Locatie &amp; tijd</th>
+                        <th class="col-md-1">Beschikbaar</th>
+                        <th class="col-md-1">Aantal tickets</th>
+                        <th class="col-md-1">Prijs</th>
+                        <th class="col-md-1"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (!Model.WishlistItems.Any())
                     {
                         <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>
+                            <td class="col-md-1"><input type="checkbox" /></td>
+                            <td class="col-md-4">
                                 <img src="~/Resources/Placeholder.png" />
                                 Film titel
                             </td>
-                            <td>Locatie,<br />00:00 - 00:00</td>
-                            <td></td>
-                            <td></td>
-                            <td>€0,00</td>
-                            <td>
+                            <td class="col-md-3">Locatie,<br />00:00 - 00:00</td>
+                            <td class="col-md-1"></td>
+                            <td class="col-md-1"></td>
+                            <td class="col-md-1">€0,00</td>
+                            <td class="col-md-1">
                                 <button class="btn btn-primary disabled">Verwijder</button>
                             </td>
                         </tr>

@@ -23,7 +23,7 @@
                 @foreach (Restaurant item in Model)
                 {
                     <div class="col-sm-3 thumbnail recommendation">
-                        <a href="@Url.Action("RestaurantInfo", "Restaurant", new { EventId = item.EventId })">
+                        <a href="@Url.Action("RestaurantInfo", "Restaurant", new { EventId = item.RestaurantId })">
                             <img src="@String.Format( "data:image/png;base64,{0}", item.Image )" class="img-responsive" />
                         </a>
                     </div>

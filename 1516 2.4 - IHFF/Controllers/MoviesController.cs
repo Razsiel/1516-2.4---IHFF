@@ -20,10 +20,10 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int EventId, int ticketAmount, int locationId, DateTime eventDate)
+        public ActionResult Index(int EventId, int ticketAmount)
         {   
             Wishlist wishlist = wishlistRepository.GetWishlist(Wishlist.Instance.UID);
-            Event e = moviesRepository.GetMovieEvent(eventDate, EventId, locationId);
+            Event e = moviesRepository.GetMovieEvent(EventId);
 
             WishlistItem item = new WishlistItem(e, ticketAmount, wishlist);
 
@@ -38,13 +38,13 @@ namespace IHFF.Controllers
             return PartialView("_MovieInfo", moviesRepository.GetMovie(Id));
         }
 
-        public ActionResult GetMovies(int Id)
+        public ActionResult GetMovies(int day)
         {
-            if(Id < 0)
+            if(day < 0)
             {
                 return PartialView("_MovieView", moviesRepository.GetAllUniqueMovies());
             }
-            return PartialView("_MovieView", moviesRepository.GetMovies(Id));
+            return PartialView("_MovieView", moviesRepository.GetMovies(day));
         }
     }
 }
