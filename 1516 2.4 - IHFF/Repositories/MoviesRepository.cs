@@ -16,7 +16,7 @@ namespace IHFF.Repositories
         public IEnumerable<Movie> GetAllUniqueMovies()
         {
             List<Movie> allMovies = context.Movies.Where(s => s.Discriminator == "M").ToList().GroupBy(m => m.Title).Select(grp => grp.First()).ToList();
-            
+             // testzin
             var temp = from Movie in context.Movies
             join Event in context.Events
                   on new { Movie.EventId, Discriminator = "M" }
