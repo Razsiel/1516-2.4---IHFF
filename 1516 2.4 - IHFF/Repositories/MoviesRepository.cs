@@ -45,7 +45,7 @@ namespace IHFF.Repositories
 
         public Event GetMovieEvent(int eventId)
         {
-            return context.Events.FirstOrDefault(x => x.EventId == eventId && x.Discriminator == ItemType.Movie.ToString());
+            return context.Events.FirstOrDefault(x => x.EventId == eventId);
         }
     }
 }

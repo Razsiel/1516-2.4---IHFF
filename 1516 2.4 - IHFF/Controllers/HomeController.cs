@@ -31,12 +31,12 @@ namespace IHFF.Controllers
                 movies.Add(randomMovie);
             }
 
-            //IEnumerable<Special> s = specialsRepository.GetAllSpecials();
+            IEnumerable<Special> s = specialsRepository.GetAllSpecials();
             List<Special> specials = new List<Special>();
-            //while (specials.Count() < 4)
-            //{
-            //    specials.Add(s.ElementAt(rand.Next(0, s.Count())));
-            //}
+            while (specials.Count() < 4)
+            {
+                specials.Add(s.ElementAt(rand.Next(0, s.Count())));
+            }
 
             IEnumerable<Restaurant> r = restaurantRepository.GetAllRestaurants();
             List<Restaurant> restaurants = new List<Restaurant>();
