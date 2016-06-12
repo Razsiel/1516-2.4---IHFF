@@ -9,7 +9,7 @@ namespace IHFF.Repositories
 {
     public class RestaurantsRepository : IRestaurantRepository
     {
-        private IHFFContext context = IHFFContext.Instance;
+        private IHFFContext context = IHFFContext.Instance; //singleton, maar 1 connectie met de databas wordt gecommuniceert 
 
         public IEnumerable<Restaurant> GetAllRestaurants()
         {
@@ -18,12 +18,12 @@ namespace IHFF.Repositories
 
         public Restaurant GetRestaurant(int id)
         {
-            return context.Restaurants.SingleOrDefault(a => a.EventId == id);
+            return context.Restaurants.SingleOrDefault(a => a.EventId == id); // "== lambda" er wordt gekeken naar alle restaurants in de context (database) en wordt alsvolg gechecked naar (de id) 
         }
 
         public RestaurantReservation CreateReservation(Restaurant r, int amount, TimeSpan time, int date)
         {
-            //Create a new reservation locally
+            //Create a new reservation locally, bij dubbele reservaties, want we kunnen niet 2x exact dezelfde data in de database ontstaan 
             RestaurantReservation reservation = new RestaurantReservation();
             DateTime d = new DateTime(2016, 6, date, time.Hours, time.Minutes, 0);
 

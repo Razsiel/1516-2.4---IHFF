@@ -43,11 +43,14 @@ namespace IHFF.Repositories
         public DbSet<WishlistItem> WishlistItems { get; set; }
         #endregion
 
+        // is het object waarmee je met de database praat, het brug tussen de database en proggama
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            // naar welke table er moet worden gekeken. 
 
             modelBuilder.Entity<Movie>().ToTable("Movie");
             modelBuilder.Entity<Special>().ToTable("Special");
@@ -55,16 +58,20 @@ namespace IHFF.Repositories
             modelBuilder.Entity<Restaurant>().ToTable("Restaurant");
             modelBuilder.Entity<RestaurantReservation>().ToTable("RestaurantReservation");
 
+            // n op 1 relaties 
+
             modelBuilder.Entity<WishlistItem>()
                 .HasRequired<Wishlist>(i => i.Wishlist)
                 .WithMany(w => w.WishlistItems)
                 .HasForeignKey(i => i.WishlistUID);
 
+            // 1 op n relaties
             modelBuilder.Entity<Wishlist>()
                 .HasMany<WishlistItem>(w => w.WishlistItems)
                 .WithRequired(i => i.Wishlist)
                 .HasForeignKey(i => i.WishlistUID);
 
+            // n op 1 relaties
             modelBuilder.Entity<RestaurantReservation>()
                 .HasRequired<Restaurant>(res => res.Restaurant)
                 .WithMany(r => r.Reservations)

@@ -29,7 +29,9 @@ namespace IHFF.Controllers
 
             WishlistItem item = new WishlistItem(r, wishlist);
 
+            // De keuze dat is gemaakt om zonder cookies te werken en dat wishlist overal te bereiken is
             wishlist.WishlistItems.Add(item);
+
 
             Wishlist.Instance = wishlist;
             return RedirectToAction("Index", "Wishlist");
