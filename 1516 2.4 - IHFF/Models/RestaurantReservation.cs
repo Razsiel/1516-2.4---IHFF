@@ -27,6 +27,7 @@ namespace IHFF.Models
 
         public int RestaurantId { get; internal set; }
         public virtual Restaurant Restaurant { get; set; }
-        //public ICollection<WishlistItem> WishlistItems { get; set; }
+        
+        public ICollection<WishlistItem> WishlistItems { get; set; }
     }
 }

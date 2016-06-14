@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 using IHFF.Models;
+using IHFF.Interfaces;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -70,10 +71,6 @@ namespace IHFF.Repositories
                 .WithMany(s => s.Airings)
                 .HasForeignKey(e => e.ItemId);
 
-            /* For inheritence if needed later
-            modelBuilder.Entity<Event>()
-                .Map<Movie>(m => m.Requires(nameof(Event.Discriminator)).HasValue(ItemType.Movie.ToString()));*/
-
             //
             // GENERALIZATION - SPECIALIZATION (WISHLISTITEM)
             //
@@ -89,12 +86,15 @@ namespace IHFF.Repositories
                 .WithMany(e => e.WishlistItems)
                 .HasForeignKey(w => w.ItemId);
 
-            // Sets n-to-1 relation between WishlistItem (n) and RestaurantReservation (1)
-            //modelBuilder.Entity<WishlistItem>()
-            //    .HasRequired<RestaurantReservation>(w => w.Reservation)
-            //    .WithMany(r => r.WishlistItems)
-            //    .HasForeignKey(w => w.ItemId);
+            // Sets 1-to-1 relation between RestaurantReservation and WishlistItem
+            //modelBuilder.Entity<RestaurantReservation>()
+            //    .HasRequired<WishlistItem>(r => r.WishlistItem)
+            //    .WithRequiredPrincipal(w => w.Reservation);
 
+            modelBuilder.Entity<WishlistItem>()
+                .HasRequired<RestaurantReservation>(i => i.Reservation)
+                .WithMany(r => r.WishlistItems)
+                .HasForeignKey(i => i.ItemId);
 
             // Sets n-to-1 relation between RestaurantReservation (n) and Restaurant (1)
             modelBuilder.Entity<RestaurantReservation>()

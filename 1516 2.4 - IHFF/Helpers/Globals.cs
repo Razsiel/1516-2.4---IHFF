@@ -15,5 +15,7 @@ namespace IHFF
         }
 
         public readonly static CultureInfo CurrentCulture = CultureInfo.CreateSpecificCulture("nl-NL");
+
+        public const string WishlistUIDFormat = "0000";
     }
 }

@@ -156,7 +156,7 @@
     <Compile Include="Interfaces\IWishlistable.cs" />
     <Compile Include="Interfaces\IWishlistRepository.cs" />
     <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\EventItem.cs" />
+    <Compile Include="Models\FoodFilm.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\RestaurantReservation.cs" />
     <Compile Include="Models\WishlistItem.cs" />

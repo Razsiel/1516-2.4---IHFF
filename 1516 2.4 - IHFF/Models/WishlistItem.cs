@@ -49,7 +49,7 @@ namespace IHFF.Models
         public string Discriminator { get; set; }
 
         [NotMapped]
-        public bool Selected { get; set; }
+        public bool Selected { get; set; } = true;
 
         public ItemType GetItemType()
         {
@@ -129,6 +129,8 @@ namespace IHFF.Models
                 }
             }
         }
+
+        //public FoodFilm FoodFilm { get; internal set; }
     }
 
     public enum ItemType
