@@ -49,6 +49,8 @@ namespace IHFF.Models
             decimal totalPrice = 0;
             foreach (WishlistItem item in this.WishlistItems)
             {
+                totalPrice += (item.Selected && !item.PayedFor) ? item.Amount * item.GetPrice() : 0;
+                /*
                 switch (item.GetItemType())
                 {
                     default:
@@ -58,7 +60,7 @@ namespace IHFF.Models
                     case ItemType.Reservation:
                         totalPrice += item.Selected && !item.PayedFor ? item.GetPrice() : 0;
                         break;
-                }
+                }*/
             }
             return totalPrice;
         }
