@@ -14,7 +14,7 @@ namespace IHFF.Repositories
     {
         private static IHFFContext _instance;
 
-        public IHFFContext() : base("Local")
+        public IHFFContext() : base("IHFFConnection")
         {
 
         }
