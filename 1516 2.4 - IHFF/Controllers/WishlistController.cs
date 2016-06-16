@@ -25,7 +25,7 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult AmountChange(int Amount, int EventId)
         {
-            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.EventId == EventId);
+            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.ItemId == EventId);
             item.Amount = Amount;
             return RedirectToAction(nameof(Index));
         }
@@ -33,13 +33,13 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult SelectedChange(bool Selected, int EventId)
         {
-            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.EventId == EventId);
+            WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.ItemId == EventId);
             item.Selected = Selected;
             return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
-        public ActionResult GetWishlist(string UID)
+        public ActionResult GetWishlist(int UID)
         {
             Wishlist.Instance = wishlistRepository.GetWishlist(UID);
             return RedirectToAction(nameof(Index));

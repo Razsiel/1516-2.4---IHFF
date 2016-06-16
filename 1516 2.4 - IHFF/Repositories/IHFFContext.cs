@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 using IHFF.Models;
+using IHFF.Interfaces;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,7 +14,7 @@ namespace IHFF.Repositories
     {
         private static IHFFContext _instance;
 
-        public IHFFContext() : base("IHFFConnection")
+        public IHFFContext() : base("Local")
         {
 
         }
@@ -43,14 +44,11 @@ namespace IHFF.Repositories
         public DbSet<WishlistItem> WishlistItems { get; set; }
         #endregion
 
-        // is het object waarmee je met de database praat, het brug tussen de database en proggama
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
-            // naar welke table er moet worden gekeken. 
 
             modelBuilder.Entity<Movie>().ToTable("Movie");
             modelBuilder.Entity<Special>().ToTable("Special");
@@ -58,24 +56,51 @@ namespace IHFF.Repositories
             modelBuilder.Entity<Restaurant>().ToTable("Restaurant");
             modelBuilder.Entity<RestaurantReservation>().ToTable("RestaurantReservation");
 
-            // n op 1 relaties 
+            //
+            // GENERALIZATION - SPECIALIZATION (EVENT)
+            //
+            // Sets n-to-1 relation between Event (n) and Movie (1)
+            modelBuilder.Entity<Event>()
+                .HasRequired<Movie>(e => e.Movie)
+                .WithMany(m => m.Airings)
+                .HasForeignKey(e => e.ItemId);
 
+            // Sets n-to-1 relation between Event (n) and Special (1)
+            modelBuilder.Entity<Event>()
+                .HasRequired<Special>(e => e.Special)
+                .WithMany(s => s.Airings)
+                .HasForeignKey(e => e.ItemId);
+
+            //
+            // GENERALIZATION - SPECIALIZATION (WISHLISTITEM)
+            //
+            // Sets n-to-1 relation between WishlistItem (n) and Wishlist (1)
             modelBuilder.Entity<WishlistItem>()
                 .HasRequired<Wishlist>(i => i.Wishlist)
                 .WithMany(w => w.WishlistItems)
                 .HasForeignKey(i => i.WishlistUID);
 
-            // 1 op n relaties
-            modelBuilder.Entity<Wishlist>()
-                .HasMany<WishlistItem>(w => w.WishlistItems)
-                .WithRequired(i => i.Wishlist)
-                .HasForeignKey(i => i.WishlistUID);
+            // Sets n-to-1 relation between WishlistItem (n) and Event (1)
+            modelBuilder.Entity<WishlistItem>()
+                .HasRequired<Event>(w => w.Event)
+                .WithMany(e => e.WishlistItems)
+                .HasForeignKey(w => w.ItemId);
 
-            // n op 1 relaties
+            // Sets 1-to-1 relation between RestaurantReservation and WishlistItem
+            //modelBuilder.Entity<RestaurantReservation>()
+            //    .HasRequired<WishlistItem>(r => r.WishlistItem)
+            //    .WithRequiredPrincipal(w => w.Reservation);
+
+            modelBuilder.Entity<WishlistItem>()
+                .HasRequired<RestaurantReservation>(i => i.Reservation)
+                .WithMany(r => r.WishlistItems)
+                .HasForeignKey(i => i.ItemId);
+
+            // Sets n-to-1 relation between RestaurantReservation (n) and Restaurant (1)
             modelBuilder.Entity<RestaurantReservation>()
                 .HasRequired<Restaurant>(res => res.Restaurant)
                 .WithMany(r => r.Reservations)
-                .HasForeignKey(res => res.EventId);
+                .HasForeignKey(res => res.RestaurantId);
         }
     }
 }

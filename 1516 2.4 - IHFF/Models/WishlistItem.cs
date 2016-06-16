@@ -18,11 +18,8 @@ namespace IHFF.Models
             PayedFor = false;
             WishlistUID = wishlist.UID;
             Wishlist = wishlist;
-            EventId = e.EventId;
+            ItemId = e.EventId;
             Event = e;
-            Date = e.Date;
-            LocationId = e.LocationId;
-            Location = e.Location;
             Discriminator = e.Discriminator;
         }
 
@@ -32,42 +29,37 @@ namespace IHFF.Models
             PayedFor = false;
             WishlistUID = wishlist.UID;
             Wishlist = wishlist;
-            EventId = r.EventId;
+            ItemId = r.ReservationId;
             Reservation = r;
-            Date = r.Date;
-            Discriminator = "R";
+            Discriminator = "Reservation";
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WishlistItemId { get; set; }
-        public int Amount { get; set; }
-        public bool PayedFor { get; set; }
-        
-        public string WishlistUID { get; set; }
+        public int WishlistUID { get; set; }
         public virtual Wishlist Wishlist { get; set; }
-
-        public int EventId { get; set; }
+        
+        public int ItemId { get; set; }
         public virtual Event Event { get; set; }
         public virtual RestaurantReservation Reservation { get; set; }
 
-        public DateTime Date { get; set; }
-        public int LocationId { get; set; }
-        public virtual Location Location { get; set; }
+        public int Amount { get; set; }
+        public bool PayedFor { get; set; }
 
         public string Discriminator { get; set; }
 
         [NotMapped]
-        public bool Selected { get; set; }
+        public bool Selected { get; set; } = true;
 
         public ItemType GetItemType()
         {
             switch (this.Discriminator)
             {
-                case "M":
-                case "S":
+                case "Movie":
+                case "Special":
                 default:
                     return ItemType.Event;
-                case "R":
+                case "Reservation":
                     return ItemType.Reservation;
             }
         }
@@ -120,11 +112,32 @@ namespace IHFF.Models
                     return 0;
             }
         }
+
+        [NotMapped]
+        public DateTime Date
+        {
+            get
+            {
+                switch (GetItemType())
+                {
+                    case ItemType.Event:
+                        return Event.Date;
+                    case ItemType.Reservation:
+                        return Reservation.Date;
+                    default:
+                        return DateTime.MinValue;
+                }
+            }
+        }
+
+        //public FoodFilm FoodFilm { get; internal set; }
     }
 
     public enum ItemType
     {
         Event,
-        Reservation
+        Reservation,
+        Movie,
+        Special
     }
 }

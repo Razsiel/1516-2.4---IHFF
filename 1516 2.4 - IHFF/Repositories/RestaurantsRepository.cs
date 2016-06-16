@@ -9,7 +9,7 @@ namespace IHFF.Repositories
 {
     public class RestaurantsRepository : IRestaurantRepository
     {
-        private IHFFContext context = IHFFContext.Instance; //singleton, maar 1 connectie met de databas wordt gecommuniceert 
+        private IHFFContext context = IHFFContext.Instance;
 
         public IEnumerable<Restaurant> GetAllRestaurants()
         {
@@ -18,22 +18,22 @@ namespace IHFF.Repositories
 
         public Restaurant GetRestaurant(int id)
         {
-            return context.Restaurants.SingleOrDefault(a => a.EventId == id); // "== lambda" er wordt gekeken naar alle restaurants in de context (database) en wordt alsvolg gechecked naar (de id) 
+            return context.Restaurants.SingleOrDefault(a => a.RestaurantId == id);
         }
 
         public RestaurantReservation CreateReservation(Restaurant r, int amount, TimeSpan time, int date)
         {
-            //Create a new reservation locally, bij dubbele reservaties, want we kunnen niet 2x exact dezelfde data in de database ontstaan 
+            //Create a new reservation locally
             RestaurantReservation reservation = new RestaurantReservation();
             DateTime d = new DateTime(2016, 6, date, time.Hours, time.Minutes, 0);
 
             reservation.Amount = amount;
             reservation.Date = d;
-            reservation.EventId = r.EventId;
+            reservation.RestaurantId = r.RestaurantId;
             reservation.Restaurant = r;
 
             //Get reserving
-            IQueryable<RestaurantReservation> dbRes = context.RestaurantReservations.Where(x => x.EventId == reservation.EventId && x.Date == reservation.Date && x.Amount == reservation.Amount);
+            IQueryable<RestaurantReservation> dbRes = context.RestaurantReservations.Where(x => x.ReservationId == reservation.ReservationId);
 
             //If it doesn't exist, add it to the database
             if (dbRes.Count() == 0)

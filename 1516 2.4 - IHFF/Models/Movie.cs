@@ -8,28 +8,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IHFF.Models
 {
     [Table("Movie")]
-    public class Movie : Event
+    public class Movie
     {
         public Movie() { }
 
-        public Movie(int eventId, DateTime date, int locationId, string discriminator, string title, string director, Int16 yearOfRelease, byte rating, string actors, string description, string url,
-            string image, string extra, TimeSpan duration, string description_NL, decimal price, string youtubeLink) : base(eventId, date, locationId, discriminator)
-        {
-            this.Title = title;
-            this.Director = director;
-            this.YearOfRelease = yearOfRelease;
-            this.IMDBRating = rating;
-            this.Actors = actors;
-            this.Description = description;
-            this.IMDBUrl = url;
-            this.Image = image;
-            this.ExtraInfo = extra;
-            this.Duration = duration;
-            this.Description_NL = description_NL;
-            this.Price = price;
-            this.YoutubeLink = youtubeLink;
-        }
-        
+        public int MovieId { get; set; }
         public string Title { get; set; }
         public string Director { get; set; }
         public Int16 YearOfRelease { get; set; }
@@ -44,20 +27,19 @@ namespace IHFF.Models
         public decimal Price { get; set; }
         public string YoutubeLink { get; set; }
 
-        [NotMapped]
-        public IEnumerable<Event> Airings { get; set; }
+        public virtual ICollection<Event> Airings { get; set; }
 
-        public override string GetName()
+        public string GetName()
         {
             return this.Title;
         }
 
-        public override string GetImage()
+        public string GetImage()
         {
             return this.Image;
         }
 
-        public override decimal GetPrice()
+        public decimal GetPrice()
         {
             return this.Price;
         }

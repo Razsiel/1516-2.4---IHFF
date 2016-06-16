@@ -13,7 +13,8 @@
                     @item.Name
                 </h3>
 
-                @{if (!item.ExtraInfo.IsEmpty())
+                @{
+                    if (!item.ExtraInfo.IsEmpty())
                     {
                         <p>
                             Extra informatie: @item.ExtraInfo
@@ -30,7 +31,7 @@
                     <br />
                     <div class="col-md-7">
                         @item.GetLocationString().UppercaseFirst()
-                        <input type="hidden" name="EventId" value="@item.EventId" />
+                        <input type="hidden" name="EventId" value="@item.SpecialId" />
                     </div>
                     <div class="col-md-3">
                         <select name="ticketAmount" class="movieDropDown">
@@ -54,7 +55,8 @@
             </div>
 
             <div class="col-md-5">
-                @{ if (item.Name.Contains("lezing") || item.Name.Contains("Lezing"))
+                @{ 
+                    if (item.Name.Contains("lezing") || item.Name.Contains("Lezing"))
                     {
                         <img src="~/Resources/lecture.jpg" class="specialImage" />
                     }
@@ -65,8 +67,8 @@
                 }
             </div>
         </div>
-                        }
-                    }
+    }
+}
 
 <script>
     $(document).ready(function () {

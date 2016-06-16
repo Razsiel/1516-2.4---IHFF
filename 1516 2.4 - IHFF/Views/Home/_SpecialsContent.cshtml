@@ -1,4 +1,6 @@
-﻿
+﻿@using IHFF.Models
+@using IHFF.Helpers
+@model IEnumerable<Special>
 <div class="row justify-height-container">
     <div class="col-xs-0 col-sm-3 justify-height justify-height-container overlayable">
         <img src="~/Resources/Photos/Evenementen.jpg" class="justify-height img-responsive" />
@@ -23,40 +25,22 @@
         </h4>
         <div class="container row-inverse">
             <div class="row recommendation">
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Specials")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
-                </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Specials")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
-                </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Specials")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
-                </div>
-                <div class="col-sm-3 thumbnail recommendation">
-                    <a href="@Url.Action("Index", "Specials")">
-                        <img src="~/Resources/Placeholder.png" class="img-responsive" />
-                    </a>
-                </div>
+                @foreach (Special item in Model)
+                {
+                    <div class="col-sm-3 thumbnail recommendation">
+                        <a href="@Url.Action("Index", "Special")" class="fancybox">
+                            <img src="@String.Format( "data:image/png;base64,{0}", "" )" class="img-responsive" />
+                        </a>
+                    </div>
+                }
             </div>
             <div class="row row-inverse">
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                </div>
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                </div>
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                </div>
-                <div class="col-xs-3">
-                    <p class="text-center">#TITLE</p>
-                </div>
+                @foreach (Special item in Model)
+                {
+                    <div class="col-xs-3">
+                        <p class="text-center">@item.Name.TrimStringIfLongerThan(18)</p>
+                    </div>
+                }
             </div>
         </div>
     </div>

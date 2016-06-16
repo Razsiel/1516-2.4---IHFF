@@ -24,26 +24,26 @@ namespace IHFF.Controllers
             while (movies.Count() < 4)
             {
                 Movie randomMovie = m.ElementAt(rand.Next(0, m.Count() - 1));
-                while (movies.Exists(x => x.EventId == randomMovie.EventId))
+                while (movies.Exists(x => x.MovieId == randomMovie.MovieId))
                 {
                     randomMovie = m.ElementAt(rand.Next(0, m.Count() - 1));
                 }
                 movies.Add(randomMovie);
             }
 
-            //IEnumerable<Special> s = specialsRepository.GetAllSpecials();
+            IEnumerable<Special> s = specialsRepository.GetAllSpecials();
             List<Special> specials = new List<Special>();
-            //while (specials.Count() < 4)
-            //{
-            //    specials.Add(s.ElementAt(rand.Next(0, s.Count())));
-            //}
+            while (specials.Count() < 4)
+            {
+                specials.Add(s.ElementAt(rand.Next(0, s.Count())));
+            }
 
             IEnumerable<Restaurant> r = restaurantRepository.GetAllRestaurants();
             List<Restaurant> restaurants = new List<Restaurant>();
             while (restaurants.Count() < 4)
             {
                 Restaurant randomRestaurant = r.ElementAt(rand.Next(0, r.Count()));
-                while (restaurants.Exists(x => x.EventId == randomRestaurant.EventId))
+                while (restaurants.Exists(x => x.RestaurantId == randomRestaurant.RestaurantId))
                 {
                     randomRestaurant = r.ElementAt(rand.Next(0, r.Count()));
                 }

@@ -11,5 +11,6 @@ namespace IHFF.Interfaces
     {
         IEnumerable<Special> GetAllSpecials();
         IEnumerable<Special> GetSpecials(int id);
+        Event GetSpecialEvent(int specialId);
     }
 }

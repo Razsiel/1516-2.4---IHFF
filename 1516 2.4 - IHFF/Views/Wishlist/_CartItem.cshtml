@@ -4,8 +4,8 @@
 <tr>
     @if (Model.PayedFor)
     {
-        <td></td>
-        <td>
+        <td class="col-md-1"></td>
+        <td class="col-md-4">
             <div class="row">
                 <div class="col-sm-3" style="padding-left: 0px;">
                     <img src="data:image/jpg;base64, @Model.GetImage()" class="img-responsive" style="max-height:60px;"/>
@@ -16,44 +16,44 @@
                 </div>
             </div>
         </td>
-        <td>
+        <td class="col-md-3">
             @Model.GetLocation()
             <br />
             @Model.Date.TimeOfDay.ToString()
         </td>
-        <td></td>
-        <td>@Model.Amount</td>
-        <td>@((7.50 * Model.Amount).ToString("C", Globals.CurrentCulture))</td>
-        <td></td>
+        <td class="col-md-1"></td>
+        <td class="col-md-1">@Model.Amount</td>
+        <td class="col-md-1">@((7.50 * Model.Amount).ToString("C", Globals.CurrentCulture))</td>
+        <td class="col-md-1"></td>
     }
     else
     {
-        <td>
-            @using (Html.BeginForm("SelectedChange", null, FormMethod.Post, new { @class = "formSelect", @unique = Model.EventId }))
+        <td class="col-md-1">
+            @using (Html.BeginForm("SelectedChange", null, FormMethod.Post, new { @class = "formSelect", @unique = Model.ItemId }))
             {
                 @Html.CheckBoxFor(x => x.Selected, new { @class = "targetSelection" })
                 <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
-                <input type="hidden" name="EventId" value="@Model.EventId" />
+                <input type="hidden" name="EventId" value="@Model.ItemId" />
             }
         </td>
-        <td>
+        <td class="col-md-4">
             <div class="row">
                 <div class="col-sm-3" style="padding-left: 0px;">
-                    <img src="data:image/jpg;base64, @Model.GetImage()" class="img-responsive" style="max-height:60px;" />
+                    <img src="data:image/jpg;base64, @Model.GetImage()" class="img-responsive" />
                 </div>
                 <div class="col-sm-8" style="padding-left: 0px;">
                     <h5>@Model.GetName()</h5>
                 </div>
             </div>
         </td>
-        <td>
+        <td class="col-md-3">
             @Model.GetLocation()
             <br />
             @Model.Date.TimeOfDay.ToString()
         </td>
-        <td></td>
-        <td>
-            @using (Html.BeginForm("AmountChange", null, FormMethod.Post, new { @class = "formAmount", @uniqueTarget = Model.EventId }))
+        <td class="col-md-1"></td>
+        <td class="col-md-1">
+            @using (Html.BeginForm("AmountChange", null, FormMethod.Post, new { @class = "formAmount", @uniqueTarget = Model.ItemId }))
             {
                 <select name="Amount" class="targetAmount">
                     @for (int i = 1; i <= 10; i++)
@@ -69,10 +69,10 @@
                     }
                 </select>
                 <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
-                <input type="hidden" name="EventId" value="@Model.EventId" />
+                <input type="hidden" name="EventId" value="@Model.ItemId" />
             }
         </td>
-        <td>
+        <td class="col-md-1">
             @switch (Model.GetItemType())
             {
                 case ItemType.Event:
@@ -88,9 +88,9 @@
         
         using (Html.BeginForm("RemoveItem", "Wishlist", FormMethod.Post))
         {
-            <td>
+            <td class="col-md-1">
                 <input type="hidden" name="WishlistItemId" value="@Model.WishlistItemId" />
-                <input value="Verwijder" type="submit" class="btn btn-primary" />
+                <input value="Verwijder" type="submit" class="btn btn-primary btn-block" />
             </td>
         }
     }

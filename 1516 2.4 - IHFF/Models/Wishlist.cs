@@ -14,7 +14,7 @@ namespace IHFF.Models
         {
             Random r = new Random();
             WishlistItems = new List<WishlistItem>();
-            UID = string.Format("IHFF{0}", r.Next(0, 9999).ToString("0000"));
+            UID = r.Next(0, 9999);
         }
 
         private static Wishlist _instance;
@@ -32,7 +32,7 @@ namespace IHFF.Models
         }
 
         [Key]
-        public string UID { get; set; }
+        public int UID { get; set; }
 
         [Required]
         [RegularExpression(@"^[A-z0-9]+@(?:[A-z0-9]+\.)+[A-z]+$", ErrorMessage = "Vul aub een valide email in. voorbeeld: voorbeeld@email.nl")]
@@ -61,6 +61,11 @@ namespace IHFF.Models
                 }
             }
             return totalPrice;
+        }
+
+        public string GetUIDString()
+        {
+            return string.Format("IHFF{0}", UID.ToString("00000"));
         }
     }
 }
