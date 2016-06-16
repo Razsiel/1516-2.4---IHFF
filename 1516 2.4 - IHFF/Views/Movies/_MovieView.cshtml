@@ -47,6 +47,8 @@
                     <div class="col-md-7">
                         <select name="EventId" id="@movieNumber" class="movieDropDown EventId">
                             @{
+                                // discriminator test should be removed...
+
                                 foreach (Event e in item.Airings.Where(x => x.Discriminator == ItemType.Movie.ToString()))
                                 {
                                     //Do selected check based on day

@@ -24,13 +24,17 @@ namespace IHFF.Controllers
         {   
             Wishlist wishlist = wishlistRepository.GetWishlist(Wishlist.Instance.UID);
             Event e = moviesRepository.GetMovieEvent(EventId);
-
+            //null check event e
+            if (e == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             WishlistItem item = new WishlistItem(e, ticketAmount, wishlist);
 
             wishlist.WishlistItems.Add(item);
 
             Wishlist.Instance = wishlist;
-            return RedirectToAction("Index", "Wishlist");
+            return RedirectToAction(nameof(WishlistController.Index), "Wishlist");
         }
 
         public ActionResult MovieInfo(int Id)
