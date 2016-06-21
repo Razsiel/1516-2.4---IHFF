@@ -38,23 +38,39 @@
                         <input checked="checked" type="radio" id="paypal" name="Payment" value="paypal" />
                         <label class="payment-selection" for="paypal">
                             <img src="~/Resources/Icons/paypal.png" class="img-responsive" alt="Online betalen met PayPal" />
+                            <label>Paypal</label>
                         </label>
                     </div>
                     <div class="col-md-4">
                         <input type="radio" id="iDeal" name="Payment" value="iDeal" />
                         <label class="payment-selection" for="iDeal">
                             <img src="~/Resources/Icons/iDeal.png" class="img-responsive" alt="Online betalen met iDeal" />
+                            <label>iDeal</label>
                         </label>
                     </div>
                     <div class="col-md-4">
                         <input type="radio" id="cash" name="Payment" value="cash" />
                         <label class="payment-selection" for="cash">
                             <img src="~/Resources/Icons/cash_icon.png" class="img-responsive" alt="Contant betalen bij kassa" />
+                            <label>Contant</label>
                         </label>
                     </div>
                 </div>
+                <br />
                 <p class="text-right">
-                    Totaal: @Model.GetTotalPrice().ToString("C", Globals.CurrentCulture)
+                    Prijs: @Model.GetTotalPrice().ToString("C", Globals.CurrentCulture)
+                </p>
+                @if (Model.Discounts.Any())
+                {
+                    foreach (var discount in Model.Discounts)
+                    {
+                        <p class="primary-color text-right">
+                            @discount.Description -@(discount.Percentage * 100)%
+                        </p>
+                    }
+                }
+                <p class="text-right">
+                    Totaal prijs: @Model.GetTotalPrice(true).ToString("C", Globals.CurrentCulture)
                 </p>
                 @if (Model.WishlistItems.Any(x => x.Selected == true))
                 {

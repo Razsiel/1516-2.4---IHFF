@@ -23,7 +23,7 @@
         </td>
         <td class="col-md-1"></td>
         <td class="col-md-1">@Model.Amount</td>
-        <td class="col-md-1">@((7.50 * Model.Amount).ToString("C", Globals.CurrentCulture))</td>
+        <td class="col-md-1">@Model.GetPrice()</td>
         <td class="col-md-1"></td>
     }
     else
@@ -39,7 +39,7 @@
         <td class="col-md-4">
             <div class="row">
                 <div class="col-sm-3" style="padding-left: 0px;">
-                    <img src="data:image/jpg;base64, @Model.GetImage()" class="img-responsive" />
+                    <img src="data:image/jpg;base64, @Model.GetImage()" class="img-responsive" style="max-height:60px;" />
                 </div>
                 <div class="col-sm-8" style="padding-left: 0px;">
                     <h5>@Model.GetName()</h5>
@@ -76,7 +76,7 @@
             @switch (Model.GetItemType())
             {
                 case ItemType.Event:
-                    @((Model.GetPrice() * Model.Amount).ToString("C", Globals.CurrentCulture))
+                    @((Model.GetPrice()).ToString("C", Globals.CurrentCulture))
                     break;
                 case ItemType.Reservation:
                     @Model.GetPrice().ToString("C", Globals.CurrentCulture)

@@ -11,6 +11,8 @@ namespace IHFF.Models
     [Table("Event")]
     public class Event
     {
+        private const decimal SPECIALPRICE = 7.50m;
+
         public Event() { }
 
         [Key]
@@ -99,7 +101,7 @@ namespace IHFF.Models
                 case ItemType.Movie:
                     return Movie.Price;
                 case ItemType.Special:
-                    return 7.50m;
+                    return SPECIALPRICE;
                 default:
                     return 0;
             }

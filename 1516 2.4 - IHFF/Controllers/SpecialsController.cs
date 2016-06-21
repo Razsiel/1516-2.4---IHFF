@@ -23,7 +23,7 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult Index(int EventId, int ticketAmount)
         {
-            Wishlist wishlist = wishlistRepository.GetWishlist(Wishlist.Instance.UID);
+            Wishlist wishlist = Wishlist.Instance;
             Event e = specialsRepository.GetSpecialEvent(EventId);
 
             WishlistItem item = new WishlistItem(e, ticketAmount, wishlist);
@@ -31,7 +31,7 @@ namespace IHFF.Controllers
             wishlist.WishlistItems.Add(item);
 
             Wishlist.Instance = wishlist;
-            return RedirectToAction("Index", "Wishlist");
+            return RedirectToAction(nameof(WishlistController.Index), "Wishlist");
         }
 
         public ActionResult GetSpecials(int Id)
