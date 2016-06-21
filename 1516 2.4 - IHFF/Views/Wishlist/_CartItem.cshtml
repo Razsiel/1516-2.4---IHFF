@@ -23,7 +23,7 @@
         </td>
         <td class="col-md-1"></td>
         <td class="col-md-1">@Model.Amount</td>
-        <td class="col-md-1">@((7.50 * Model.Amount).ToString("C", Globals.CurrentCulture))</td>
+        <td class="col-md-1">@Model.GetPrice()</td>
         <td class="col-md-1"></td>
     }
     else
@@ -76,7 +76,7 @@
             @switch (Model.GetItemType())
             {
                 case ItemType.Event:
-                    @((Model.GetPrice() * Model.Amount).ToString("C", Globals.CurrentCulture))
+                    @((Model.GetPrice()).ToString("C", Globals.CurrentCulture))
                     break;
                 case ItemType.Reservation:
                     @Model.GetPrice().ToString("C", Globals.CurrentCulture)

@@ -57,15 +57,15 @@
                     </div>
                 </div>
                 <br />
+                <p class="text-right">
+                    Prijs: @Model.GetTotalPrice().ToString("C", Globals.CurrentCulture)
+                </p>
                 @if (Model.Discounts.Any())
                 {
-                    <p class="text-right">
-                        Prijs: @Model.GetTotalPrice().ToString("C", Globals.CurrentCulture)
-                    </p>
-                    foreach (KeyValuePair<DayOfWeek, int> discount in Model.Discounts)
+                    foreach (var discount in Model.Discounts)
                     {
                         <p class="primary-color text-right">
-                            @Globals.CurrentCulture.DateTimeFormat.GetDayName(discount.Key) -@discount.Value%
+                            @discount.Description -@(discount.Percentage * 100)%
                         </p>
                     }
                 }

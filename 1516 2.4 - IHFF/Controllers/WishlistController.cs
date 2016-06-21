@@ -27,6 +27,7 @@ namespace IHFF.Controllers
         {
             WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.ItemId == EventId);
             item.Amount = Amount;
+            Wishlist.Instance.DetermineDiscounts();
             return RedirectToAction(nameof(Index));
         }
 
@@ -35,6 +36,7 @@ namespace IHFF.Controllers
         {
             WishlistItem item = Wishlist.Instance.WishlistItems.First(x => x.ItemId == EventId);
             item.Selected = Selected;
+            Wishlist.Instance.DetermineDiscounts();
             return RedirectToAction(nameof(Index));
         }
 
@@ -42,6 +44,7 @@ namespace IHFF.Controllers
         public ActionResult GetWishlist(int UID)
         {
             Wishlist.Instance = wishlistRepository.GetWishlist(UID);
+            Wishlist.Instance.DetermineDiscounts();
             return RedirectToAction(nameof(Index));
         }
 

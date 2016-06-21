@@ -29,9 +29,8 @@ namespace IHFF.Controllers
 
             WishlistItem item = new WishlistItem(r, wishlist);
 
-            wishlist.WishlistItems.Add(item);
+            wishlist.AddItemToWishlist(item);
 
-            Wishlist.Instance = wishlist;
             return RedirectToAction(nameof(WishlistController.Index), "Wishlist");
         }
 

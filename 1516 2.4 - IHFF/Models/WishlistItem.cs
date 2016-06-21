@@ -107,9 +107,9 @@ namespace IHFF.Models
             switch (GetItemType())
             {
                 case ItemType.Event:
-                    return Event.GetPrice();
+                    return Event.GetPrice() * Amount;
                 case ItemType.Reservation:
-                    return RESERVATIONPRICE;
+                    return RESERVATIONPRICE * Amount;
                 default:
                     return 0;
             }
