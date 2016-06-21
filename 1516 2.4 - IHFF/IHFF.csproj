@@ -207,6 +207,7 @@
     <Content Include="Resources\ajax-loader.gif" />
     <Content Include="Resources\Brand.png" />
     <Content Include="Resources\discussion_forum.jpg" />
+    <Content Include="Resources\foodfilmicon.png" />
     <Content Include="Resources\Icons\cash_icon.png" />
     <Content Include="Resources\Icons\circle.png" />
     <Content Include="Resources\Icons\facebook.png" />
