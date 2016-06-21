@@ -44,23 +44,45 @@ namespace IHFF.Models
 
         public virtual ICollection<WishlistItem> WishlistItems { get; set; }
 
-        public decimal GetTotalPrice()
+        [NotMapped]
+        public Dictionary<DayOfWeek, int> Discounts
+        {
+            get
+            {
+                Dictionary<DayOfWeek, int> discounts = new Dictionary<DayOfWeek, int>();
+
+                // Seperate wishlistitems into lists grouped by day of week
+                IEnumerable<List<WishlistItem>> sorted = this.WishlistItems
+                    .Where(x => x.Selected == true && !x.PayedFor)
+                    .GroupBy(x => x.Date.DayOfWeek)
+                    .Select(g => g.ToList());
+
+                foreach (var item in sorted)
+                {
+                    if (item.Count() > 1)
+                    {
+                        // Add a discount
+                        discounts.Add(item.First().Date.DayOfWeek, 5);
+                    }
+                }
+
+                return discounts;
+            }
+        }
+
+        public decimal GetTotalPrice(bool applyDiscounts = false)
         {
             decimal totalPrice = 0;
             foreach (WishlistItem item in this.WishlistItems)
             {
                 totalPrice += (item.Selected && !item.PayedFor) ? item.Amount * item.GetPrice() : 0;
-                /*
-                switch (item.GetItemType())
+            }
+            if (applyDiscounts)
+            {
+                foreach (KeyValuePair<DayOfWeek, int> discount in Discounts)
                 {
-                    default:
-                    case ItemType.Event:
-                        totalPrice += item.Selected && !item.PayedFor ? item.Amount * item.GetPrice() : 0;
-                        break;
-                    case ItemType.Reservation:
-                        totalPrice += item.Selected && !item.PayedFor ? item.GetPrice() : 0;
-                        break;
-                }*/
+                    totalPrice *= (1 - (discount.Value / 100m));
+                }
             }
             return totalPrice;
         }

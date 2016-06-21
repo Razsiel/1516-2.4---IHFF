@@ -21,10 +21,9 @@ namespace IHFF.Controllers
 
         [HttpPost]
         public ActionResult Index(int EventId, int ticketAmount)
-        {   
-            Wishlist wishlist = wishlistRepository.GetWishlist(Wishlist.Instance.UID);
+        {
+            Wishlist wishlist = Wishlist.Instance;
             Event e = moviesRepository.GetMovieEvent(EventId);
-            //null check event e
             if (e == null)
             {
                 return RedirectToAction(nameof(Index));

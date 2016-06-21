@@ -35,11 +35,38 @@
             </div>
             <div class="col-xs-4">
                 <!-- NEWSLETTER INPUT HERE -->
-                #PLACEHOLDER INPUT
+                    <div class="input-group">
+                        <input class="form-control"
+                               data-val="true"
+                               data-val-regex="Vul aub een valide email in. voorbeeld: voorbeeld@email.nl"
+                               data-val-regex-pattern="^[A-z0-9]+@@(?:[A-z0-9]+\.)+[A-z]+$"
+                               data-val-required="The Email field is required."
+                               id="Email"
+                               name="Email"
+                               placeholder="voorbeeld@domein.nl"
+                               type="text"
+                               value="">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary">Schrijf in</button>
+                        </div>
+                    </div>                
             </div>
             <div class="col-xs-4">
                 <!-- SOCIAL MEDIA ICONS HERE -->
-                #PLACEHOLDER SOCIAL MEDIA
+                <div class="row sm-icons small">
+                    <div class="col-xs-3">
+                        <img src="~/Resources/Icons/facebook.png" class="img-responsive" />
+                    </div>
+                    <div class="col-xs-3">
+                        <img src="~/Resources/Icons/twitter.png" class="img-responsive" />
+                    </div>
+                    <div class="col-xs-3">
+                        <img src="~/Resources/Icons/google-plus.png" class="img-responsive" />
+                    </div>
+                    <div class="col-xs-3">
+                        <img src="~/Resources/Icons/note.png" class="img-responsive" style="background-color:#0B66AD; padding:5px;" />
+                    </div>
+                </div>
             </div>
         </div>
         <br />

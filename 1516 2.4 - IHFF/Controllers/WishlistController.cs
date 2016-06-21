@@ -77,7 +77,7 @@ namespace IHFF.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public bool SendEmail(Wishlist wishlist)
+        /*public bool SendEmail(Wishlist wishlist)
         {
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("system@IHFF.com");
@@ -109,6 +109,6 @@ namespace IHFF.Controllers
                 }
             }
             return false;
-        }
+        }*/
     }
 }

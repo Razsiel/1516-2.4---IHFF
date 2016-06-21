@@ -658,6 +658,7 @@ ul.dash > li:before {
     -webkit-filter: brightness(1.8) grayscale(1);
        -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
             filter: brightness(1.8) grayscale(1) opacity(.7);
+    text-align: right;
 }
 
 .payment-selection:hover{
@@ -679,4 +680,23 @@ div.container table.wishlistMini td {
 .miniWishlistTitle {
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.sm-icons {
+    width: 80%;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.sm-icons > * {
+   padding-right: 10px;
+   padding-left: 0px;
+}
+
+.sm-icons.small {
+    width: 50%;
+}
+
+.sm-icons.small img{
+    max-height: 34px;
 }

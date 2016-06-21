@@ -10,6 +10,8 @@ namespace IHFF.Models
     [Table("WishlistItem")]
     public class WishlistItem
     {
+        private const int RESERVATIONPRICE = 10;
+
         public WishlistItem() { }
 
         public WishlistItem(Event e, int amount, Wishlist wishlist)
@@ -107,7 +109,7 @@ namespace IHFF.Models
                 case ItemType.Event:
                     return Event.GetPrice();
                 case ItemType.Reservation:
-                    return 10;
+                    return RESERVATIONPRICE;
                 default:
                     return 0;
             }
