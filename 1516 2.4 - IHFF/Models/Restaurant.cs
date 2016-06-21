@@ -12,7 +12,7 @@ namespace IHFF.Models
     {
         public Restaurant() { }
 
-        public Restaurant(int id, string name, int capacity, string address, string website, string info, string RestaurantInfo, string ContactInfo, string ReserveringInfo, string OpeningsTijdenInfo)
+        public Restaurant(int id, string name, int capacity, string address, string website, string info, string RestaurantInfo, string ContactInfo, string ReserveringInfo, string OpeningsTijdenInfo, bool FoodFilm)
         {
             this.RestaurantId = id;
             this.Name = name;
@@ -24,13 +24,13 @@ namespace IHFF.Models
             this.ContactInfo = ContactInfo;
             this.ReserveringInfo = ReserveringInfo;
             this.OpeningsTijdenInfo = OpeningsTijdenInfo;
+            this.FoodFilm = FoodFilm;
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RestaurantId { get; set; }
         public string Name { get; set; }
-
         public int Capacity { get; set; }
         public string Address { get; set; }
         public string Website { get; set; }
@@ -44,6 +44,7 @@ namespace IHFF.Models
         public string ResImage2 { get; set; }
         public string ResImage3 { get; set; }
         public decimal Rating { get; set; }
+        public bool FoodFilm { get; set; }
 
         public virtual ICollection<RestaurantReservation> Reservations { get; set; }
     }
