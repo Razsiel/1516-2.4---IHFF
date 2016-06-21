@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using IHFF.Models;
 using IHFF.Interfaces;
+using System.Data.Entity;
 
 namespace IHFF.Repositories
 {
@@ -15,7 +16,7 @@ namespace IHFF.Repositories
         // for each unique movie get all the events associated with it
         public IEnumerable<Movie> GetAllUniqueMovies()
         {
-            //Also gets all events with the wrong discriminator...
+            //Get all right events with discriminator 'Movie'
             return context.Movies;
         }
 

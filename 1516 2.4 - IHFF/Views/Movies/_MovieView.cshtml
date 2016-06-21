@@ -47,13 +47,11 @@
                     <div class="col-md-7">
                         <select name="EventId" id="@movieNumber" class="movieDropDown EventId">
                             @{
-                                // discriminator test should be removed...
-
+                                // discriminator of specials should be removed...
                                 foreach (Event e in item.Airings.Where(x => x.Discriminator == ItemType.Movie.ToString()))
                                 {
                                     //Do selected check based on day
                                     <option value="@e.EventId">@e.AiringString</option>
-                                }
                                 }
                             }
                         </select>
@@ -86,7 +84,6 @@
     $(document).ready(function () {
 
         $(".fancybox").click(function () {
-            //alert();
             $.fancybox.open({
                 content: $('<div>').load($(this).attr('href')),
                 type: 'ajax',
@@ -99,18 +96,6 @@
             return false;
         })
 
-        $(".EventId").change(function () {
-            $("input[name=locationId").val($(this).find(':selected').attr("locationId"))
-            $("input[name=eventDate]").val($(this).find(':selected').attr("eventDate"))
-        })
-
-        $(".movieBtn").click(function (e) {
-            var number = $(this).attr('number');
-            if ($("input[numberLoc=" + number + ']').val() == '' || $("input[numberDate=" + number + ']').val() == '') {
-                $("input[numberLoc=" + number + ']').val($('#' + number).find(':selected').attr("locationId"))
-                $("input[numberDate=" + number + ']').val($('#' + number).find(':selected').attr("eventDate"))
-            }
-        })
 
     });
 </script>
