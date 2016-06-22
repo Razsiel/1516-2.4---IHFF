@@ -159,6 +159,7 @@
     <Compile Include="Interfaces\IWishlistRepository.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\FoodFilm.cs" />
+    <Compile Include="Models\FoodFilmViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\MovieViewModel.cs" />
     <Compile Include="Models\RestaurantReservation.cs" />
@@ -288,6 +289,7 @@
     <Content Include="Views\Specials\_SpecialView.cshtml" />
     <Content Include="Views\Shared\_WishlistMini.cshtml" />
     <Content Include="Views\Wishlist\_PopupOrder.cshtml" />
+    <Content Include="Views\Movies\_FoodAndFilm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
