@@ -131,6 +131,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Classes\DiscountRule.cs" />
+    <Compile Include="Classes\MultipleActivitiesDayDiscount.cs" />
+    <Compile Include="Classes\MultiplePeopleDiscount.cs" />
     <Compile Include="Content\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -205,6 +208,7 @@
     <Content Include="Resources\ajax-loader.gif" />
     <Content Include="Resources\Brand.png" />
     <Content Include="Resources\discussion_forum.jpg" />
+    <Content Include="Resources\foodfilmicon.png" />
     <Content Include="Resources\Icons\cash_icon.png" />
     <Content Include="Resources\Icons\circle.png" />
     <Content Include="Resources\Icons\facebook.png" />

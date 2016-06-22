@@ -2,20 +2,26 @@
 @using IHFF.Helpers
 @model IEnumerable<Restaurant>
 @{
-    ViewBag.Title = "index";
+    ViewBag.Title = "Restaurant Overzicht";
 }
 
-<h2>RestaurantOverzicht</h2>
-<br />
 <div class="container">
-    @foreach (Restaurant item in Model)
-    {
 
-    <div class="col-sm-4">
-            <div class="overlayable">
-                <a>
-                    <img src="data: image/jpg;base64, @item.Image" class="img-responsive" style="width:100%;"/>
-                </a>
+    <ol class="breadcrumb">
+        <li><a href="/Home">Home</a></li>
+        <li class="active">Restaurant overzicht</li>
+    </ol>
+
+    <h2>@ViewBag.Title</h2>
+
+    <div class="row">
+        @foreach (Restaurant item in Model)
+        {
+            <div class="col-sm-4">
+                <div class="overlayable">
+                    <a>
+                        <img src="data: image/jpg;base64, @item.Image" class="img-responsive" style="width:100%;" />
+                    </a>
                     <div class="overlay-overlayable" style="bottom: 5px; width: 100%;">
                         <ul class="list-inline rating text-center" style="float: right; margin-right: 15px;">
                             @for (int i = 1; i <= 5; i++)
@@ -44,21 +50,21 @@
                                 }
                             }
                         </ul>
+                        @if (item.FoodFilm)
+                        {
+                            <div class="overlay-overlayable" style="top: -158px; left:-16px;">
+                                <a><img src="~/Resources/foodfilmicon.png" class="img-responsive" style="width:30%;" /></a>
+                            </div>
+                        }
                     </div>
+                </div>
+                <a href="@Url.Action("RestaurantInfo", "Restaurant", new { item.RestaurantId })">
+                    <h3 class="text-center">@item.Name</h3>
+                </a>
+                <p> @item.Info @Html.ActionLink("Lees verder", "RestaurantInfo", "Restaurant", new { item.RestaurantId }, new { @class = "" }) <p />
+                @Html.ActionLink("Reserveer nu", "RestaurantInfo", "Restaurant", new { item.RestaurantId }, new { @class = "btn btn-primary btn-block" })
+                <br />
             </div>
-
-            <div class="overlay-overlayable" style="top: -15px;">
-                <a><img src="data: image/png;base64, @item.ResImage3" class="img-responsive" style="width:30%;" /></a>
-            </div>
-
-            <a href="@Url.Action("RestaurantInfo", "Restaurant", new { item.RestaurantId })">
-                <h3 class="text-center">@item.Name</h3>
-            </a>
-            <br />
-            <p> @item.Info @Html.ActionLink("Lees verder", "RestaurantInfo", "Restaurant", new { item.RestaurantId }, new { @class = "" }) <p/>
-            
-            @Html.ActionLink("Reserveer nu", "RestaurantInfo", "Restaurant", new { item.RestaurantId }, new { @class = "btn btn-primary btn-block" })
-            <br />
-        </div>
-      }
-  </div>
+        }
+    </div>
+</div>

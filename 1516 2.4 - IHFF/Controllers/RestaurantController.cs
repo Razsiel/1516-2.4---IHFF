@@ -22,19 +22,16 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult Index(int Date, TimeSpan Time, int Amount, int RestaurantId)
         {
-            Wishlist wishlist = wishlistRepository.GetWishlist(Wishlist.Instance.UID);
+            Wishlist wishlist = Wishlist.Instance;
 
             Restaurant restaurant = restaurantsRepository.GetRestaurant(RestaurantId);
             RestaurantReservation r = restaurantsRepository.CreateReservation(restaurant, Amount, Time, Date);
 
             WishlistItem item = new WishlistItem(r, wishlist);
 
-            // De keuze dat is gemaakt om zonder cookies te werken en dat wishlist overal te bereiken is
-            wishlist.WishlistItems.Add(item);
+            wishlist.AddItemToWishlist(item);
 
-
-            Wishlist.Instance = wishlist;
-            return RedirectToAction("Index", "Wishlist");
+            return RedirectToAction(nameof(WishlistController.Index), "Wishlist");
         }
 
         public ActionResult RestaurantInfo(int RestaurantId)
