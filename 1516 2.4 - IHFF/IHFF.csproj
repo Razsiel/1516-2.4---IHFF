@@ -157,6 +157,7 @@
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\FoodFilm.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\MovieViewModel.cs" />
     <Compile Include="Models\RestaurantReservation.cs" />
     <Compile Include="Models\WishlistItem.cs" />
     <Compile Include="Models\Location.cs" />

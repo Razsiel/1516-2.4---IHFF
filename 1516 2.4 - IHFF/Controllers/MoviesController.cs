@@ -39,7 +39,9 @@ namespace IHFF.Controllers
 
         public ActionResult MovieInfo(int Id)
         {
-            return PartialView("_MovieInfo", moviesRepository.GetMovie(Id));
+            MovieViewModel model = new MovieViewModel(moviesRepository.GetFoodFilmRestaurants(), moviesRepository.GetMovie(Id));
+            return PartialView("_MovieInfo", model);
+            //return PartialView("_MovieInfo", moviesRepository.GetMovie(Id));
         }
 
         public ActionResult GetMovies(int day)

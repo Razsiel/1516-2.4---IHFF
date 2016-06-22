@@ -1,6 +1,7 @@
 @using IHFF.Models
 @using IHFF.Helpers
-@model  Movie
+@model  MovieViewModel
+
 
 <p>
     <iframe width='800' height='410'
@@ -42,61 +43,62 @@
                 <th class="col-md-3">Prijs per ticket: &euro; @Model.Price.ToString("N2")</th>
             </tr>
         </thead>
-            @foreach (Event airing in Model.Airings.Where(x => x.Discriminator == ItemType.Movie.ToString()))
+        @foreach (Event airing in Model.Airings.Where(x => x.Discriminator == ItemType.Movie.ToString()))
             {
-                    <tbody>
-                        <tr>
-                            <td>
-                                @airing.DayName.UppercaseFirst(), @airing.Date.ToString("HH:mm") - @airing.EndTime
-                            </td>
-                            <td>
-                                @airing.LocationString
-                            </td>
-                            <td>
-                                <select name="ticketAmount" class="movieDropDown" id="@airing.Date.ToShortDateString()">
-                                    @for (int i = 1; i <= 10; i++)
-                                    {
-                                        if (i == 1)
-                                        {
-                                            <option value="@i">@i ticket</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@i">@i tickets</option>
-                                        }
-                                    }
-                                </select>
-                            </td>
-                            <td class="set-center">
-                                @using (Html.BeginForm("Index", "Movies"))
+            <tbody>
+                <tr>
+                    <td>
+                        @airing.DayName.UppercaseFirst(), @airing.Date.ToString("HH:mm") - @airing.EndTime
+                    </td>
+                    <td>
+                        @airing.LocationString
+                    </td>
+                    <td>
+                        <select name="ticketAmount" class="movieDropDown" id="@airing.Date.ToShortDateString()">
+                            @for (int i = 1; i <= 10; i++)
+                            {
+                                if (i == 1)
                                 {
-                                    <input type="submit" class="btn btn-primary movieInfo" date="@airing.Date.ToShortDateString()" value="Toevoegen" />
+                                    <option value="@i">@i ticket</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">@i tickets</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td class="set-center">
+                        @using (Html.BeginForm("Index", "Movies"))
+                        {
+                            <input type="submit" class="btn btn-primary movieInfo" date="@airing.Date.ToShortDateString()" value="Toevoegen" />
                                     <input type="hidden" name="locationId" value="@airing.LocationId" />
                                     <input type="hidden" name="eventDate" value="@airing.Date" />
                                     <input type="hidden" name="EventId" value="@Model.MovieId" />
                                     <input type="hidden" name="ticketAmount" ticketId="@airing.Date.ToShortDateString()" />
-                                }
-                            </td>
-                        </tr>
-                    </tbody>
-                }
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        }
     </table>
 </div>
 
 
-<div class="food-and-film set-center">
-    <h3>Combineer een film samen met een diner met onze <span>Film&amp;Food</span> tickets!</h3>
+<div class="food-and-film">
+    <center><h3>Combineer een film samen met een diner met onze <span>Film&amp;Food</span> tickets!</h3></center>
 
     <div class="row">
-        <div class="col-md-4">
-            <h3>Ratatouille</h3>
-        </div>
-        <div class="col-md-4">
-            <h3>Restaurant Terra</h3>
-        </div>
-        <div class="col-md-4">
-            <h3>De Uitkijk</h3>
-        </div>
+        @foreach (Restaurant res in Model.FoodFilmRestaurants)
+        {
+            <div class="col-md-4">
+                <center>
+                    <img src="data: image/jpg;base64, @res.ResImage3" class="img-responsive" />
+                    <h3>@res.Name</h3>
+                </center>
+                <p>@res.Info</p>
+            </div>
+        }
     </div>
 </div>
 
@@ -109,6 +111,5 @@
         });
     });
 </script>
-
 
 <!--<a href="javascript:jQuery.fancybox.close();">Close me</a>-->
