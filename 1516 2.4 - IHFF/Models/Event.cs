@@ -28,6 +28,7 @@ namespace IHFF.Models
         public virtual Special Special { get; set; }
 
         public ICollection<WishlistItem> WishlistItems { get; set; }
+        public ICollection<FoodFilm> FoodFilms { get; set; }
 
         [NotMapped]
         public string AiringString
