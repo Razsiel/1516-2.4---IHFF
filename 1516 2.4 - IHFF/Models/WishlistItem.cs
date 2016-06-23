@@ -44,6 +44,7 @@ namespace IHFF.Models
         public int ItemId { get; set; }
         public virtual Event Event { get; set; }
         public virtual RestaurantReservation Reservation { get; set; }
+        public virtual FoodFilm FoodFilm { get; set; }
 
         public int Amount { get; set; }
         public bool PayedFor { get; set; }

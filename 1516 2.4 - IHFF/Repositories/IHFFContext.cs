@@ -55,10 +55,8 @@ namespace IHFF.Repositories
             modelBuilder.Entity<Event>().ToTable("Event");
             modelBuilder.Entity<Restaurant>().ToTable("Restaurant");
             modelBuilder.Entity<RestaurantReservation>().ToTable("RestaurantReservation");
+            modelBuilder.Entity<FoodFilm>().ToTable("FoodFilm");
 
-            //
-            // GENERALIZATION - SPECIALIZATION (EVENT)
-            //
             // Sets n-to-1 relation between Event (n) and Movie (1)
             modelBuilder.Entity<Event>()
                 .HasRequired<Movie>(e => e.Movie)
@@ -71,9 +69,16 @@ namespace IHFF.Repositories
                 .WithMany(s => s.Airings)
                 .HasForeignKey(e => e.ItemId);
 
-            //
-            // GENERALIZATION - SPECIALIZATION (WISHLISTITEM)
-            //
+            modelBuilder.Entity<FoodFilm>()
+                .HasRequired<RestaurantReservation>(f => f.Reservation)
+                .WithMany(r => r.FoodFilms)
+                .HasForeignKey(f => f.ReservationId);
+
+            modelBuilder.Entity<FoodFilm>()
+                .HasRequired<Event>(f => f.Event)
+                .WithMany(e => e.FoodFilms)
+                .HasForeignKey(f => f.EventId);
+
             // Sets n-to-1 relation between WishlistItem (n) and Wishlist (1)
             modelBuilder.Entity<WishlistItem>()
                 .HasRequired<Wishlist>(i => i.Wishlist)
@@ -86,13 +91,15 @@ namespace IHFF.Repositories
                 .WithMany(e => e.WishlistItems)
                 .HasForeignKey(w => w.ItemId);
 
-            // Sets 1-to-1 relation between RestaurantReservation and WishlistItem
-            //modelBuilder.Entity<RestaurantReservation>()
-            //    .HasRequired<WishlistItem>(r => r.WishlistItem)
-            //    .WithRequiredPrincipal(w => w.Reservation);
-
+            // Sets n-to-1 relation between WishlistItem (n) and RestaurantReservation (1)
             modelBuilder.Entity<WishlistItem>()
                 .HasRequired<RestaurantReservation>(i => i.Reservation)
+                .WithMany(r => r.WishlistItems)
+                .HasForeignKey(i => i.ItemId);
+
+            // Sets n-to-1 relation between WishlistItem (n) and FoodFilm (1)
+            modelBuilder.Entity<WishlistItem>()
+                .HasRequired<FoodFilm>(i => i.FoodFilm)
                 .WithMany(r => r.WishlistItems)
                 .HasForeignKey(i => i.ItemId);
 

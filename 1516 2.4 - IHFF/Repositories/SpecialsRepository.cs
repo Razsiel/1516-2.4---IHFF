@@ -26,8 +26,11 @@ namespace IHFF.Repositories
 
         public IEnumerable<Special> GetSpecials(int dayOfWeek)
         {
-            
-            return null;
+            if (dayOfWeek <= 0)
+            {
+                return GetAllSpecials();
+            }
+            return context.Specials.AsEnumerable().Where(x => x.Airings.Any(a => a.Date.DayOfWeek == (DayOfWeek)dayOfWeek && a.Discriminator == ItemType.Special.ToString()));
         }
     }
 }

@@ -25,9 +25,10 @@ namespace IHFF.Models
         public DateTime Date { get; set; }
         public int Amount { get; set; }
 
-        public int RestaurantId { get; internal set; }
+        public int RestaurantId { get; set; }
         public virtual Restaurant Restaurant { get; set; }
         
         public ICollection<WishlistItem> WishlistItems { get; set; }
+        public ICollection<FoodFilm> FoodFilms { get; set; }
     }
 }
