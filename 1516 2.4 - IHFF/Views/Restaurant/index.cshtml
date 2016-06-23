@@ -22,8 +22,15 @@
                     <a>
                         <img src="data: image/jpg;base64, @item.Image" class="img-responsive" style="width:100%;" />
                     </a>
-                    <div class="overlay-overlayable" style="bottom: 5px; width: 100%;">
-                        <ul class="list-inline rating text-center" style="float: right; margin-right: 15px;">
+                    <div class="overlay-overlayable" style="bottom: 5px; width: 100%; height: 100%">
+                        
+                        @if (item.FoodFilm)
+                        {
+                            <div class="overlay-overlayable foodfilmicon">
+                                <a><img src="~/Resources/foodfilmicon.png" class="img-responsive" style="width:30%;" /></a>
+                            </div>
+                        }
+                        <ul class="list-inline rating text-center" >
                             @for (int i = 1; i <= 5; i++)
                             {
                                 //Iterate 5 times for all the star ratings
@@ -50,16 +57,10 @@
                                 }
                             }
                         </ul>
-                        @if (item.FoodFilm)
-                        {
-                            <div class="overlay-overlayable" style="top: -158px; left:-16px;">
-                                <a><img src="~/Resources/foodfilmicon.png" class="img-responsive" style="width:30%;" /></a>
-                            </div>
-                        }
                     </div>
                 </div>
                 <a href="@Url.Action("RestaurantInfo", "Restaurant", new { item.RestaurantId })">
-                    <h3 class="text-center">@item.Name</h3>
+                    <h3 class="text-center restaurentTitle">@item.Name</h3>
                 </a>
                 <p> @item.Info @Html.ActionLink("Lees verder", "RestaurantInfo", "Restaurant", new { item.RestaurantId }, new { @class = "" }) <p />
                 @Html.ActionLink("Reserveer nu", "RestaurantInfo", "Restaurant", new { item.RestaurantId }, new { @class = "btn btn-primary btn-block" })

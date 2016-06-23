@@ -29,7 +29,14 @@
                 {
                     <div class="col-sm-3 thumbnail recommendation">
                         <a href="@Url.Action("Index", "Special")" class="fancybox">
-                            <img src="@String.Format( "data:image/png;base64,{0}", "" )" class="img-responsive" />
+                            @if (item.Name.Contains("lezing") || item.Name.Contains("Lezing"))
+                            {
+                                <img src="~/Resources/lecture.jpg" class="img-responsive" />
+                            }
+                            else
+                            {
+                                <img src="~/Resources/discussion_forum.jpg" class="img-responsive" />
+                            }
                         </a>
                     </div>
                 }

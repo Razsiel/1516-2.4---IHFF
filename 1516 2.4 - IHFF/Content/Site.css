@@ -279,6 +279,10 @@ h2{
     color: #fff;
 }
 
+h3 {
+    font-size: 1.5em;
+}
+
 h3, 
 h4 {
     font-weight: bold;
@@ -699,4 +703,23 @@ div.container table.wishlistMini td {
 
 .sm-icons.small img{
     max-height: 34px;
+}
+
+.list-inline.rating{
+    float: right; 
+    margin-right: 15px; 
+    position:absolute; 
+    bottom:0px; 
+    right:0px;
+}
+
+.foodfilmicon {
+    top:-6%; 
+    left:-5%; 
+    position:relative;
+}
+
+.restaurentTitle {
+    white-space: nowrap;
+    overflow: hidden;
 }
