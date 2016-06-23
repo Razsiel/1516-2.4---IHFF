@@ -2,11 +2,8 @@
 @using IHFF.Helpers
 @model IEnumerable<Movie>
 
-@{ int movieNumber = 0;}
-
 @foreach (Movie item in Model)
 {
-    movieNumber++;
 
     using (Html.BeginForm("Index", "Movies"))
     {
@@ -45,7 +42,7 @@
                     </div>
                     <br />
                     <div class="col-md-7">
-                        <select name="EventId" id="@movieNumber" class="movieDropDown EventId">
+                        <select name="EventId" class="movieDropDown EventId">
                             @{
                                 // discriminator of specials should be removed...
                                 foreach (Event e in item.Airings.Where(x => x.Discriminator == ItemType.Movie.ToString()))
@@ -73,7 +70,7 @@
                         </select>
                     </div>
                     <div class="col-md-2 pull-right">
-                        <input type="submit" class="btn btn-primary btn-block movieBtn" number="@movieNumber" value="Toevoegen" />
+                        <input type="submit" class="btn btn-primary btn-block movieBtn" value="Toevoegen" />
                     </div>
                 </div>
             </div>

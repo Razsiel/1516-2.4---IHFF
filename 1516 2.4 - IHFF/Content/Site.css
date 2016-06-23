@@ -556,7 +556,29 @@ div.food-and-film > center > h3 > span {
     font-style: italic;
     font-weight: bold;
     font-size: 20px;
+}
 
+h3.food-and-film, p.food-and-film{
+    margin-top: 0;
+    margin-left: 10px;
+}
+.filmFoodPullDown{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.backBtn {
+    margin-bottom: 20px;
+}
+
+.margin-bottom{
+    margin-bottom: 20px;
+}
+
+.filmFoodDropDown {
+    width: 95%;
 }
 
 

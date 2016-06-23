@@ -118,7 +118,7 @@
                 type: 'GET',
                 
                 success: function (data) {
-                    $('.hideDiv').animate({ width: 'toggle' }, 'slow');
+                    $('.hideDiv').slideToggle("slow");
                     $('.food-and-film-replace').append(data);
                 }
             })

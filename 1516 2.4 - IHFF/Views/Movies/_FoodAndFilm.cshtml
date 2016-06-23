@@ -2,22 +2,28 @@
 @using IHFF.Helpers
 @model  FoodFilmViewModel
 
-<div class="appendDiv">
+<div class="appendDiv justify-height-container">
     <div class="col-md-4">
-        <div class="row">
-            <div class="col-md-3">
+        <h5>Film</h5>
+        <div class="row margin-bottom">
+            <div class="col-md-4">
                 <img src="@String.Format("data:image/png;base64,{0}", Model.MovieImage)" style="width:74px;height:103px" />
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="row">
-                    <h3>@Model.MovieTitle</h3>
+                    <h3 class="food-and-film">@Model.MovieTitle</h3>
                 </div>
                 <div class="row">
-                    <p>Selecteer hieronder een tijd en datum voor de film</p>
+                    <p class="food-and-film">Selecteer hieronder een tijd en datum voor de film</p>
                 </div>
             </div>
         </div>
-        <select name="EventId" class="movieDropDown EventId">
+        <div class="row margin-bottom">
+            <div class="col-md-12">
+                <button class="backBtn btn btn-primary movieInfo">&lArr; Terug</button>
+            </div>
+        </div>
+        <select name="EventId" class="EventId filmFoodDropDown filmFoodPullDown">
             @{
                 // discriminator of specials should be removed...
                 foreach (Event e in Model.Airings.Where(x => x.Discriminator == ItemType.Movie.ToString()))
@@ -28,33 +34,63 @@
             }
         </select>
     </div>
+
     <div class="col-md-4">
+        <h5>Food</h5>
         <img src="@String.Format("data:image/png;base64,{0}", Model.RestaurantImage)" style="width:190px;height:91px" />
-        <p>@Model.RestaurantName</p>
-        <p>*Lijst tijdstippen*</p>
-        <p>Kies hierboven een tijdstip. De datum is gelijk aan de gekozen filmdatum</p>
+        <h3>@Model.RestaurantName</h3>
+        <p class="margin-bottom">Kies hieronder een tijdstip. De datum is gelijk aan de gekozen filmdatum</p>
+        <select name="RestaurantTime" class="filmFoodDropDown filmFoodPullDown">
+            @{
+                TimeSpan startTime = TimeSpan.FromHours(13);
+                TimeSpan endTime = TimeSpan.FromHours(21);
+                TimeSpan interval = TimeSpan.FromMinutes(30);
+            }
+            @for (TimeSpan time = startTime; time < endTime; time = time.Add(interval))
+            {
+                <option value="@time">@time.ToString(@"hh\:mm")</option>
+            }
+        </select>
     </div>
     <div class="col-md-4">
-        <div class="row">
-            <p>Vervoer is alleen inbegrepen als het geselecteerde restaurant zich bevindt buiten het centrum van Haarlem.</p>
-            <p>Wanneer het vervoer is inbegrepen, zult u worden vervoerd naar de bioscoop, naar het restaurant, en terug naar huis met de taxi.</p>
+        <h5>Vervoer &amp; Tickets</h5>
+        <div class="row margin-bottom">
+            <div class="col-md-12">
+                <p>Vervoer is alleen inbegrepen als het geselecteerde restaurant zich bevindt buiten het centrum van Haarlem.</p>
+                <p>Wanneer het vervoer is inbegrepen, zult u worden vervoerd naar de bioscoop, naar het restaurant, en terug naar huis met de taxi.</p>
+                <p>
+                    <button class="btn btn-primary movieInfo margin-bottom">Toevoegen aan wishlist</button>
+                </p>
+            </div>
         </div>
-        <div class="row">
+        <div class="row filmFoodPullDown">
             <div class="col-md-6">
                 Aantal tickets:
             </div>
             <div class="col-md-6">
-                *Lijst aantal tickets*
+                <select name="ticketAmount" class="filmFoodDropDown">
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        if (i == 1)
+                        {
+                            <option value="@i">@i ticket</option>
+                        }
+                        else
+                        {
+                            <option value="@i">@i tickets</option>
+                        }
+                    }
+                </select>
+
             </div>
         </div>
 
-        <button class="backBtn">Back!</button>
     </div>
 </div>
 
 <script>
     $('.backBtn').click(function () {
         $('.appendDiv').remove();
-        $('.hideDiv').animate({ width: 'toggle' }, 'slow');
+        $('.hideDiv').slideToggle('slow');
     })
 </script>
