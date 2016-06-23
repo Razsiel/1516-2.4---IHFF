@@ -13,6 +13,7 @@ namespace IHFF.Controllers
     {
         private IMovieRepository moviesRepository = new MoviesRepository();
         private IWishlistRepository wishlistRepository = new WishlistRepository();
+        private IRestaurantRepository restaurantRepository = new RestaurantsRepository();
 
         public ActionResult Index()
         {
@@ -36,7 +37,9 @@ namespace IHFF.Controllers
 
         public ActionResult MovieInfo(int Id)
         {
-            return PartialView("_MovieInfo", moviesRepository.GetMovie(Id));
+            MovieViewModel model = new MovieViewModel(moviesRepository.GetFoodFilmRestaurants(), moviesRepository.GetMovie(Id));
+            return PartialView("_MovieInfo", model);
+            //return PartialView("_MovieInfo", moviesRepository.GetMovie(Id));
         }
 
         public ActionResult GetMovies(int day)
@@ -46,6 +49,12 @@ namespace IHFF.Controllers
                 return PartialView("_MovieView", moviesRepository.GetAllUniqueMovies());
             }
             return PartialView("_MovieView", moviesRepository.GetMovies(day));
+        }
+
+        public ActionResult FoodAndFilm(int restaurantId, int filmId)
+        {
+            FoodFilmViewModel model = new FoodFilmViewModel(restaurantRepository.GetRestaurant(restaurantId), moviesRepository.GetMovie(filmId));
+            return PartialView("_FoodAndFilm", model);
         }
     }
 }

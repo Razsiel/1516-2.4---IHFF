@@ -83,17 +83,10 @@
 <script>
     $(document).ready(function () {
 
-        $(".fancybox").click(function () {
-            $.fancybox.open({
-                content: $('<div>').load($(this).attr('href')),
-                type: 'ajax',
-                maxWidth: 800,
-                fitToView: false,
-                autoSize: true,
-                openEffect: 'fade',
-                closeEffect: 'fade'
-            });
-            return false;
+        $(".fancybox").fancybox({
+            openEffect: 'elastic',
+            closeEffect: 'elastic',
+            fitToView: false
         })
 
 
