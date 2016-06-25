@@ -21,7 +21,7 @@ namespace IHFF.Repositories
 
         #region Properties
 
-        //Singleton behaviour to prevent conflicts of several instances trying to read/write to database
+        //Singleton, behaviour to prevent conflicts of several instances trying to read/write to database
         public static IHFFContext Instance
         {
             get
@@ -36,7 +36,7 @@ namespace IHFF.Repositories
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
         public DbSet<Location> Locations { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; } //wat gebeurt hier?
         public DbSet<Special> Specials { get; set; }
         public DbSet<RestaurantReservation> RestaurantReservations { get; set;}
 
@@ -53,7 +53,7 @@ namespace IHFF.Repositories
             modelBuilder.Entity<Movie>().ToTable("Movie");
             modelBuilder.Entity<Special>().ToTable("Special");
             modelBuilder.Entity<Event>().ToTable("Event");
-            modelBuilder.Entity<Restaurant>().ToTable("Restaurant");
+            modelBuilder.Entity<Restaurant>().ToTable("Restaurant"); //wat gebeurt hier?
             modelBuilder.Entity<RestaurantReservation>().ToTable("RestaurantReservation");
             modelBuilder.Entity<FoodFilm>().ToTable("FoodFilm");
 
