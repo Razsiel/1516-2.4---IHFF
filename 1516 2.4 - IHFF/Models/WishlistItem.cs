@@ -14,26 +14,34 @@ namespace IHFF.Models
 
         public WishlistItem() { }
 
-        public WishlistItem(Event e, int amount, Wishlist wishlist)
+        public WishlistItem(int amount, Wishlist wishlist)
         {
             Amount = amount;
             PayedFor = false;
             WishlistUID = wishlist.UID;
             Wishlist = wishlist;
+        }
+
+        public WishlistItem(Event e, int amount, Wishlist wishlist) : this(amount, wishlist)
+        {
+            
             ItemId = e.EventId;
             Event = e;
             Discriminator = e.Discriminator;
         }
 
-        public WishlistItem(RestaurantReservation r, Wishlist wishlist)
+        public WishlistItem(RestaurantReservation r, Wishlist wishlist) : this(r.Amount, wishlist)
         {
-            Amount = r.Amount;
-            PayedFor = false;
-            WishlistUID = wishlist.UID;
-            Wishlist = wishlist;
             ItemId = r.ReservationId;
             Reservation = r;
             Discriminator = "Reservation";
+        }
+
+        public WishlistItem(FoodFilm f, Wishlist wishlist) : this(f.Reservation.Amount, wishlist)
+        {
+            ItemId = f.FoodFilmId;
+            FoodFilm = f;
+            Discriminator = "FoodFilm";
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -64,6 +72,8 @@ namespace IHFF.Models
                     return ItemType.Event;
                 case "Reservation":
                     return ItemType.Reservation;
+                case "FoodFilm":
+                    return ItemType.FoodFilm;
             }
         }
 
@@ -75,6 +85,8 @@ namespace IHFF.Models
                     return Event.GetName();
                 case ItemType.Reservation:
                     return Reservation.Restaurant.Name;
+                case ItemType.FoodFilm:
+                    return string.Format("Food&Film: {0} - {1}", FoodFilm.Event.GetName(), FoodFilm.Reservation.Restaurant.Name);
                 default:
                     return "";
             }
@@ -87,6 +99,8 @@ namespace IHFF.Models
                     return Event.LocationString;
                 case ItemType.Reservation:
                     return Reservation.Restaurant.Address;
+                case ItemType.FoodFilm:
+                    return string.Format("Film: {0}\nFood: {1}", FoodFilm.Event.LocationString, FoodFilm.Reservation.Restaurant.Address);
                 default:
                     return "";
             }
@@ -99,6 +113,8 @@ namespace IHFF.Models
                     return Event.GetImage();
                 case ItemType.Reservation:
                     return Reservation.Restaurant.Image;
+                case ItemType.FoodFilm:
+                    return "";
                 default:
                     return "";
             }
@@ -111,6 +127,8 @@ namespace IHFF.Models
                     return Event.GetPrice() * Amount;
                 case ItemType.Reservation:
                     return RESERVATIONPRICE * Amount;
+                case ItemType.FoodFilm:
+                    return 68.00m;
                 default:
                     return 0;
             }
@@ -127,13 +145,13 @@ namespace IHFF.Models
                         return Event.Date;
                     case ItemType.Reservation:
                         return Reservation.Date;
+                    case ItemType.FoodFilm:
+                        return FoodFilm.Event.Date;
                     default:
                         return DateTime.MinValue;
                 }
             }
         }
-
-        //public FoodFilm FoodFilm { get; internal set; }
     }
 
     public enum ItemType
@@ -141,6 +159,7 @@ namespace IHFF.Models
         Event,
         Reservation,
         Movie,
-        Special
+        Special,
+        FoodFilm
     }
 }

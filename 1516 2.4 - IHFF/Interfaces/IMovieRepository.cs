@@ -13,6 +13,5 @@ namespace IHFF.Interfaces
         Movie GetMovie(int id);
         IEnumerable<Movie> GetMovies(int id);
         Event GetMovieEvent(int eventId);
-        IEnumerable<Restaurant> GetFoodFilmRestaurants();
     }
 }

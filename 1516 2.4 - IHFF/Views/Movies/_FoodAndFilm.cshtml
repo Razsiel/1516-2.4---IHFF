@@ -1,65 +1,69 @@
 ﻿@using IHFF.Models
 @using IHFF.Helpers
+@using IHFF.Controllers
 @model  FoodFilmViewModel
 
-<div class="appendDiv justify-height-container">
-    <div class="col-md-4">
-        <h5>Film</h5>
-        <div class="row margin-bottom">
-            <div class="col-md-4">
-                <img src="@String.Format("data:image/png;base64,{0}", Model.MovieImage)" style="width:74px;height:103px" />
-            </div>
-            <div class="col-md-8">
-                <div class="row">
-                    <h3 class="food-and-film">@Model.MovieTitle</h3>
+@using (Html.BeginForm(nameof(MoviesController.FoodAndFilm), "Movies"))
+{ 
+    <div class="appendDiv justify-height-container">
+        <div class="col-md-4">
+            <h5>Film</h5>
+            <div class="row margin-bottom">
+                <div class="col-md-4">
+                    <img src="@String.Format("data:image/png;base64,{0}", Model.MovieImage)" style="width:74px;height:103px" />
                 </div>
-                <div class="row">
-                    <p class="food-and-film">Selecteer hieronder een tijd en datum voor de film</p>
+                <div class="col-md-8">
+                    <div class="row">
+                        <h3 class="food-and-film">@Model.MovieTitle</h3>
+                    </div>
+                    <div class="row">
+                        <p class="food-and-film">Selecteer hieronder een tijd en datum voor de film</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row margin-bottom">
-            <div class="col-md-12">
-                <button class="backBtn btn btn-primary movieInfo">&lArr; Terug</button>
+            <div class="row margin-bottom">
+                <div class="col-md-12">
+                    <button class="backBtn btn btn-primary movieInfo">&lArr; Terug</button>
+                </div>
             </div>
-        </div>
-        <select name="EventId" class="EventId filmFoodDropDown filmFoodPullDown">
-            @{
-                // discriminator of specials should be removed...
-                foreach (Event e in Model.Airings.Where(x => x.Discriminator == ItemType.Movie.ToString()))
-                {
-                    //Do selected check based on day
-                    <option value="@e.EventId">@e.AiringString</option>
+            <select name="EventId" class="EventId filmFoodDropDown filmFoodPullDown">
+                @{
+                    // discriminator of specials should be removed...
+                    foreach (Event e in Model.Airings.Where(x => x.Discriminator == ItemType.Movie.ToString()))
+                    {
+                        //Do selected check based on day
+                        <option value="@e.EventId">@e.AiringString</option>
+                    }
                 }
-            }
-        </select>
-    </div>
-
-    <div class="col-md-4">
-        <h5>Food</h5>
-        <img src="@String.Format("data:image/png;base64,{0}", Model.RestaurantImage)" style="width:190px;height:91px" />
-        <h3>@Model.RestaurantName</h3>
-        <p class="margin-bottom">Kies hieronder een tijdstip. De datum is gelijk aan de gekozen filmdatum</p>
-        <select name="RestaurantTime" class="filmFoodDropDown filmFoodPullDown">
-            @{
-                TimeSpan startTime = TimeSpan.FromHours(13);
-                TimeSpan endTime = TimeSpan.FromHours(21);
-                TimeSpan interval = TimeSpan.FromMinutes(30);
-            }
-            @for (TimeSpan time = startTime; time < endTime; time = time.Add(interval))
-        {
-                <option value="@time">@time.ToString(@"hh\:mm")</option>
-            }
-        </select>
-    </div>
-    <div class="col-md-4">
-        <h5>Vervoer &amp; Tickets</h5>
-        <div class="row margin-bottom">
-            <div class="col-md-12">
-                <p>Vervoer is alleen inbegrepen als het geselecteerde restaurant zich bevindt buiten het centrum van Haarlem.</p>
-                <p>Wanneer het vervoer is inbegrepen, zult u worden vervoerd naar de bioscoop, naar het restaurant, en terug naar huis met de taxi.</p>
-            </div>
+            </select>
         </div>
+
+        <div class="col-md-4">
+            <h5>Food</h5>
+            <img src="@String.Format("data:image/png;base64,{0}", Model.RestaurantImage)" style="width:190px;height:91px" />
+            <h3>@Model.RestaurantName</h3>
+            <p class="margin-bottom">Kies hieronder een tijdstip. De datum is gelijk aan de gekozen filmdatum</p>
+            @Html.HiddenFor(x => x.RestaurantId)
+            <select name="RestaurantTime" class="filmFoodDropDown filmFoodPullDown">
+                @{
+                    TimeSpan startTime = TimeSpan.FromHours(13);
+                    TimeSpan endTime = TimeSpan.FromHours(21);
+                    TimeSpan interval = TimeSpan.FromMinutes(30);
+                }
+                @for (TimeSpan time = startTime; time < endTime; time = time.Add(interval))
+                {
+                    <option value="@time">@time.ToString(@"hh\:mm")</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-4">
+            <h5>Vervoer &amp; Tickets</h5>
+            <div class="row margin-bottom">
+                <div class="col-md-12">
+                    <p>Vervoer is alleen inbegrepen als het geselecteerde restaurant zich bevindt buiten het centrum van Haarlem.</p>
+                    <p>Wanneer het vervoer is inbegrepen, zult u worden vervoerd naar de bioscoop, naar het restaurant, en terug naar huis met de taxi.</p>
+                </div>
+            </div>
             <div class="col-md-11 filmFoodPullDown" style="padding: 0;">
                 <div style="margin-bottom: 10px;" class="justify-height-container">
                     <div class="col-md-6" style="padding: 0;">
@@ -81,10 +85,11 @@
                         </select>
                     </div>
                 </div>
-                <button class="btn btn-primary movieInfo" style="width: 95%;">Toevoegen aan wishlist</button>
+                <input type="submit" class="btn btn-primary movieInfo" style="width: 95%;" value="Toevoegen aan wishlist" />
             </div>
+        </div>
     </div>
-</div>
+}
 
 <script>
     $('.backBtn').click(function () {

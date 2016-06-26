@@ -73,17 +73,7 @@
             }
         </td>
         <td class="col-md-1">
-            @switch (Model.GetItemType())
-            {
-                case ItemType.Event:
-                    @((Model.GetPrice()).ToString("C", Globals.CurrentCulture))
-                    break;
-                case ItemType.Reservation:
-                    @Model.GetPrice().ToString("C", Globals.CurrentCulture)
-                    break;
-                default:
-                    break;
-            }
+            @Model.GetPrice().ToString("C", Globals.CurrentCulture)
         </td>
         
         using (Html.BeginForm("RemoveItem", "Wishlist", FormMethod.Post))

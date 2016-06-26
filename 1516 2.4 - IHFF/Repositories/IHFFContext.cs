@@ -42,6 +42,7 @@ namespace IHFF.Repositories
 
         public DbSet<Event> Events { get; set; }
         public DbSet<WishlistItem> WishlistItems { get; set; }
+        public DbSet<FoodFilm> FoodFilms { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

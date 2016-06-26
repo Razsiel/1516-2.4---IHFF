@@ -13,5 +13,6 @@ namespace IHFF.Interfaces
         IEnumerable<Restaurant> GetAllRestaurants();
         Restaurant GetRestaurant(int id);
         RestaurantReservation CreateReservation(Restaurant r, int amount, TimeSpan tijd, int datum);
+        IEnumerable<Restaurant> GetFoodFilmRestaurants();
     }
 }

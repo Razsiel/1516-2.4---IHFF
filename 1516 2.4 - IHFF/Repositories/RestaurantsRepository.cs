@@ -45,5 +45,10 @@ namespace IHFF.Repositories
 
             return dbRes.FirstOrDefault();
         }
+
+        public IEnumerable<Restaurant> GetFoodFilmRestaurants()
+        {
+            return context.Restaurants.Where(x => x.FoodFilm == true);
+        }
     }
 }

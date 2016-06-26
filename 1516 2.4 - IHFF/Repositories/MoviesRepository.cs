@@ -48,10 +48,5 @@ namespace IHFF.Repositories
         {
             return context.Events.FirstOrDefault(x => x.EventId == eventId && x.Discriminator == ItemType.Movie.ToString());
         }
-
-        public IEnumerable<Restaurant> GetFoodFilmRestaurants()
-        {
-            return context.Restaurants.Where(x => x.FoodFilm == true);
-        }
     }
 }

@@ -149,7 +149,7 @@ namespace IHFF.Models
 
             foreach (WishlistItem item in this.WishlistItems)
             {
-                if (item.Amount > 1)
+                if (item.Amount > 1 && item.Discriminator != ItemType.FoodFilm.ToString())
                 {
                     Discounts.Add(new MultiplePeopleDiscount(item));
                 }

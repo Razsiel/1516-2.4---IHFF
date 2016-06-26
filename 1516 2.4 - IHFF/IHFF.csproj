@@ -147,6 +147,7 @@
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\Globals.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Interfaces\IFoodFilmRepository.cs" />
     <Compile Include="Interfaces\IRestaurantRepository.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
@@ -170,6 +171,7 @@
     <Compile Include="Models\Special.cs" />
     <Compile Include="Models\Wishlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\FoodFilmRepository.cs" />
     <Compile Include="Repositories\IHFFContext.cs" />
     <Compile Include="Repositories\MoviesRepository.cs" />
     <Compile Include="Repositories\RestaurantsRepository.cs">
