@@ -14,12 +14,12 @@ namespace IHFF.Controllers
         private IRestaurantRepository restaurantsRepository = new RestaurantsRepository();
         private IWishlistRepository wishlistRepository = new WishlistRepository();
 
-        public ActionResult Index()
+        public ActionResult Index() // het resultaat van een actie(methode), laat alle restauranten zien in de view
         {
            return View(restaurantsRepository.GetAllRestaurants());
         }
 
-        [HttpPost]
+        [HttpPost] // doormiddel van een httpost wordt de methode/actie alleen uitgevoerd/verwerkt/handeld met HTTP post requesten 
         public ActionResult Index(int Date, TimeSpan Time, int Amount, int RestaurantId)
         {
             Wishlist wishlist = Wishlist.Instance;
@@ -34,7 +34,7 @@ namespace IHFF.Controllers
             return RedirectToAction(nameof(WishlistController.Index), "Wishlist");
         }
 
-        public ActionResult RestaurantInfo(int RestaurantId)
+        public ActionResult RestaurantInfo(int RestaurantId) // Het resultaat/methode/actie van het drukken op een specefiek restaurant waarbij er wordt gekeken naar de res.id en dit wordt gematched, waardoor de juiste info naar voren komt. 
         {
             return View(restaurantsRepository.GetRestaurant(RestaurantId));
         }
