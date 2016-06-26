@@ -71,11 +71,11 @@
                     <td class="set-center">
                         @using (Html.BeginForm("Index", "Movies"))
                         {
+                            // id = toShortDateString(); Heb een uniek ID nodig om zo het goede aantal tickets te kunnen pakken; dit kon 
+                            // niet in de form gezet worden i.v.m. de tabel. Beneden wordt via jQuery het ticketaantal goed geplaatst.
                             <input type="submit" class="btn btn-primary movieInfo" date="@airing.Date.ToShortDateString()" value="Toevoegen" />
-                                    <input type="hidden" name="locationId" value="@airing.LocationId" />
-                                    <input type="hidden" name="eventDate" value="@airing.Date" />
-                                    <input type="hidden" name="EventId" value="@Model.MovieId" />
-                                    <input type="hidden" name="ticketAmount" ticketId="@airing.Date.ToShortDateString()" />
+                            <input type="hidden" name="EventId" value="@airing.EventId" />
+                            <input type="hidden" name="TicketAmount" ticketId="@airing.Date.ToShortDateString()" />
                         }
                     </td>
                 </tr>
@@ -113,7 +113,7 @@
             var id = $(this).val();
             var filmId = @Model.MovieId;
             $.ajax({
-                url: 'Movies/FoodAndFilm',
+                url: '/Movies/FoodAndFilm',
                 data: { 'restaurantId': id, 'filmId' : filmId },
                 type: 'GET',
                 
@@ -129,6 +129,31 @@
             var id = $(this).attr('date');
             var aantal = $('#' + id).val();
             $('input[ticketId=' + id + ']').val(aantal);
+            
+            e.preventDefault();
+            var form = $(this).parent();
+            $.ajax({
+                url: form.attr('action'),
+                type: "POST",
+                data: form.serialize(),
+                success: function(result){
+                    jQuery.fancybox.close();
+                    // mini wishlist openen
+                    $.fancybox.open({
+                        content: $('<div>').load("/Shared/ShowMiniWishlist"),
+                        type: 'ajax',
+                        maxWidth: 800,
+                        fitToView: false,
+                        autoSize: true,
+                        openEffect: 'fade',
+                        closeEffect: 'fade',
+                        AutoDimension: true,
+                        afterLoad: function(){
+                            
+                        }
+                    });
+                }
+            })
         });
     });
 </script>

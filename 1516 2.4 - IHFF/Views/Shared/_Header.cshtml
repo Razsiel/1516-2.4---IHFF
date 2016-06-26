@@ -59,9 +59,49 @@
                 fitToView: false,
                 autoSize: true,
                 openEffect: 'fade',
-                closeEffect: 'fade'
+                closeEffect: 'fade',
             });
             return false;
         })
+
+        /*$(".sendBtn").click(function (e) {
+            e.preventDefault();
+
+            var form = $(this).closest('form');
+
+            $.ajax({
+                url: form.attr('action'),
+                type: "POST",
+                data: form.serialize(),
+                success: function (result) {
+                    if (result == "success") {
+                        jQuery.fancybox.close();
+                        // mini wishlist openen
+                        $.fancybox.open({
+                            content: $('<div>').load("/Shared/ShowMiniWishlist"),
+                            type: 'ajax',
+                            maxWidth: 800,
+                            fitToView: false,
+                            autoSize: true,
+                            openEffect: 'fade',
+                            closeEffect: 'fade',
+                            AutoDimension: true,
+                        });
+                    }
+                    else {
+                        $.fancybox.open({
+                            content: $('<div><p style="color:red">Er is iets mis gegaan.</p></div>'),
+                            type: 'ajax',
+                            maxWidth: 800,
+                            fitToView: false,
+                            autoSize: true,
+                            openEffect: 'fade',
+                            closeEffect: 'fade',
+                            AutoDimension: true,
+                        });
+                    }
+                }
+            });
+        }); Busy with it, but I didn't got it working yet /Susanne  */ 
     });
 </script>

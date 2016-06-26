@@ -29,11 +29,13 @@ namespace IHFF.Controllers
             if (e == null)
             {
                 return RedirectToAction(nameof(Index));
+                //return "error";
             }
             WishlistItem item = new WishlistItem(e, ticketAmount, wishlist);
 
             wishlist.AddItemToWishlist(item);
             return RedirectToAction(nameof(WishlistController.Index), "Wishlist");
+            //return "success";
         }
 
         public ActionResult MovieInfo(int Id)
@@ -75,6 +77,7 @@ namespace IHFF.Controllers
 
             wishlist.AddItemToWishlist(item);
             return RedirectToAction(nameof(WishlistController.Index), "Wishlist");
+            //return "success";
         }
     }
 }
