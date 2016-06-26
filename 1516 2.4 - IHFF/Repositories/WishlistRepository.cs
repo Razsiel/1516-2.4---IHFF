@@ -102,5 +102,31 @@ namespace IHFF.Repositories
             Wishlist.Instance = GetWishlist(wishlist.UID);
             return Wishlist.Instance;
         }
+
+        public void CheckAvailability(Wishlist instance)
+        {
+            foreach (WishlistItem item in instance.WishlistItems)
+            {
+                IEnumerable<WishlistItem> reservedItems = ctx.WishlistItems.Where(x =>
+                    x.ItemId == item.ItemId &&
+                    x.Discriminator == item.Discriminator &&
+                    x.PayedFor == true);
+
+                if (item.Discriminator == ItemType.Movie.ToString() || item.Discriminator == ItemType.Special.ToString())
+                {
+                    if (reservedItems.Count() < item.Event.Location.Capacity)
+                    {
+                        item.Available = true;
+                    }
+                }
+                else if (item.Discriminator == ItemType.FoodFilm.ToString())
+                {
+                    if (reservedItems.Count() < item.FoodFilm.Event.Location.Capacity)
+                    {
+                        item.Available = true;
+                    }
+                }
+            }
+        }
     }
 }

@@ -24,5 +24,6 @@ namespace IHFF.Interfaces
         Wishlist Checkout(Wishlist wishlist);                           //UPDATE
         void Remove(Wishlist wishlist, WishlistItem wishlistItem);      //DELETE
         Wishlist SaveWishlist(Wishlist wishlist);
+        void CheckAvailability(Wishlist instance);
     }
 }

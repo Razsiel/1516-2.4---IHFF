@@ -31,9 +31,12 @@
         <td class="col-md-1">
             @using (Html.BeginForm("SelectedChange", null, FormMethod.Post, new { @class = "formSelect", @unique = Model.ItemId }))
             {
-                @Html.CheckBoxFor(x => x.Selected, new { @class = "targetSelection" })
-                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
-                <input type="hidden" name="EventId" value="@Model.ItemId" />
+                if (Model.Available)
+                {
+                    @Html.CheckBoxFor(x => x.Selected, new { @class = "targetSelection" })
+                    <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
+                    <input type="hidden" name="EventId" value="@Model.ItemId" />
+                }
             }
         </td>
         <td class="col-md-4">
@@ -58,7 +61,16 @@
             <br />
             @Model.Date.TimeOfDay.ToString()
         </td>
-        <td class="col-md-1"></td>
+        <td class="col-md-1">
+            @if (Model.Available)
+            {
+                <img src="~/Resources/check.png" class="img-responsive" style="width: 24px; margin:0 auto;"/>
+            }
+            else
+            {
+                <span class="primary-color">X</span>
+            }
+        </td>
         <td class="col-md-1">
             @using (Html.BeginForm("AmountChange", null, FormMethod.Post, new { @class = "formAmount", @uniqueTarget = Model.ItemId }))
             {

@@ -65,7 +65,7 @@ namespace IHFF.Controllers
             Event e = moviesRepository.GetMovieEvent(EventId);
 
             Restaurant restaurant = restaurantRepository.GetRestaurant(RestaurantId);
-            RestaurantReservation r = restaurantRepository.CreateReservation(restaurant, ticketAmount, RestaurantTime, (int)e.Date.DayOfWeek);
+            RestaurantReservation r = restaurantRepository.CreateReservation(restaurant, ticketAmount, RestaurantTime, (int)e.Date.Day);
 
             FoodFilm foodFilm = new FoodFilm(e, r);
 
