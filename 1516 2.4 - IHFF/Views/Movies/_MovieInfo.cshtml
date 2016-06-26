@@ -89,7 +89,7 @@
     <center><h3>Combineer een film samen met een diner met onze <span>Film&amp;Food</span> tickets!</h3></center>
 
     <div class="row food-and-film-replace">
-        <div class="hideDiv">
+        <div class="hideDiv justify-height-container">
             @foreach (Restaurant res in Model.FoodFilmRestaurants)
             {
                 <div class="col-md-4">
@@ -97,8 +97,8 @@
                         <img src="data: image/jpg;base64, @res.ResImage3" class="img-responsive" />
                         <h3>@res.Name</h3>
                     </center>
-                    <p>@res.Info</p>
-                    <button class="testBtn" value="@res.RestaurantId">Check!</button>
+                    <p class="margin-bottom">@res.Info</p>
+                    <button value="@res.RestaurantId" class="filmFoodPullDown foodFilmBtn btn btn-primary movieInfo">Selecteer</button>
                 </div>
             }
         </div>
@@ -109,7 +109,7 @@
     $(document).ready(function () {
 
 
-        $('.testBtn').click(function () {
+        $('.foodFilmBtn').click(function () {
             var id = $(this).val();
             var filmId = @Model.MovieId;
             $.ajax({

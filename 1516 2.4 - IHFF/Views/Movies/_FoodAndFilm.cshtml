@@ -47,7 +47,7 @@
                 TimeSpan interval = TimeSpan.FromMinutes(30);
             }
             @for (TimeSpan time = startTime; time < endTime; time = time.Add(interval))
-            {
+        {
                 <option value="@time">@time.ToString(@"hh\:mm")</option>
             }
         </select>
@@ -58,33 +58,31 @@
             <div class="col-md-12">
                 <p>Vervoer is alleen inbegrepen als het geselecteerde restaurant zich bevindt buiten het centrum van Haarlem.</p>
                 <p>Wanneer het vervoer is inbegrepen, zult u worden vervoerd naar de bioscoop, naar het restaurant, en terug naar huis met de taxi.</p>
-                <p>
-                    <button class="btn btn-primary movieInfo margin-bottom">Toevoegen aan wishlist</button>
-                </p>
             </div>
         </div>
-        <div class="row filmFoodPullDown">
-            <div class="col-md-6">
-                Aantal tickets:
+            <div class="col-md-11 filmFoodPullDown" style="padding: 0;">
+                <div style="margin-bottom: 10px;" class="justify-height-container">
+                    <div class="col-md-6" style="padding: 0;">
+                        Aantal tickets:
+                    </div>
+                    <div class="col-md-6" style="padding: 0;">
+                        <select name="ticketAmount" class="filmFoodDropDown">
+                            @for (int i = 1; i <= 10; i++)
+                            {
+                                if (i == 1)
+                                {
+                                    <option value="@i">@i ticket</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">@i tickets</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary movieInfo" style="width: 95%;">Toevoegen aan wishlist</button>
             </div>
-            <div class="col-md-6">
-                <select name="ticketAmount" class="filmFoodDropDown">
-                    @for (int i = 1; i <= 10; i++)
-                    {
-                        if (i == 1)
-                        {
-                            <option value="@i">@i ticket</option>
-                        }
-                        else
-                        {
-                            <option value="@i">@i tickets</option>
-                        }
-                    }
-                </select>
-
-            </div>
-        </div>
-
     </div>
 </div>
 

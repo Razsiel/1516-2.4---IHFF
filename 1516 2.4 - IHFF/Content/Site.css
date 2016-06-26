@@ -578,11 +578,15 @@ h3.food-and-film, p.food-and-film{
 }
 
 .margin-bottom{
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .filmFoodDropDown {
     width: 95%;
+}
+
+.foodFilmBtn{
+    width: 90%;
 }
 
 
