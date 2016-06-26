@@ -19,6 +19,7 @@ namespace IHFF.Controllers
 
         public ActionResult Index()
         {
+            wishlistRepository.CheckAvailability(Wishlist.Instance);
             Wishlist.Instance.DetermineDiscounts();
             return View(Wishlist.Instance);
         }

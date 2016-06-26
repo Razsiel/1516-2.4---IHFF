@@ -62,6 +62,9 @@ namespace IHFF.Models
         [NotMapped]
         public bool Selected { get; set; } = true;
 
+        [NotMapped]
+        public bool Available { get; set; } = false;
+
         public ItemType GetItemType()
         {
             switch (this.Discriminator)

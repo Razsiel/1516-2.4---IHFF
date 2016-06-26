@@ -63,7 +63,7 @@ namespace IHFF.Models
             get
             {
                 return this.WishlistItems
-                .Where(x => x.Selected && !x.PayedFor)
+                .Where(x => x.Selected && !x.PayedFor && x.Available)
                 .GroupBy(x => x.Date.DayOfWeek)
                 .Select(g => g)
                 .ToDictionary(x => x.Key, y => y.AsEnumerable<WishlistItem>());
@@ -145,7 +145,7 @@ namespace IHFF.Models
 
             foreach (var day in SelectedDayItems.Values.ToList())
             {
-                if (day.Count() > 1)
+                if (day.Where(x => x.Discriminator != ItemType.FoodFilm.ToString()).Count() > 1)
                 {
                     Discounts.Add(new MultipleActivitiesDayDiscount(day.First().Date.DayOfWeek));
                 }
@@ -153,9 +153,12 @@ namespace IHFF.Models
 
             foreach (WishlistItem item in this.WishlistItems)
             {
-                if (item.Amount > 1 && item.Discriminator != ItemType.FoodFilm.ToString())
+                if (item.Amount > 1)
                 {
-                    Discounts.Add(new MultiplePeopleDiscount(item));
+                    if (item.Discriminator == ItemType.Movie.ToString() || item.Discriminator == ItemType.Reservation.ToString())
+                    {
+                        Discounts.Add(new MultiplePeopleDiscount(item));
+                    }
                 }
             }
         }
