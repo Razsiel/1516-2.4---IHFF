@@ -8,7 +8,18 @@
         <td class="col-md-4">
             <div class="row">
                 <div class="col-sm-3" style="padding-left: 0px;">
-                    <img src="data:image/jpg;base64, @Model.GetImage()" class="img-responsive" style="max-height:60px;"/>
+                    @if (Model.Discriminator == ItemType.FoodFilm.ToString())
+                    {
+                        <img src="~/Resources/FoodFilmLogo.png" class="img-responsive" style="max-height:60px;" />
+                    }
+                    else if (Model.Discriminator == ItemType.Special.ToString())
+                    {
+                        <img src="~/Resources/discussion_forum.jpg" class="img-responsive" style="max-height: 60px;" />
+                    }
+                    else
+                    {
+                        <img src="data:image/jpg;base64, @Model.GetImage()" class="img-responsive" style="max-height:60px;" />
+                    }
                 </div>
                 <div class="col-sm-8" style="padding-left: 0px;">
                     @Model.GetName()
@@ -45,6 +56,10 @@
                     @if (Model.Discriminator == ItemType.FoodFilm.ToString())
                     {
                         <img src="~/Resources/FoodFilmLogo.png" class="img-responsive" style="max-height:60px;" />
+                    }
+                    else if (Model.Discriminator == ItemType.Special.ToString())
+                    {
+                        <img src="~/Resources/discussion_forum.jpg" class="img-responsive" style="max-height: 60px;" />
                     }
                     else
                     {

@@ -153,9 +153,12 @@ namespace IHFF.Models
 
             foreach (WishlistItem item in this.WishlistItems)
             {
-                if (item.Amount > 1 && item.Discriminator != ItemType.FoodFilm.ToString())
+                if (item.Amount > 1)
                 {
-                    Discounts.Add(new MultiplePeopleDiscount(item));
+                    if (item.Discriminator == ItemType.Movie.ToString() || item.Discriminator == ItemType.Reservation.ToString())
+                    {
+                        Discounts.Add(new MultiplePeopleDiscount(item));
+                    }
                 }
             }
         }
