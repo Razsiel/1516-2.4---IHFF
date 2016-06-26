@@ -146,7 +146,6 @@
     <Compile Include="Controllers\SpecialsController.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\Globals.cs" />
-    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Interfaces\IFoodFilmRepository.cs" />
     <Compile Include="Interfaces\IRestaurantRepository.cs" />
