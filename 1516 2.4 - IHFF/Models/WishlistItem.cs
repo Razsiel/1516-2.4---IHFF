@@ -100,7 +100,7 @@ namespace IHFF.Models
                 case ItemType.Reservation:
                     return Reservation.Restaurant.Address;
                 case ItemType.FoodFilm:
-                    return string.Format("Film: {0}\nFood: {1}", FoodFilm.Event.LocationString, FoodFilm.Reservation.Restaurant.Address);
+                    return string.Format("Film: {0} \nFood: {1}", FoodFilm.Event.LocationString, FoodFilm.Reservation.Restaurant.Address);
                 default:
                     return "";
             }
@@ -113,8 +113,6 @@ namespace IHFF.Models
                     return Event.GetImage();
                 case ItemType.Reservation:
                     return Reservation.Restaurant.Image;
-                case ItemType.FoodFilm:
-                    return "";
                 default:
                     return "";
             }
@@ -128,7 +126,7 @@ namespace IHFF.Models
                 case ItemType.Reservation:
                     return RESERVATIONPRICE * Amount;
                 case ItemType.FoodFilm:
-                    return 68.00m;
+                    return 68.00m * Amount;
                 default:
                     return 0;
             }

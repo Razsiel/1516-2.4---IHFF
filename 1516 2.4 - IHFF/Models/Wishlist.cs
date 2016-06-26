@@ -83,7 +83,7 @@ namespace IHFF.Models
                     decimal dayPrice = 0;
                     foreach (WishlistItem item in day.Value)
                     {
-                        if (item.Amount > 1)
+                        if (item.Amount > 1 && item.Discriminator != ItemType.FoodFilm.ToString())
                         {
                             foreach (DiscountRule discount in Discounts.Where(x => x is MultiplePeopleDiscount))
                             {
@@ -92,6 +92,10 @@ namespace IHFF.Models
                                     dayPrice += (item.GetPrice() * (1 - discount.Percentage));
                                 }
                             }
+                        }
+                        else if (item.Amount > 1 && item.Discriminator == ItemType.FoodFilm.ToString())
+                        {
+                            dayPrice += item.GetPrice();
                         }
                         else
                         {
